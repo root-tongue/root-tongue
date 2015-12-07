@@ -3,3 +3,5 @@
 /.idea/
 
 /vvv/config/nginx-config/sites/root-tongue.conf
+
+/vvv/www/root-tongue/content/uploads
