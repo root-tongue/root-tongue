@@ -807,10 +807,10 @@ network_check
 echo " "
 echo "Installing/updating WordPress Stable, Trunk & Develop"
 
-wordpress_default
-wpsvn_check
-wordpress_trunk
-wordpress_develop
+#wordpress_default
+#wpsvn_check
+#wordpress_trunk
+#wordpress_develop
 
 # VVV custom site import
 echo " "
