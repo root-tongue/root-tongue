@@ -10,15 +10,13 @@ mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS root_tongue_wp"
 if [ ! -d core/wp-admin ]
 then
     echo "Checking out WordPress SVN"
-    # If `core` folder doesn't exist, check out WordPress
+    # If `core/wp-admin` folder doesn't exist, check out WordPress
     # as that folder
-    svn checkout http://svn.automattic.com/wordpress/trunk/ core
-    # Change into the `core` folder we've checked SVN out into
-    cd core
+    svn checkout http://svn.automattic.com/wordpress/tags/4.3.1 core
     # Use WP CLI to install WordPress
-    wp core install --url=root-tongue.dev --title="Root Tongue Dev" --admin_user=admin --admin_password=abc --admin_email=demo@example.com --allow-root
-    # Change folder to the parent folder of `core`
-    cd ..
+    wp core install --title="Root Tongue Dev Site" --admin_user=admin --admin_password=abc --admin_email=demo@example.com --allow-root
+    # Use WP CLI to set the Root Tongue theme
+    wp theme activate root-tongue --allow-root
 else
     echo "Updating WordPress SVN"
     # If the `core` folder exists, then run SVN update
