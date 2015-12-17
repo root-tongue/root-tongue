@@ -47,16 +47,24 @@ add_action( 'init', function() {
 
 		'menu_icon' => 'dashicons-format-status',
 
+		'supports' => array('title', 'editor', 'author', 'thumbnail', 'comments'),
+
+		'labels' => array(
+			'featured_image' => __('Thumbnail', 'rt'),
+			'set_featured_image' => __('Choose Thumbnail', 'rt'),
+			'remove_featured_image' => __('Remove Thumbnail', 'rt'),
+			'use_featured_image' => __('Use as Thumbnail', 'rt'),
+		),
+
 		# Add some custom columns to the admin screen:
 		'admin_cols' => array(
 			'title',
 			'author',
 			'type' => array(
-				'title' => 'Type',
+				'title' => __('Type', 'rt'),
 				'meta_key' => 'submission_type',
 			),
 			'theme' => array(
-				'title' => 'Theme',
 				'taxonomy' => 'theme'
 			),
 			'language' => array(
