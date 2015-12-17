@@ -1,13 +1,15 @@
 <?php
 /**
- * The main template file
+ * The template for displaying archive pages
  *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * e.g., it puts together the home page when no home.php file exists.
+ * Used to display archive-type pages if nothing more specific matches a query.
+ * For example, puts together date-based pages if no date.php file exists.
  *
- * Learn more: {@link https://codex.wordpress.org/Template_Hierarchy}
+ * If you'd like to further customize these archive views, you may create a
+ * new template file for each one. For example, tag.php (Tag archives),
+ * category.php (Category archives), author.php (Author archives), etc.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
  * @subpackage FoundationPress

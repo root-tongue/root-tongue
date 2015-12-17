@@ -1,0 +1,216 @@
+#masthead {
+  position: fixed;
+  width: 100%;
+  padding: 1.5rem 1.5rem 0;
+
+  .top-bar {
+    position: relative;
+
+    .top-bar-left {
+      float: left;
+      a#logo {
+        text-indent: -100%;
+        display: block;
+        height: 42px;
+        width: 128px;
+        background: url('../images/sprites_2x.png') 0 0 no-repeat;
+        background-size: 300px auto;
+        overflow: hidden;
+        @include transition(opacity);
+        &:hover {
+          opacity:0.8;
+        }
+      }
+    }
+    .top-bar-right {
+      float: right;
+    }
+
+    .nav-toggle {
+      z-index: 9999;
+      position: relative;
+      font-family: $bold-font;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      color: $white;
+      @include transition(all);
+      &:hover {
+        opacity: 0.8;
+      }
+      .menu-label {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 4px 0 0;
+        position: relative;
+        top: 2px;
+      }
+      .menu-icon {
+         @include hamburger(
+            $color: $white,
+            $color-hover: $white,
+            $width: 22px,
+            $height: 16px,
+            $weight: 3px
+          );
+      }
+      &.open{
+        color: $black;
+        .menu-icon {
+          @include hamburger(
+            $color: $black,            
+            $color-hover: $black,
+            $width: 22px,
+            $height: 16px,
+            $weight: 3px
+          );
+          &::after {
+            @include transition(all);
+          }
+        }
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+
+    }
+    #main-nav {
+      position: fixed;
+      height: 100%;
+      top:0;
+      bottom:0;
+      right: -35%;
+      width: 35%;
+      background: $primary-color;
+      z-index: 9998;
+      padding: 1.5rem .5rem 1.5rem 1.5rem;
+      @include transition(right);
+      &:before {
+        content:'';
+        width: 1.2rem;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top:0;
+        left: 0;
+        background:  url('../images/diagonal.png') 0 0 repeat-y;
+        background-size: 100% auto;
+
+      }
+      &.open {
+        right: 0px;
+      }
+      .menu-main-nav-container {
+        margin: 2.25rem 0 0 0;
+        overflow-y:scroll;
+        height: 100%;
+      }
+      ul.menu {
+        padding: 0 1rem 0 0.5rem;
+        list-style: none;
+        li {
+          margin: 0 0 1rem;
+          display: block;
+          a {
+            color: $black;
+            font-family: $skinny-font;
+            font-size: 1.5rem;
+            line-height: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0 0 0 26px;
+            position: relative;
+            @include transition(all);
+            &:hover {
+            }
+            &:before {
+              content:'';
+              display:block;
+              width: 18px;
+              height: 21px;
+              background: url('../images/sprites_2x.png') 0 -25px no-repeat;
+              background-size: 150px auto;
+              position: absolute;
+              margin: 2px 10px 0 0;
+              left: 0;
+            }
+          }
+          &.gallery a:before {
+            background-position: 0 -50px;
+          }
+          &.resources a:before {
+            background-position: 0 -75px;
+            margin-top: 1px;
+          }
+          &.donate a:before {
+            background-position: 0 -100px;
+            margin-top: 5px;
+          }
+          &.contact a:before {
+            background-position: 0 -125px;
+            margin-top: 5px;
+          }
+          &.about a:before {
+            background-position: 0 -150px;
+          }
+          &.menu-item-has-children > a:after {
+            content: '+';
+            font-family: $bold-font;
+            font-size: 10px;
+            line-height: 12px;
+            display: block;
+            float: right;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #000;
+            text-align: center;
+            cursor: pointer;
+            padding-left: 1px;
+          }
+          &.menu-item-has-children > a.expanded:after {
+            content: '-';
+            @include transition(content);
+          }
+          ul.sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            margin: 0 0 0 rem-calc(24);
+            @include transition(max-height 0.15s ease-out);
+            &.open {
+              max-height: 400px;
+              @include transition(max-height 0.25s ease-in);
+            }
+            li {
+              margin: 0;
+              display: block;
+              border-bottom: 2px solid #fff;
+              line-height: 1.5em;
+              padding-top: rem-calc(2px);
+              &:last-child {
+                border-bottom:none;
+              }
+              a {
+                font-size: 0.75rem;
+                font-family: $bold-font;
+                letter-spacing: 0.05em;
+                padding: 0;
+                text-transform: none;
+
+                &:before{
+                  display:none;
+                }
+              }
+            }
+          }
+
+        }
+
+      }
+    }
+  }
+}
+
+.container {
+  padding: 3.5rem 3.125rem 3.125rem;
+
+}

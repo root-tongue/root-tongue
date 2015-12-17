@@ -1,0 +1,18 @@
+body.home {
+		background: url('../images/intro_bg.jpg') top center;
+		background-size: cover;
+		a#logo {
+			display: none !important;
+		}
+		#intro {
+			text-align: center;
+			padding: 25px 25px 0;
+			@include breakpoint(medlarge) {
+				padding: 125px 125px 0;
+			}
+			img {
+				max-width: 100%;
+			}
+		}
+
+}

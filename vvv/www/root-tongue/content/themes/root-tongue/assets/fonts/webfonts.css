@@ -1,0 +1,52 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3136849, 2015-12-06T18:01:54-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: FuturaBT-Book by Bitstream
+ * URL: http://www.myfonts.com/fonts/bitstream/futura/book/
+ * Copyright: Copyright 1990-2003 Bitstream Inc. All rights reserved.
+ * Licensed pageviews: 10,000
+ * 
+ * Webfont: FuturaBT-Bold by Bitstream
+ * URL: http://www.myfonts.com/fonts/bitstream/futura/bold/
+ * Copyright: Copyright 1990-2003 Bitstream Inc. All rights reserved.
+ * Licensed pageviews: 10,000
+ * 
+ * Webfont: FuturaBT-MediumCondensed by Bitstream
+ * URL: http://www.myfonts.com/fonts/bitstream/futura/medium-condensed/
+ * Copyright: Copyright 1990-2003 Bitstream Inc. All rights reserved.
+ * Licensed pageviews: 10,000
+ * 
+ * Webfont: TandelleRg-Regular by Typodermic
+ * URL: http://www.myfonts.com/fonts/typodermic/tandelle/regular/
+ * Copyright: (c) 2005-2010 Typodermic Fonts. This font is not freely distributable. Visit typodermic.com for more info.
+ * Licensed pageviews: 20,000
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3136849
+ * 
+ * © 2015 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2fdd51");
+
+  
+@font-face {font-family: 'FuturaBT-Book';src: url('webfonts/2FDD51_0_0.eot');src: url('webfonts/2FDD51_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2FDD51_0_0.woff2') format('woff2'),url('webfonts/2FDD51_0_0.woff') format('woff'),url('webfonts/2FDD51_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FuturaBT-Bold';src: url('webfonts/2FDD51_1_0.eot');src: url('webfonts/2FDD51_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2FDD51_1_0.woff2') format('woff2'),url('webfonts/2FDD51_1_0.woff') format('woff'),url('webfonts/2FDD51_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FuturaBT-MediumCondensed';src: url('webfonts/2FDD51_2_0.eot');src: url('webfonts/2FDD51_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2FDD51_2_0.woff2') format('woff2'),url('webfonts/2FDD51_2_0.woff') format('woff'),url('webfonts/2FDD51_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'TandelleRg-Regular';src: url('webfonts/2FDD51_3_0.eot');src: url('webfonts/2FDD51_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2FDD51_3_0.woff2') format('woff2'),url('webfonts/2FDD51_3_0.woff') format('woff'),url('webfonts/2FDD51_3_0.ttf') format('truetype');}
+ 
