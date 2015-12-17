@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Register post types using Extended CPTs (in mu-plugins)
+ */
 add_action( 'init', function() {
 
 	register_extended_post_type( 'video', array(
@@ -101,8 +105,39 @@ add_action( 'init', function() {
 
 } );
 
+/**
+ * Remove default taxonomy metaboxes from submission post type
+ */
+
 add_action( 'admin_menu' , function() {
 	remove_meta_box( 'themediv', 'submission', 'side' );
 	remove_meta_box( 'languagediv', 'submission', 'side' );
 	remove_meta_box( 'countrydiv', 'submission', 'side' );
+} );
+
+/**
+ * Add posts-to-posts connection types
+ */
+add_action( 'p2p_init', function () {
+
+	p2p_register_connection_type( array(
+		'name' => 'video_to_question',
+		'from' => 'video',
+		'to' => 'question',
+		'cardinality' => 'one-to-one',
+		'admin_box' => array(
+			'context' => 'advanced',
+		),
+		'title' => array(
+			'from' => __( 'Question', 'rt' ),
+			'to' => __( 'Video', 'rt' )
+		),
+		'from_labels' => array(
+			'create' => __( 'Choose Video', 'rt' ),
+		),
+		'to_labels' => array(
+			'create' => __( 'Choose Question', 'rt' ),
+		),
+	) );
+
 } );
