@@ -2,6 +2,10 @@
 
 add_action( 'wpmdb_migration_complete', function ( $type, $location ) {
 	$current_user = wp_get_current_user()->display_name;
+	// this happens on the remote side
+	if ( empty( $current_user ) ) {
+		return;
+	}
 	$direction = $type == 'pull' ? 'from' : 'to';
 	$message      = "$current_user {$type}ed the database $direction $location";
 	rt_send_to_slack( $message );
