@@ -100,3 +100,9 @@ add_action( 'init', function() {
 
 
 } );
+
+add_action( 'admin_menu' , function() {
+	remove_meta_box( 'themediv', 'submission', 'side' );
+	remove_meta_box( 'languagediv', 'submission', 'side' );
+	remove_meta_box( 'countrydiv', 'submission', 'side' );
+} );
