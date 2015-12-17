@@ -5,3 +5,11 @@
 /vvv/config/nginx-config/sites/root-tongue.conf
 
 /vvv/www/root-tongue/content/uploads
+
+/vvv/www/root-tongue/core/
+
+/vvv/database/init-custom.sql
+/vvv/Vagrantfile-backup
+/vvv/www/default/
+/vvv/www/phpcs/
+/vvv/www/wp-cli/
