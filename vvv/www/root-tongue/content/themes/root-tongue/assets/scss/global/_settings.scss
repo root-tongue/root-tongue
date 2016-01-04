@@ -56,7 +56,7 @@ $dark-gray: #8a8a8a;
 $black: #000;
 $white: #fff;
 $body-background: none;
-$body-font-color: $black;
+$body-font-color: $white;
 $body-font-family: 'FuturaBT-Book', sans-serif;
 $body-antialiased: true;
 $text-direction: ltr;
@@ -75,7 +75,7 @@ $rem-base: 16px;
 
 $breakpoints: (
   small: 0,
-  medium: 512px,
+  medium: 667,
   medlarge: 768px,
   large: 1024px,
   xlarge: 1200px,
@@ -93,17 +93,18 @@ $grid-column-gutter: 30px;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: $body-font-family;
-$header-font-weight: $global-weight-normal;
-$header-font-style: normal;
 
 $skinny-font: 'TandelleRg-Regular';
 $bold-font: 'FuturaBT-Bold';
 
+$header-font-family: $skinny-font;
+$header-font-weight: $global-weight-normal;
+$header-font-style: normal;
+
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 $header-sizes: (
   small: (
-    'h1': 24,
+    'h1': 45,
     'h2': 20,
     'h3': 19,
     'h4': 18,
@@ -111,7 +112,7 @@ $header-sizes: (
     'h6': 16,
   ),
   medium: (
-    'h1': 48,
+    'h1': 60,
     'h2': 40,
     'h3': 31,
     'h4': 25,
@@ -120,7 +121,7 @@ $header-sizes: (
   ),
 );
 $header-color: inherit;
-$header-lineheight: 1.4;
+$header-lineheight: 1;
 $header-margin-bottom: 0.5rem;
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 80%;

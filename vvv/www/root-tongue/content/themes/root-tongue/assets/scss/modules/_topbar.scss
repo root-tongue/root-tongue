@@ -9,12 +9,12 @@
     .top-bar-left {
       float: left;
       a#logo {
-        text-indent: -100%;
+        text-indent: -1000%;
         display: block;
-        height: 42px;
-        width: 128px;
+        height: 26px;
+        width: 80px;
         background: url('../images/sprites_2x.png') 0 0 no-repeat;
-        background-size: 300px auto;
+        background-size: 185px auto;
         overflow: hidden;
         @include transition(opacity);
         &:hover {
@@ -210,7 +210,3 @@
   }
 }
 
-.container {
-  padding: 3.5rem 3.125rem 3.125rem;
-
-}
