@@ -45,7 +45,7 @@ get_header(); ?>
 					    <option value="theme1">THEME1</option>
 					    <option value="theme2">THEME2</option>
 					  </select>
-					  <div class="upload-thumbnail">
+					  <div class="upload-thumbnail" style="display:none;">
 					  	<div class="upload-button">+
 						  	<input type="file" id="thumbnail" accept="image/*">
 					  	</div>

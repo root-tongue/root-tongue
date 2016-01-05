@@ -17,15 +17,31 @@ get_header(); ?>
 			</div>
 			<div class="next-buttons">
 				<a class="rt-button" href="/upload/">UPLOAD MEDIA</a>
-				<a class="rt-button" href="#">SUBMIT LATER</a>
+				<a class="rt-button" id="show-later-modal" href="#">SUBMIT LATER</a>
 				<a class="rt-button" href="#">WATCH NEXT VIDEO</a>
 			</div>
 			<div class="watch-again">
-				<a href="#">Watch this video again</a>
+				<a onClick="history.go(-1)">Watch this video again</a>
 			</div>
 		</article>
 	<?php endwhile;?>
 
 	<?php do_action( 'foundationpress_after_content' ); ?>
+	
+	<div class="modal" id="submit-later">
+		<div class="overlay"></div>
+		<div class="modal-content">
+			<h3>SUBMIT LATER</h3>
+			<p>Praesent gravida blandit tellus et luctus</p>
+			<form>
+				<input type="text" id="email" placeholder="ENTER EMAIL">
+				<div class="submit-row">
+					<input type="submit" value="SUBMIT" class="rt-button">
+					<div class="rt-button cancel">CANCEL</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
 </div>
 <?php get_footer(); ?>

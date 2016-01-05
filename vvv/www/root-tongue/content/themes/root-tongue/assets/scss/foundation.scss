@@ -566,3 +566,61 @@ h1 {
       }
   }
 }
+.modal#submit-later {
+  .modal-content {
+    text-align: center;
+    color: #000;
+    height: auto;
+    padding: 1.5625rem 10%;
+    h3 {
+      font-size: rem-calc(48px);
+      line-height: 1em;
+      letter-spacing: 0.05em;
+      margin: 0 0 rem-calc(5px);
+    }
+    p {
+      font-size: rem-calc(10px);
+      text-transform: uppercase;
+      margin: rem-calc(5px 0 12px);
+    }
+    form {
+      input[type='text']{
+        background: $primary-color;
+        color: #000;
+        border: none;
+        box-shadow: none;
+        font-size: rem-calc(12px);
+        height: rem-calc(32px);
+        line-height: rem-calc(32px);
+        letter-spacing: 0.05em;
+        margin: 0 0 1.15rem;
+      }
+      input[type='submit'], .rt-button {
+        border:none;
+        margin: 0 rem-calc(10px);
+        outline: none;
+      }
+    }
+  }
+}
+/*** Upload Finished ***/
+#upload-complete {
+  section.upload-complete {
+    text-align: center;
+    padding: 2rem 0;
+    h1.large-title {
+      font-size: 10rem;
+      line-height: 0.9em;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 0.5rem 0 0;
+      p {
+        font-family: $bold-font;
+        font-size: rem-calc(18px);
+        line-height: 1.1em;
+        margin: 0;
+      }
+    }
+  }
+}

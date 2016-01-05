@@ -6829,4 +6829,49 @@ h1 {
   .modal#viewed-all .modal-content .button-row:last-of-type {
     margin: 0; }
 
+.modal#submit-later .modal-content {
+  text-align: center;
+  color: #000;
+  height: auto;
+  padding: 1.5625rem 10%; }
+  .modal#submit-later .modal-content h3 {
+    font-size: 3rem;
+    line-height: 1em;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.3125rem; }
+  .modal#submit-later .modal-content p {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    margin: 0.3125rem 0 0.75rem; }
+  .modal#submit-later .modal-content form input[type='text'] {
+    background: #d0dc28;
+    color: #000;
+    border: none;
+    box-shadow: none;
+    font-size: 0.75rem;
+    height: 2rem;
+    line-height: 2rem;
+    letter-spacing: 0.05em;
+    margin: 0 0 1.15rem; }
+  .modal#submit-later .modal-content form input[type='submit'], .modal#submit-later .modal-content form .rt-button {
+    border: none;
+    margin: 0 0.625rem;
+    outline: none; }
+
+/*** Upload Finished ***/
+#upload-complete section.upload-complete {
+  text-align: center;
+  padding: 2rem 0; }
+  #upload-complete section.upload-complete h1.large-title {
+    font-size: 10rem;
+    line-height: 0.9em;
+    letter-spacing: 0; }
+  #upload-complete section.upload-complete .subtitle {
+    margin: 0.5rem 0 0; }
+    #upload-complete section.upload-complete .subtitle p {
+      font-family: "FuturaBT-Bold";
+      font-size: 1.125rem;
+      line-height: 1.1em;
+      margin: 0; }
+
 /*# sourceMappingURL=foundation.css.map */
