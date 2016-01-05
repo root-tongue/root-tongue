@@ -47,7 +47,7 @@ get_header(); ?>
 					  </select>
 					  <div class="upload-thumbnail">
 					  	<div class="upload-button">+
-						  	<input type="file" name="thumbnail" accept="image/*">
+						  	<input type="file" id="thumbnail" accept="image/*">
 					  	</div>
 					  	<span>ADD THUMBNAIL</span>
 					  </div>
@@ -55,7 +55,7 @@ get_header(); ?>
 			</div>
 			<div class="submit-row">
 				<input type="submit" value="SUBMIT" class="rt-button">
-				<div class="rt-button">CANCEL</div>
+				<a class="rt-button" onClick="history.go(-1)">CANCEL</a>
 			</div>
 		</form>
 	</section>

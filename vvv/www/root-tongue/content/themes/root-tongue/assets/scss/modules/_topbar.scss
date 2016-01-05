@@ -1,7 +1,9 @@
 #masthead {
   position: fixed;
   width: 100%;
-  padding: 1.5rem 1.5rem 0;
+  padding: 1.5rem 1.5rem 1rem;
+  background: #000;
+  z-index: 999;
 
   .top-bar {
     position: relative;
@@ -209,4 +211,31 @@
     }
   }
 }
-
+body.page-template-upload {
+  background-color: $primary-color;
+  #masthead {
+    background: $primary-color;
+    .top-bar .top-bar-left a#logo {
+      background: url("../images/sprites_2x.png") -92px 0 no-repeat;
+      background-size: 185px auto;
+    }
+    .top-bar .nav-toggle {
+      color: #000;
+    
+        .menu-icon {
+           @include hamburger(
+              $color: $black,
+              $color-hover: $black,
+              $width: 22px,
+              $height: 16px,
+              $weight: 3px
+            );
+        }
+    }
+  }
+}
+body.single-video {
+  #masthead {
+      background: none;
+  } 
+}

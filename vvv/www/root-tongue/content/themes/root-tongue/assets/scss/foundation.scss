@@ -240,9 +240,6 @@
 body {
   background-color: $black;
 }
-body.page-template-upload {
-    background-color: $primary-color;
-}
 .off-canvas-content {
   box-shadow: none;
 }
@@ -502,7 +499,6 @@ h1 {
     position: fixed;
     z-index: 9999;
     top: 15%;
-    right: 50%;
     height: 75%;
     width: 60%;
     left:20%;
@@ -546,5 +542,27 @@ h1 {
       vertical-align: top;
     }
 
+  }
+}
+.modal#viewed-all {
+  .modal-content {
+      height: auto;
+      width: 50%;
+      left: 25%;
+      background: #fff;
+      padding: 3rem 1.5625rem;
+      text-align: center;
+      p {
+        color: #000;
+        font-family: $bold-font;
+        font-size: rem-calc(13px);
+        letter-spacing: 0.08em;
+      }
+      .button-row {
+        margin: 0 0 rem-calc(15px); 
+      }
+      .button-row:last-of-type {
+        margin: 0;
+      }
   }
 }

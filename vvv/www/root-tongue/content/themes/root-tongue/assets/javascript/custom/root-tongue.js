@@ -8,14 +8,12 @@ $('.menu-item-has-children > a').click(function(){
 	$(this).toggleClass('expanded')
 	$(this).next('ul.sub-menu').toggleClass('open');
 });
-
 $('#upload-form .submission-type').click(function(){
 	$(this).addClass('active');
 	$(this).siblings().removeClass('active');
 	var type = $(this).attr('data-type');
 	$('input#submissionType').val(type);
 });
-
 $('#upload-form .open-modal-textbox').click(function(){
 	var placeholder = $(this).attr('data-prompt');
 	var inputType = $(this).attr('data-type');
@@ -34,4 +32,9 @@ $('#upload-form .modal .submit').click(function(){
 $('#upload-form .modal .cancel').click(function(){
 	$('.modal textarea').val('');
 	$('.modal').hide();
+});
+$('input#thumbnail').change( function(){
+    var path = $(this).val();
+	var filename = path.replace(/^.*\\/, "");
+    $('.upload-thumbnail span').text(filename);
 });
