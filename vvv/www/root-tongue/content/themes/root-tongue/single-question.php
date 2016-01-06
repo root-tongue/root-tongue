@@ -17,7 +17,7 @@ get_header(); ?>
 			</div>
 			<div class="next-buttons">
 				<a class="rt-button" href="/upload/">UPLOAD MEDIA</a>
-				<a class="rt-button" id="show-later-modal" href="#">SUBMIT LATER</a>
+				<a class="rt-button show-modal" id="show-later-modal" href="#">SUBMIT LATER</a>
 				<a class="rt-button" href="#">WATCH NEXT VIDEO</a>
 			</div>
 			<div class="watch-again">
@@ -37,7 +37,7 @@ get_header(); ?>
 				<input type="text" id="email" placeholder="ENTER EMAIL">
 				<div class="submit-row">
 					<input type="submit" value="SUBMIT" class="rt-button">
-					<div class="rt-button cancel">CANCEL</a>
+					<div class="rt-button cancel">CANCEL</div>
 				</div>
 			</form>
 		</div>

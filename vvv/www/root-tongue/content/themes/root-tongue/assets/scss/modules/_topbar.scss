@@ -211,7 +211,8 @@
     }
   }
 }
-body.page-template-upload {
+body.page-template-upload,
+body.single-submission {
   background-color: $primary-color;
   #masthead {
     background: $primary-color;
@@ -233,6 +234,14 @@ body.page-template-upload {
         }
     }
   }
+}
+body.single-submission {
+  background: #fff;
+  color: #000;
+    #masthead {
+      background: #fff;
+  } 
+
 }
 body.single-video {
   #masthead {

@@ -52,10 +52,10 @@ $('input#thumbnail').change( function(){
 });
 
 // Question Template - launch submit later modal
-$('#show-later-modal').click(function(e){
+$('.show-modal').click(function(e){
 	e.preventDefault();
-	$('#submit-later').show();
+	$('.modal').show();
 });
-$('#submit-later .cancel').click(function(e){
-	$('#submit-later').hide();
+$('.modal .cancel').click(function(e){
+	$('.modal').hide();
 });
