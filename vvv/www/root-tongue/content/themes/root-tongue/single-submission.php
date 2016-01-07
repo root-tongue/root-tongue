@@ -68,15 +68,30 @@ get_header(); ?>
 				</div>
 				<div class="meta theme">
 					<span class="data-label">theme</span>
-					<span class="data"><?php the_field('theme', $term);?></span>
+					<span class="data">
+					<?php $terms = get_terms( 'theme' );
+					 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+					    echo $terms[0]->name;
+					}?>
+					 </span>
 				</div>
 				<div class="meta language">
 					<span class="data-label">language</span>
-					<span class="data"><?php the_field('language', $term);?></span>
+					<span class="data">
+					<?php $terms = get_terms( 'language' );
+					 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+					    echo $terms[0]->name;
+					}?>
+					</span>
 				</div>
 				<div class="meta country">
 					<span class="data-label">country</span>
-					<span class="data"><?php the_field('country', $term);?></span>
+					<span class="data">
+					<?php $terms = get_terms( 'country' );
+					 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+					    echo $terms[0]->name;
+					}?>
+					</span>
 				</div>
 				<div class="description">
 					<div class="description-label">description</div>
@@ -86,6 +101,7 @@ get_header(); ?>
 					<a class="rt-button show-modal" href="#">POST A COMMENT</a>
 					<a class="rt-button" href="/community-gallery">RETURN TO THE GALLERY</a>
 				</div>
+				
 				<?php comments_template(); ?> 
 
 			</div>

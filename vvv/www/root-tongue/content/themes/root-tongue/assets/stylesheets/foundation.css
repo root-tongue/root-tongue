@@ -5813,7 +5813,8 @@ table.hover tr:nth-of-type(even):hover {
 #masthead {
   position: fixed;
   width: 100%;
-  padding: 1.5rem 1.5rem 1rem;
+  padding: 1.5rem 1.5rem 0;
+  height: 4.0625rem;
   background: #000;
   z-index: 999; }
   #masthead .top-bar {
@@ -7001,5 +7002,134 @@ body.single-submission .container {
         line-height: 1.5em; }
         body.single-submission .container .main-content #comments .comment-content p {
           margin: 0; }
+
+/*** Gallery ***/
+body.page-template-community-gallery .container, body.archive .container {
+  padding: 0; }
+  body.page-template-community-gallery .container #gallery-top, body.archive .container #gallery-top {
+    height: 3.4375rem;
+    position: fixed;
+    z-index: 99;
+    top: 4.0625rem;
+    width: 100%; }
+    body.page-template-community-gallery .container #gallery-top .gallery-title, body.archive .container #gallery-top .gallery-title {
+      background: #000;
+      float: left;
+      width: 50%;
+      height: 3.4375rem;
+      padding: 0 1.5rem;
+      font-family: "FuturaBT-Bold";
+      font-size: 1.25rem;
+      line-height: 3.4375rem; }
+    body.page-template-community-gallery .container #gallery-top .gallery-filter, body.archive .container #gallery-top .gallery-filter {
+      background: #fff;
+      float: right;
+      width: 50%;
+      height: 3.4375rem;
+      z-index: 999; }
+      body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown, body.archive .container #gallery-top .gallery-filter .dropdown {
+        width: 34%;
+        float: left; }
+        body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown.theme, body.archive .container #gallery-top .gallery-filter .dropdown.theme {
+          width: 29%; }
+        body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown.language, body.archive .container #gallery-top .gallery-filter .dropdown.language {
+          width: 37%; }
+        body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .toggle-list, body.archive .container #gallery-top .gallery-filter .dropdown .toggle-list {
+          color: #000;
+          font-family: "FuturaBT-Bold";
+          font-size: 0.6875rem;
+          height: 3.4375rem;
+          line-height: 3.4375rem;
+          padding: 0.25rem 0 0 1rem;
+          border-right: 1px solid #d0dc28;
+          cursor: pointer;
+          overflow: hidden;
+          letter-spacing: 0.08em;
+          transition: all 300ms ease-out; }
+          body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .toggle-list:hover, body.archive .container #gallery-top .gallery-filter .dropdown .toggle-list:hover {
+            background-color: #d0dc28; }
+          body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .toggle-list:after, body.archive .container #gallery-top .gallery-filter .dropdown .toggle-list:after {
+            display: inline-block;
+            content: '';
+            width: 11px;
+            height: 7px;
+            background: url("../images/sprites_2x.png") 0 -333px no-repeat;
+            background-size: 250px auto;
+            margin-left: 3px;
+            position: relative;
+            top: -1px; }
+        body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown:last-child .toggle-list, body.archive .container #gallery-top .gallery-filter .dropdown:last-child .toggle-list {
+          border: none; }
+        body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu, body.archive .container #gallery-top .gallery-filter .dropdown .menu {
+          display: none;
+          background-color: #000;
+          padding: 0.75rem 1rem; }
+          body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu ul, body.archive .container #gallery-top .gallery-filter .dropdown .menu ul {
+            list-style: none;
+            margin: 0; }
+            body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu ul li, body.archive .container #gallery-top .gallery-filter .dropdown .menu ul li {
+              display: block; }
+              body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu ul li a, body.archive .container #gallery-top .gallery-filter .dropdown .menu ul li a {
+                font-family: "FuturaBT-Bold";
+                font-size: 0.5625rem;
+                line-height: 1em;
+                padding: 0.3125rem 0;
+                text-transform: uppercase;
+                color: #fff;
+                display: block;
+                letter-spacing: 0.06em; }
+                body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu ul li a:hover, body.archive .container #gallery-top .gallery-filter .dropdown .menu ul li a:hover {
+                  color: #d0dc28; }
+  body.page-template-community-gallery .container .gallery-list, body.archive .container .gallery-list {
+    padding-top: 7.5rem; }
+    body.page-template-community-gallery .container .gallery-list:after, body.archive .container .gallery-list:after {
+      clear: both;
+      content: '';
+      display: block; }
+    body.page-template-community-gallery .container .gallery-list .grid, body.archive .container .gallery-list .grid {
+      width: 25%;
+      float: left;
+      padding: 0 0 25% 0;
+      background-size: cover;
+      background-position: center center;
+      position: relative; }
+      body.page-template-community-gallery .container .gallery-list .grid a, body.archive .container .gallery-list .grid a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: all 300ms ease-out; }
+        body.page-template-community-gallery .container .gallery-list .grid a:hover, body.archive .container .gallery-list .grid a:hover {
+          background-color: rgba(192, 203, 37, 0.5); }
+        body.page-template-community-gallery .container .gallery-list .grid a span, body.archive .container .gallery-list .grid a span {
+          position: absolute;
+          top: 0;
+          right: 0;
+          color: #fff;
+          background: #000;
+          text-align: center;
+          font-family: "FuturaBT-Bold";
+          height: 1.25rem;
+          width: 1.25rem;
+          font-size: 1rem;
+          line-height: 1em;
+          padding-top: 3px; }
+  body.page-template-community-gallery .container #bottom-key, body.archive .container #bottom-key {
+    height: 2rem;
+    position: fixed;
+    z-index: 99;
+    bottom: 0;
+    width: 100%;
+    background: #000;
+    color: #d0dc28;
+    text-align: center; }
+    body.page-template-community-gallery .container #bottom-key .key, body.archive .container #bottom-key .key {
+      width: 20%;
+      display: inline-block;
+      font-size: 0.75rem;
+      font-family: "FuturaBT-Bold";
+      line-height: 2rem; }
+      body.page-template-community-gallery .container #bottom-key .key span, body.archive .container #bottom-key .key span {
+        color: #fff; }
 
 /*# sourceMappingURL=foundation.css.map */

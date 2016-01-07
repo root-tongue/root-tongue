@@ -1,12 +1,10 @@
 <?php
-/**
- * The template for displaying archive and taxonomy pages
- *
- */
+/*
+Template Name: Community Gallery
+*/
 
 get_header(); ?>
-
-<div id="community-gallery" role="main" class="taxonomy">
+<div id="community-gallery" role="main">
 
 	<?php do_action( 'foundationpress_before_content' ); ?>
 	<section class="community-gallery" role="main">
@@ -55,8 +53,10 @@ get_header(); ?>
 			</div>
 		</header>
 		<section class="gallery-list">
-		<?php if ( have_posts() ) : ?>
-		<?php while ( have_posts() ) : the_post(); ?>
+		<?php
+		  query_posts( array( 'post_type' => 'submission'  ) );
+		  if ( have_posts() ) : while ( have_posts() ) : the_post();
+		?>
 
 				<?php $type = get_field('type'); 
 					switch ($type) {
@@ -105,11 +105,7 @@ get_header(); ?>
 				}
 				?>
 
-		<?php endwhile; ?>
-
-		<?php else : ?>
-
-		<?php endif; // End have_posts() check. ?>
+		<?php endwhile; endif; wp_reset_query(); ?>
 			
 		</section>
 		<section id="bottom-key">
@@ -123,9 +119,5 @@ get_header(); ?>
 	<?php do_action( 'foundationpress_after_content' ); ?>
 
 </div>
-
-
-
-
 
 <?php get_footer(); ?>

@@ -59,3 +59,12 @@ $('.show-modal').click(function(e){
 $('.modal .cancel').click(function(e){
 	$('.modal').hide();
 });
+
+// Gallery Page filters
+
+$('.toggle-list').click(function(){
+	$(this).next('.menu').slideToggle('fast');
+	$(this).toggleClass('open');
+	$(this).parent().siblings('.dropdown').find('.toggle-list').removeClass('open');
+	$(this).parent().siblings('.dropdown').find('.menu').slideUp('fast');
+});
