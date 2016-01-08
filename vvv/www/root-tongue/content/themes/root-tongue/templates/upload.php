@@ -32,6 +32,9 @@ get_header(); ?>
   					</div>
   				</div>
 			</div>
+			<div class="login">
+				<a href="/login">LOGIN ></a>
+			</div>
 			<div class="input-row">
 				<div class="col">
 					<input type="text" id="title" placeholder="TITLE">

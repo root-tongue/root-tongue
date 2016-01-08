@@ -243,7 +243,7 @@
 
 /*** Global Stuff ***/
 
-@include scrollbars(.4em,  #000, rgba(255,255,255,0.4));
+@include scrollbars(.3em,  #000, rgba(255,255,255,0.4));
 /* !important is needed sometimes */
 
 body {
@@ -355,6 +355,14 @@ h1 {
     width: 50%;
     float: left;
     padding: 0 rem-calc(10px);
+  }
+  .login {
+    padding: 0 0.625rem;   
+    a {
+      color: #000;
+      font-family: $bold-font;
+      font-size: rem-calc(14px);
+    } 
   }
   .input-row {
     padding: rem-calc(10px 0 0);
@@ -1038,5 +1046,8 @@ body.page-template-page-green-background {
       right: 0;
       background: #fff url('../images/diagonal-chartreuse.png') repeat-x;
       background-size: auto 100%;
- 
+}
+.page-template-upload:after {
+      background: $primary-color url('../images/diagonal-white.png') repeat-x;
+      background-size: auto 100%;
 }

@@ -5922,7 +5922,7 @@ table.hover tr:nth-of-type(even):hover {
         right: 0px; }
       #masthead .top-bar #main-nav .menu-main-nav-container {
         margin: 2.25rem 0 0 0;
-        overflow-y: scroll;
+        overflow-y: auto;
         height: 100%; }
       #masthead .top-bar #main-nav ul.menu {
         padding: 0 1rem 0 0.5rem;
@@ -6535,8 +6535,8 @@ body.home {
 
 /*** Global Stuff ***/
 ::-webkit-scrollbar {
-  width: 0.4em !important;
-  height: 0.4em !important; }
+  width: 0.3em !important;
+  height: 0.3em !important; }
 
 ::-webkit-scrollbar-thumb {
   background: #000 !important; }
@@ -6654,6 +6654,12 @@ h1 {
     width: 50%;
     float: left;
     padding: 0 0.625rem; }
+  #upload .login {
+    padding: 0 0.625rem; }
+    #upload .login a {
+      color: #000;
+      font-family: "FuturaBT-Bold";
+      font-size: 0.875rem; }
   #upload .input-row {
     padding: 0.625rem 0 0; }
     #upload .input-row:after {
@@ -7203,6 +7209,10 @@ body.page-template-page-green-background {
   left: 0;
   right: 0;
   background: #fff url("../images/diagonal-chartreuse.png") repeat-x;
+  background-size: auto 100%; }
+
+.page-template-upload:after {
+  background: #d0dc28 url("../images/diagonal-white.png") repeat-x;
   background-size: auto 100%; }
 
 /*# sourceMappingURL=foundation.css.map */
