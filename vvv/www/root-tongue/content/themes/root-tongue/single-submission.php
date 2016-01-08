@@ -50,7 +50,7 @@ get_header(); ?>
 					<div class="media-holder">
 						<?php $text = get_field('text');
 						if( !empty($text) ): ?>
-						<?php echo $text; ?>
+						<p class="text"><?php echo $text; ?></p>
 						<?php endif; ?>
 					</div>
 				     <?php  break;

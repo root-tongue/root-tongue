@@ -6005,20 +6005,25 @@ table.hover tr:nth-of-type(even):hover {
                   display: none; }
 
 body.page-template-upload,
-body.single-submission {
+body.single-submission,
+body.page-template-page-green-background {
   background-color: #d0dc28; }
   body.page-template-upload #masthead,
-  body.single-submission #masthead {
+  body.single-submission #masthead,
+  body.page-template-page-green-background #masthead {
     background: #d0dc28; }
     body.page-template-upload #masthead .top-bar .top-bar-left a#logo,
-    body.single-submission #masthead .top-bar .top-bar-left a#logo {
+    body.single-submission #masthead .top-bar .top-bar-left a#logo,
+    body.page-template-page-green-background #masthead .top-bar .top-bar-left a#logo {
       background: url("../images/sprites_2x.png") -92px 0 no-repeat;
       background-size: 185px auto; }
     body.page-template-upload #masthead .top-bar .nav-toggle,
-    body.single-submission #masthead .top-bar .nav-toggle {
+    body.single-submission #masthead .top-bar .nav-toggle,
+    body.page-template-page-green-background #masthead .top-bar .nav-toggle {
       color: #000; }
       body.page-template-upload #masthead .top-bar .nav-toggle .menu-icon,
-      body.single-submission #masthead .top-bar .nav-toggle .menu-icon {
+      body.single-submission #masthead .top-bar .nav-toggle .menu-icon,
+      body.page-template-page-green-background #masthead .top-bar .nav-toggle .menu-icon {
         position: relative;
         display: inline-block;
         vertical-align: middle;
@@ -6026,7 +6031,8 @@ body.single-submission {
         width: 22px;
         height: 16px; }
         body.page-template-upload #masthead .top-bar .nav-toggle .menu-icon::after,
-        body.single-submission #masthead .top-bar .nav-toggle .menu-icon::after {
+        body.single-submission #masthead .top-bar .nav-toggle .menu-icon::after,
+        body.page-template-page-green-background #masthead .top-bar .nav-toggle .menu-icon::after {
           content: '';
           position: absolute;
           display: block;
@@ -6037,7 +6043,8 @@ body.single-submission {
           left: 0;
           box-shadow: 0 6px 0 #000, 0 12px 0 #000; }
         body.page-template-upload #masthead .top-bar .nav-toggle .menu-icon:hover::after,
-        body.single-submission #masthead .top-bar .nav-toggle .menu-icon:hover::after {
+        body.single-submission #masthead .top-bar .nav-toggle .menu-icon:hover::after,
+        body.page-template-page-green-background #masthead .top-bar .nav-toggle .menu-icon:hover::after {
           background: #000;
           box-shadow: 0 6px 0 #000, 0 12px 0 #000; }
 
@@ -6420,32 +6427,6 @@ body.single-video #masthead {
           border-top: 0;
           padding-top: 0; } }
 
-#page {
-  max-width: 75rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem; }
-  #page::before, #page::after {
-    content: ' ';
-    display: table; }
-  #page::after {
-    clear: both; }
-  #page .main-content {
-    width: 100%;
-    float: left;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem; }
-    #page .main-content:last-child:not(:first-child) {
-      float: right; }
-    @media screen and (min-width: 41.6875em) {
-      #page .main-content {
-        width: 66.66667%;
-        float: left;
-        padding-left: 0.9375rem;
-        padding-right: 0.9375rem; }
-        #page .main-content:last-child:not(:first-child) {
-          float: right; } }
-
 #page-sidebar-left {
   max-width: 75rem;
   margin-left: auto;
@@ -6554,19 +6535,26 @@ body.home {
 
 /*** Global Stuff ***/
 ::-webkit-scrollbar {
-  width: 0.4em;
-  height: 0.4em; }
+  width: 0.4em !important;
+  height: 0.4em !important; }
 
 ::-webkit-scrollbar-thumb {
-  background: #000; }
+  background: #000 !important; }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.4); }
+  background: rgba(255, 255, 255, 0.4) !important; }
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255, 255, 255, 0.4) !important; }
+
+::-webkit-scrollbar {
+  width: 12px !important; }
 
 body {
   scrollbar-face-color: #000;
   scrollbar-track-color: rgba(255, 255, 255, 0.4); }
 
+/* !important is needed sometimes */
 body {
   background-color: #000; }
 
@@ -6621,7 +6609,7 @@ h1 {
   bottom: 0;
   left: 0;
   right: 0;
-  background: url("../images/diagonal-chartreuse.png") repeat-x;
+  background: #000 url("../images/diagonal-chartreuse.png") repeat-x;
   background-size: auto 100%; }
 
 /*** upload form ***/
@@ -6929,6 +6917,9 @@ body.single-submission .container {
           height: 100%; }
       body.single-submission .container .main-content .left .media-holder .audioWrapper iframe {
         width: 100% !important; }
+      body.single-submission .container .main-content .left .media-holder p.text {
+        font-family: "FuturaBT-Bold";
+        font-size: 0.75rem; }
     body.single-submission .container .main-content .right {
       float: right;
       width: 47%;
@@ -7131,5 +7122,87 @@ body.page-template-community-gallery .container, body.archive .container {
       line-height: 2rem; }
       body.page-template-community-gallery .container #bottom-key .key span, body.archive .container #bottom-key .key span {
         color: #fff; }
+
+/*** Default Page Template ***/
+body.page-template-default .container,
+body.page-template-page-green-background .container {
+  padding: 3.5rem 1.5rem 3.125rem; }
+  body.page-template-default .container #page,
+  body.page-template-page-green-background .container #page {
+    padding: 1rem 0; }
+    body.page-template-default .container #page header,
+    body.page-template-page-green-background .container #page header {
+      float: left;
+      width: 40%;
+      padding: 0 2em 0 0; }
+      body.page-template-default .container #page header h1,
+      body.page-template-page-green-background .container #page header h1 {
+        color: #fff;
+        font-size: 4.375rem;
+        letter-spacing: 0.04em; }
+    body.page-template-default .container #page .entry-content,
+    body.page-template-page-green-background .container #page .entry-content {
+      float: right;
+      width: 60%;
+      padding: 0.25rem 3em 0 0; }
+      body.page-template-default .container #page .entry-content p,
+      body.page-template-page-green-background .container #page .entry-content p {
+        font-size: 0.75rem;
+        line-height: 1.5em;
+        margin-bottom: 1.25rem; }
+      body.page-template-default .container #page .entry-content .rt-button,
+      body.page-template-page-green-background .container #page .entry-content .rt-button {
+        font-size: 1.875rem;
+        line-height: 2.375rem;
+        letter-spacing: 0.05em; }
+      body.page-template-default .container #page .entry-content h4,
+      body.page-template-page-green-background .container #page .entry-content h4 {
+        font-family: "FuturaBT-Bold";
+        font-size: 0.75rem;
+        line-height: 1em;
+        margin-bottom: 0;
+        text-transform: uppercase; }
+    body.page-template-default .container #page:before,
+    body.page-template-page-green-background .container #page:before {
+      content: '';
+      height: 20px;
+      display: block;
+      position: fixed;
+      z-index: 9;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000 url("../images/diagonal-chartreuse.png") repeat-x;
+      background-size: auto 100%; }
+    body.page-template-default .container #page:after,
+    body.page-template-page-green-background .container #page:after {
+      clear: both;
+      content: '';
+      display: block; }
+
+body.page-template-page-green-background {
+  background: #d0dc28;
+  color: #000; }
+  body.page-template-page-green-background .container #page header h1 {
+    color: #000; }
+  body.page-template-page-green-background .container #page .entry-content a {
+    color: #000;
+    font-family: "FuturaBT-Bold"; }
+  body.page-template-page-green-background .container #page:before {
+    background: #d0dc28 url("../images/diagonal-white.png") repeat-x;
+    background-size: auto 100%; }
+
+.page-template-upload:after,
+.single-submission :after {
+  content: '';
+  height: 20px;
+  display: block;
+  position: fixed;
+  z-index: 9;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff url("../images/diagonal-chartreuse.png") repeat-x;
+  background-size: auto 100%; }
 
 /*# sourceMappingURL=foundation.css.map */

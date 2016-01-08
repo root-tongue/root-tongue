@@ -192,17 +192,25 @@
 @mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
   // For Google Chrome
   ::-webkit-scrollbar {
-      width:  $size;
-      height: $size;
+      width:  $size !important;
+      height: $size !important;
   }
 
   ::-webkit-scrollbar-thumb {
-      background: $foreground-color;
+      background: $foreground-color !important;
   }
 
   ::-webkit-scrollbar-track {
-      background: $background-color;
+      background: $background-color !important;
   }
+   ::-webkit-scrollbar-thumb:window-inactive {
+      background: $background-color !important;
+ }
+
+ ::-webkit-scrollbar {
+    width: 12px !important 
+ }
+
 
   // For Internet Explorer
   body {
@@ -227,7 +235,6 @@
 // Templates
 @import "templates/front";
 @import "templates/kitchen-sink";
-@import "templates/page-default";
 @import "templates/page-sidebar-left";
 @import "templates/page-full-width";
 @import "templates/single-post";
@@ -237,6 +244,8 @@
 /*** Global Stuff ***/
 
 @include scrollbars(.4em,  #000, rgba(255,255,255,0.4));
+/* !important is needed sometimes */
+
 body {
   background-color: $black;
 }
@@ -291,7 +300,7 @@ h1 {
   bottom: 0;
   left:0;
   right: 0;
-  background: url('../images/diagonal-chartreuse.png') repeat-x;
+  background: #000 url('../images/diagonal-chartreuse.png') repeat-x;
   background-size: auto 100%;
 }
 
@@ -674,6 +683,10 @@ body.single-submission {
             .audioWrapper iframe {
               width: 100% !important;
             }
+            p.text {
+              font-family: $bold-font;
+              font-size: rem-calc(12px);
+            }
           }
         }
         .right {
@@ -932,4 +945,98 @@ body.page-template-community-gallery, body.archive {
     }
   }
 }
+/*** Default Page Template ***/
+body.page-template-default,
+body.page-template-page-green-background {
+  .container {
+    padding: 3.5rem 1.5rem 3.125rem;
+    #page {
+      padding:1rem 0;
+        header {
+        float: left;
+        width: 40%;
+        padding: 0 2em 0 0;
+        h1 {
+          color: #fff;
+          font-size: rem-calc(70px);
+          letter-spacing: 0.04em;
 
+        }
+      }
+      .entry-content {
+        float: right;
+        width: 60%;
+        padding: rem-calc(4px) 3em 0 0;
+
+        p {
+          font-size: rem-calc(12px);
+          line-height: 1.5em;
+          margin-bottom: 1.25rem;
+        }
+        .rt-button {
+          font-size: rem-calc(30px);
+          line-height: rem-calc(38px);
+          letter-spacing: 0.05em;
+        }
+        h4 {
+          font-family: $bold-font;
+          font-size: rem-calc(12px);
+          line-height: 1em;
+          margin-bottom: 0;
+          text-transform: uppercase;
+        }
+      }
+    &:before {
+      content: '';
+      height: 20px;
+      display: block;
+      position: fixed;
+      z-index: 9;
+      bottom: 0;
+      left:0;
+      right: 0;
+      background: #000 url('../images/diagonal-chartreuse.png') repeat-x;
+      background-size: auto 100%;
+    }
+    &:after {
+      clear: both;
+      content: '';
+      display: block;
+    }
+
+    }
+  }
+}
+body.page-template-page-green-background {
+  background: $primary-color;
+  color: #000;
+  .container #page {
+    header h1 {
+      color: #000;
+    }
+    .entry-content {
+      a {
+        color: #000;
+        font-family: $bold-font;
+      }
+    }
+    &:before {
+      background: $primary-color url('../images/diagonal-white.png') repeat-x;
+      background-size: auto 100%;
+    }  
+  }
+}
+.page-template-upload:after,
+.single-submission :after {
+       content: '';
+      height: 20px;
+      display: block;
+      position: fixed;
+      z-index: 9;
+      bottom: 0;
+      left:0;
+      right: 0;
+      background: #fff url('../images/diagonal-chartreuse.png') repeat-x;
+      background-size: auto 100%;
+ 
+}
