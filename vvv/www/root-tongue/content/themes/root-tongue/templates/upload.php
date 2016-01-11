@@ -33,7 +33,7 @@ get_header(); ?>
   				</div>
 			</div>
 			<div class="login">
-				<a href="/login">LOGIN ></a>
+				<a id="show-login-modal" href="#">LOGIN ></a>
 			</div>
 			<div class="input-row">
 				<div class="col">
@@ -60,8 +60,71 @@ get_header(); ?>
 				<input type="submit" value="SUBMIT" class="rt-button">
 				<a class="rt-button" onClick="history.go(-1)">CANCEL</a>
 			</div>
+
 		</form>
 	</section>
+	<!-- The forms for logging in and for lost password -->
+	<div class="modal" id="login-form">
+		<div class="overlay"></div>
+		<div class="modal-content">
+			<div class="login-form-container">
+				<h1>LOGIN</h1>
+				<form id="user-login" action="">
+					<input type="text" placeholder="EMAIL ADDRESS" id="user_email">
+					<input type="password" placeholder="PASSWORD" id="user_password">
+					<div class="button-row">
+						<input type="submit" value="LOGIN" class="rt-button">
+							<div class="rt-button cancel">CANCEL</div>
+					</div>
+					<div class="lost-password">
+						Lost your password?
+					</div>
+				</form>
+			</div>
+			<div class="lost-password-form-container">
+				<h1>RESET PASSWORD</h1>
+				<div class="cta">Please enter your email address. You will receive a link to create a new password via email.</div>
+				<form id="lost-password" action="">
+					<input type="text" placeholder="EMAIL ADDRESS" id="user_email">
+					<div class="button-row">
+						<input type="submit" value="SUBMIT" class="rt-button">
+							<div class="rt-button cancel">CANCEL</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- The form for registered email detected -->
+	<div class="modal" id="registered-email-login-form">
+		<div class="overlay"></div>
+		<div class="modal-content">
+			<div class="login-form-container">
+				<h1>LOGIN</h1>
+				<div class="cta">Your email address is associated with an existing account. Please enter your password to log in.</div>
+				<form id="user-login" action="">
+					<input type="password" placeholder="PASSWORD" id="user_password">
+					<div class="button-row">
+						<input type="submit" value="LOGIN" class="rt-button">
+							<div class="rt-button cancel">CANCEL</div>
+					</div>
+					<div class="lost-password">
+						Lost your password?
+					</div>
+				</form>
+			</div>
+			<div class="lost-password-form-container">
+				<h1>RESET PASSWORD</h1>
+				<div class="cta">Please enter your email address. You will receive a link to create a new password via email.</div>
+				<form id="lost-password" action="">
+					<input type="text" placeholder="EMAIL ADDRESS" id="user_email">
+					<div class="button-row">
+						<input type="submit" value="SUBMIT" class="rt-button">
+							<div class="rt-button cancel">CANCEL</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<?php endwhile;?>
 	<?php do_action( 'foundationpress_after_content' ); ?>
 

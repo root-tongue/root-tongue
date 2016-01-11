@@ -504,6 +504,7 @@ h1 {
 
 .modal {
   display: none;
+  position: absolute;
   &.open {
     display: block;
   }
@@ -659,6 +660,68 @@ h1 {
     }
   }
 }
+.modal#login-form, .modal#registered-email-login-form {
+  .modal-content {
+    background: #000;
+    color: #fff;
+    top: 10%;
+    padding: 1.5rem 1rem;
+    height: auto;
+    h1 {
+      color: #fff;
+        font-family: $skinny-font;
+        font-size: rem-calc(50px);
+        line-height: 1.2em;
+        text-align: center;
+    }
+    form {
+      max-width: rem-calc(250px);
+      margin: auto;
+      input[type="text"], input[type='password'] {
+        background: $primary-color;
+        color: #000;
+        height: rem-calc(35px);
+        border: none;
+        box-shadow: none;
+        font-family: $bold-font;
+        outline: none;
+        font-size: rem-calc(14px);
+        margin-bottom: rem-calc(12px);
+        @include transition(background);
+        &:focus {
+          background:#fff;
+        }
+      }
+      .button-row {
+        text-align: center;
+      }
+      .rt-button {
+        background: $primary-color;
+        color:#000;
+        font: 1.5rem/2rem $skinny-font;
+      }
+      .lost-password {
+        color: $primary-color;
+        cursor: pointer;
+        text-align: center;
+        padding: 0.5rem 0 0;
+      }
+
+    }
+    .cta {
+        text-align: center;
+        font-family: $bold-font;
+        font-size: rem-calc(12px);
+        line-height: 1.1em;
+        padding: 0 0 rem-calc(10px) 0;
+    }
+    .lost-password-form-container {
+      display: none;
+      
+    } 
+  }
+}
+
 /*** Single Submission ***/
 body.single-submission {
   .container {
@@ -1035,7 +1098,7 @@ body.page-template-page-green-background {
   }
 }
 .page-template-upload:after,
-.single-submission :after {
+.single-submission:after {
        content: '';
       height: 20px;
       display: block;

@@ -6773,7 +6773,8 @@ h1 {
 
 /*** modal ***/
 .modal {
-  display: none; }
+  display: none;
+  position: absolute; }
   .modal.open {
     display: block; }
   .modal .overlay {
@@ -6895,6 +6896,54 @@ h1 {
       font-size: 1.125rem;
       line-height: 1.1em;
       margin: 0; }
+
+.modal#login-form .modal-content, .modal#registered-email-login-form .modal-content {
+  background: #000;
+  color: #fff;
+  top: 10%;
+  padding: 1.5rem 1rem;
+  height: auto; }
+  .modal#login-form .modal-content h1, .modal#registered-email-login-form .modal-content h1 {
+    color: #fff;
+    font-family: "TandelleRg-Regular";
+    font-size: 3.125rem;
+    line-height: 1.2em;
+    text-align: center; }
+  .modal#login-form .modal-content form, .modal#registered-email-login-form .modal-content form {
+    max-width: 15.625rem;
+    margin: auto; }
+    .modal#login-form .modal-content form input[type="text"], .modal#login-form .modal-content form input[type='password'], .modal#registered-email-login-form .modal-content form input[type="text"], .modal#registered-email-login-form .modal-content form input[type='password'] {
+      background: #d0dc28;
+      color: #000;
+      height: 2.1875rem;
+      border: none;
+      box-shadow: none;
+      font-family: "FuturaBT-Bold";
+      outline: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+      transition: background 300ms ease-out; }
+      .modal#login-form .modal-content form input[type="text"]:focus, .modal#login-form .modal-content form input[type='password']:focus, .modal#registered-email-login-form .modal-content form input[type="text"]:focus, .modal#registered-email-login-form .modal-content form input[type='password']:focus {
+        background: #fff; }
+    .modal#login-form .modal-content form .button-row, .modal#registered-email-login-form .modal-content form .button-row {
+      text-align: center; }
+    .modal#login-form .modal-content form .rt-button, .modal#registered-email-login-form .modal-content form .rt-button {
+      background: #d0dc28;
+      color: #000;
+      font: 1.5rem/2rem "TandelleRg-Regular"; }
+    .modal#login-form .modal-content form .lost-password, .modal#registered-email-login-form .modal-content form .lost-password {
+      color: #d0dc28;
+      cursor: pointer;
+      text-align: center;
+      padding: 0.5rem 0 0; }
+  .modal#login-form .modal-content .cta, .modal#registered-email-login-form .modal-content .cta {
+    text-align: center;
+    font-family: "FuturaBT-Bold";
+    font-size: 0.75rem;
+    line-height: 1.1em;
+    padding: 0 0 0.625rem 0; }
+  .modal#login-form .modal-content .lost-password-form-container, .modal#registered-email-login-form .modal-content .lost-password-form-container {
+    display: none; }
 
 /*** Single Submission ***/
 body.single-submission .container {
@@ -7199,7 +7248,7 @@ body.page-template-page-green-background {
     background-size: auto 100%; }
 
 .page-template-upload:after,
-.single-submission :after {
+.single-submission:after {
   content: '';
   height: 20px;
   display: block;

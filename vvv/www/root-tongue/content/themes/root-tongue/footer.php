@@ -12,24 +12,10 @@
 ?>
 
 		</section>
-		<!--<div id="footer-container">
-			<footer id="footer">
-				<?php do_action( 'foundationpress_before_footer' ); ?>
-				<?php do_action( 'foundationpress_after_footer' ); ?>
-			</footer>
-		</div>-->
 
-		<?php do_action( 'foundationpress_layout_end' ); ?>
-	<?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) == 'offcanvas' ) : ?>
-		</div><!-- Close off-canvas wrapper inner -->
-	</div><!-- Close off-canvas wrapper -->
 
-	<?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) == 'offcanvas' ) : ?>
-	<!-- Close off-canvas content wrapper -->
+	<!-- Close content wrapper -->
 	</div>
-	<?php endif; ?>
-	
-	<?php endif; ?>
 
 <?php wp_footer(); ?>
 <?php do_action( 'foundationpress_before_closing_body' ); ?>

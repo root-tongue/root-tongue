@@ -71,9 +71,8 @@ get_header(); ?>
 				     <?php  break;
 
 				    case "Video":?>
-					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-					$url = $thumb['0']; ?>
-					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+					<?php $video = get_field('video_url'); ?>
+					<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>">
 						<a href="<?php the_permalink(); ?>">
 							<span>V</span>
 						</a>
