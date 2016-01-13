@@ -365,11 +365,15 @@ h1 {
     } 
   }
   .input-row {
-    padding: rem-calc(10px 0 0);
+    padding: rem-calc(0 0 10px);
     &:after{
       content:'';
       display: block;
       clear: both; 
+    }
+    [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'],
+    textarea, select {
+      margin: 1rem 0 0;
     }
     input[type='text']{
       border:none;
@@ -420,19 +424,16 @@ h1 {
      ::-webkit-input-placeholder {
        color: #fff;
       font-family: $bold-font;
-      text-transform: uppercase;
       font-size: rem-calc(14px);
     }
     ::-moz-placeholder {  
        color: #fff;
       font-family: $bold-font;
-      text-transform: uppercase;
        font-size: rem-calc(14px);
     }
     :-ms-input-placeholder {  
        color: #fff;
       font-family: $bold-font;
-      text-transform: uppercase;
       font-size: rem-calc(14px);
     }
     select {
@@ -484,6 +485,15 @@ h1 {
         padding: 0 0 0 rem-calc(7px);
       }
     }
+    span {
+      &.instructions {
+        font-size: 11px;
+        color: #000;
+        font-weight: bold;
+        letter-spacing: -.5px;
+      }
+    }
+
   }
   .submit-row {
     padding: rem-calc(0 10px);

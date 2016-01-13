@@ -44,6 +44,28 @@ $('#upload-form .modal .cancel').click(function(){
 	$('.modal').hide();
 });
 
+$('#upload-form').on('submit', function( event ){
+	event.preventDefault();
+	var formData = new FormData(this);
+	formData.append('thumbnail', $('#thumbnail')[0].files[0]);
+	formData.append('action', 'rt_submission');
+	$.ajax('/wp-admin/admin-ajax.php', {
+		processData: false,
+		contentType: false,
+		method: 'POST',
+		data: formData,
+		dataType: 'json',
+		success: function(response){
+			switch (response.next) {
+				case 'login' :
+					$('#show-login-modal').trigger('click');
+					break;
+			}
+		}
+	});
+	return false;
+})
+
 // Upload Media Page - show uploaded thumbnail file name
 $('input#thumbnail').change( function(){
     var path = $(this).val();

@@ -2,6 +2,11 @@
 namespace Root_Tongue\Abstracts;
 
 abstract class Hooks {
-	function hook() {}
-	function unhook() {}
+
+	function __construct() {
+		$this->hook();
+	}
+
+	protected function hook() {}
+	protected function unhook() {}
 }

@@ -9,7 +9,7 @@ get_header(); ?>
 	<?php do_action( 'foundationpress_before_content' ); ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 	<section class="upload" role="main">
-		<form id="upload-form" action="">
+		<form id="upload-form" action="" method="post" enctype="multipart/form-data">
 			<h1>Select the type of media to upload</h1>
 
 			<div class="file-row">
@@ -37,27 +37,28 @@ get_header(); ?>
 			</div>
 			<div class="input-row">
 				<div class="col">
-					<input type="text" id="title" placeholder="TITLE">
-					<input type="text" id="country" placeholder="COUNTRY">
-					<input type="text" id="email" placeholder="EMAIL">
-					<textarea id="description" placeholder="DESCRIPTION"></textarea>
+					<input type="text" name="title" id="title" placeholder="TITLE">
+					<input type="text" name="country" id="country" placeholder="COUNTRY &nbsp;(separate countries with a comma)">
+					<input type="text" name="email" id="email" placeholder="EMAIL">
+					<textarea name="description" id="description" placeholder="DESCRIPTION"></textarea>
 				</div>
 				<div class="col">
-					<input type="text" id="language" placeholder="LANGUAGE">
-					  <select id="theme">
+					<input type="text" name="language" id="language" placeholder="LANGUAGE &nbsp;(separate languages with a comma)">
+					  <select name="theme" id="theme">
 					    <option value="theme1">THEME1</option>
 					    <option value="theme2">THEME2</option>
 					  </select>
 					  <div class="upload-thumbnail" style="display:none;">
 					  	<div class="upload-button">+
-						  	<input type="file" id="thumbnail" accept="image/*">
+						  	<input type="file" name="thumbnail" id="thumbnail" accept="image/*">
 					  	</div>
 					  	<span>ADD THUMBNAIL</span>
 					  </div>
 				</div>
 			</div>
 			<div class="submit-row">
-				<input type="submit" value="SUBMIT" class="rt-button">
+				<?php wp_nonce_field('rt-submission'); ?>
+				<input type="submit" id="submit" value="SUBMIT" class="rt-button">
 				<a class="rt-button" onClick="history.go(-1)">CANCEL</a>
 			</div>
 
