@@ -9,7 +9,7 @@ get_header(); ?>
 	<?php do_action( 'foundationpress_before_content' ); ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 	<section class="upload" role="main">
-		<form id="upload-form">
+		<form id="upload-form" action="">
 			<h1>Select the type of media to upload</h1>
 
 			<div class="file-row">
