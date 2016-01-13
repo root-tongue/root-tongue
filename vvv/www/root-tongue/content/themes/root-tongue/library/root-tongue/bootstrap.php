@@ -19,7 +19,7 @@ class Bootstrap
 
 	private static function init_hooks()
 	{
-		add_action( 'plugins_loaded', array( __CLASS__, 'init_classes' ) );
+		add_action( 'init', array( __CLASS__, 'init_classes' ) );
 	}
 
 	public static function init_classes()
@@ -29,10 +29,10 @@ class Bootstrap
 
 	public static function autoloader( $class_name )
 	{
-		$classes_dir = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR;
-		$class_file  = str_replace( array('_', '\\'), array('-', '/'), $class_name ) . '.php';
-		if ( file_exists( strtolower( $classes_dir . $class_file ) ) ) {
-			require_once strtolower ($classes_dir . $class_file);
+		$classes_dir = get_template_directory() . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR;
+		$class_file  = strtolower(str_replace( array('_', '\\'), array('-', '/'), $class_name ) . '.php');
+		if ( file_exists( $classes_dir . $class_file ) ) {
+			require_once $classes_dir . $class_file;
 		}
 	}
 
