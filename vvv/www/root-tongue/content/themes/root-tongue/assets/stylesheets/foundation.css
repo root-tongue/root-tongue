@@ -6666,9 +6666,6 @@ h1 {
       content: '';
       display: block;
       clear: both; }
-    #upload .input-row [type='text'], #upload .input-row [type='password'], #upload .input-row [type='date'], #upload .input-row [type='datetime'], #upload .input-row [type='datetime-local'], #upload .input-row [type='month'], #upload .input-row [type='week'], #upload .input-row [type='email'], #upload .input-row [type='number'], #upload .input-row [type='search'], #upload .input-row [type='tel'], #upload .input-row [type='time'], #upload .input-row [type='url'], #upload .input-row [type='color'],
-    #upload .input-row textarea, #upload .input-row select {
-      margin: 1rem 0 0; }
     #upload .input-row input[type='text'] {
       border: none;
       background: #000;
