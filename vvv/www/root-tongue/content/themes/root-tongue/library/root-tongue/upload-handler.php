@@ -18,11 +18,7 @@ class Upload_Handler extends Abstracts\Hooks {
 
 				return false;
 			}
-			try {
-				$this->do_submit();
-			} catch ( \Exception $e ) {
-				$this->errors['top_level'] = $e->getMessage();
-			}
+			$this->do_submit();
 		} else {
 			$this->errors['top_level'] = __( 'There was a problem with your submission, please try again.', 'rt' );
 		}
