@@ -47,6 +47,7 @@ $('#upload-form .modal .cancel').click(function(){
 
 $('#upload-form').on('submit', function( event ){
 	event.preventDefault();
+	$('#loading.overlay-fullscreen').show();
 	var formData = new FormData(this);
 	if (typeof $('#thumbnail')[0].files[0] != 'undefined') {
 		formData.append('thumbnail', $('#thumbnail')[0].files[0]);
@@ -64,7 +65,9 @@ $('#upload-form').on('submit', function( event ){
 					$('#show-login-modal').trigger('click');
 					break;
 				case 'success' :
-					window.location.href = response.submission;
+					$('#done.overlay-fullscreen').show();
+					$('#view-upload').attr("href", response.submission);
+					//window.location.href = response.submission;
 					break;
 			}
 		}

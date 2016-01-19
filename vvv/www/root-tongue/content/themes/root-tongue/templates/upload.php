@@ -6,8 +6,6 @@ Template Name: Upload
 get_header(); ?>
 <div id="upload" role="main">
 
-	<?php do_action( 'foundationpress_before_content' ); ?>
-	<?php while ( have_posts() ) : the_post(); ?>
 	<section class="upload" role="main">
 		<form id="upload-form" action="" method="post" enctype="multipart/form-data">
 			<h1>Select the type of media to upload</h1>
@@ -126,8 +124,40 @@ get_header(); ?>
 			</div>
 		</div>
 	</div>
-	<?php endwhile;?>
-	<?php do_action( 'foundationpress_after_content' ); ?>
+	<!-- The loading screen | shows on form submission -->
+	<div class="overlay-fullscreen" id="loading">
+		<div id="progress" role="main">
+			<div class="loading-container">
+				<h2>LOADING</h2>
+				<div class="loader"></div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- The done screen | shows after successful form submission -->
+	<div class="overlay-fullscreen" id="done">
+		<div id="upload-complete" role="main">
+
+			<?php $the_query = new WP_Query('pagename=upload-complete'); ?>
+			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+			<section class="upload-complete" role="main">
+					<h1 class="large-title">Done</h1>
+					<div class="subtitle">
+						<?php the_content(); ?>
+					</div>
+					<div class="next-buttons">
+						<a class="rt-button" id="view-upload" href="#">VIEW UPLOAD</a>
+						<a class="rt-button" href="/community-gallery">COMMUNITY GALLERY</a>
+						<a class="rt-button" id="next-video" href="#">NEXT VIDEO</a>
+					</div>
+			</section>
+			<?php endwhile;?>
+			<?php wp_reset_query(); ?>
+
+		</div>
+		
+	</div>
+	<!-- end overlays -->
 
 </div>
 

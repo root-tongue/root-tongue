@@ -12,10 +12,12 @@ get_header(); ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 		<article class="main-content" <?php post_class() ?> id="post-<?php the_ID(); ?>">
 			<div class="left">
-				<?php $type = get_field('type'); 
+				<?php
+					$terms = get_the_terms( $post->ID, 'submission_type' );
+				 	$type =  $terms[0]->name; 
 					switch ($type) {
 
-				    case "Image":?>
+				    case "image":?>
 					<div class="media-holder">
 						<?php $image = get_field('image');
 						if( !empty($image) ): ?>
@@ -24,7 +26,7 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 
-				    case "Video":?>
+				    case "video":?>
 					<div class="media-holder">
 						<?php $video = get_field('video_url');
 						if( !empty($video) ): ?>
@@ -35,7 +37,7 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 
-				    case "Audio":?>
+				    case "audio":?>
 					<div class="media-holder">
 						<?php $audio = get_field('audio_url');
 						if( !empty($audio) ): ?>
@@ -46,7 +48,7 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 
-				    case "Text":?>
+				    case "text":?>
 					<div class="media-holder">
 						<?php $text = get_field('text');
 						if( !empty($text) ): ?>
@@ -69,28 +71,69 @@ get_header(); ?>
 				<div class="meta theme">
 					<span class="data-label">theme</span>
 					<span class="data">
-					<?php $terms = get_terms( 'theme' );
-					 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-					    echo $terms[0]->name;
-					}?>
+
+					<?php
+					$themes = get_the_terms( $post->ID, 'theme' );
+											
+					if ( $themes && ! is_wp_error( $themes ) ) : 
+
+						$theme_names = array();
+
+						foreach ( $themes as $theme ) {
+							$theme_names[] = $theme->name;
+						}
+											
+						$theme_list = join( ", ", $theme_names );
+					?>
+
+						<?php echo $theme_list; ?>
+
+					<?php endif; ?>
+
 					 </span>
 				</div>
 				<div class="meta language">
 					<span class="data-label">language</span>
 					<span class="data">
-					<?php $terms = get_terms( 'language' );
-					 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-					    echo $terms[0]->name;
-					}?>
+					<?php
+					$languages = get_the_terms( $post->ID, 'language' );
+											
+					if ( $languages && ! is_wp_error( $languages ) ) : 
+
+						$language_names = array();
+
+						foreach ( $languages as $language ) {
+							$language_names[] = $language->name;
+						}
+											
+						$language_list = join( ", ", $language_names );
+					?>
+
+						<?php echo $language_list; ?>
+
+					<?php endif; ?>
 					</span>
 				</div>
 				<div class="meta country">
 					<span class="data-label">country</span>
 					<span class="data">
-					<?php $terms = get_terms( 'country' );
-					 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-					    echo $terms[0]->name;
-					}?>
+					<?php
+					$countries = get_the_terms( $post->ID, 'country' );
+											
+					if ( $countries && ! is_wp_error( $countries ) ) : 
+
+						$country_names = array();
+
+						foreach ( $countries as $country ) {
+							$country_names[] = $country->name;
+						}
+											
+						$country_list = join( ", ", $country_names );
+					?>
+
+						<?php echo $country_list; ?>
+
+					<?php endif; ?>
 					</span>
 				</div>
 				<div class="description">
