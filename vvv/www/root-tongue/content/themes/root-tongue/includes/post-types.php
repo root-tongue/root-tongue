@@ -98,11 +98,10 @@ add_action( 'init', function() {
 
 	));
 
-	register_extended_taxonomy( 'theme', 'submission' );
-	register_extended_taxonomy( 'language', 'submission' );
-	register_extended_taxonomy( 'country', 'submission' );
-
-
+	$args = array( 'hierarchical' => false );
+	register_extended_taxonomy( 'theme', 'submission', $args );
+	register_extended_taxonomy( 'language', 'submission', $args );
+	register_extended_taxonomy( 'country', 'submission', $args, array( 'plural' => 'Countries', 'singular' => 'Country' ) );
 } );
 
 /**
