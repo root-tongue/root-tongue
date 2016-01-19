@@ -64,18 +64,17 @@ add_action( 'init', function() {
 		'admin_cols' => array(
 			'title',
 			'author',
-			'type' => array(
-				'title' => __('Type', 'rt'),
-				'meta_key' => 'submission_type',
+			'submission_type' => array(
+				'taxonomy' => 'submission_type',
 			),
 			'theme' => array(
-				'taxonomy' => 'theme'
+				'taxonomy' => 'theme',
 			),
 			'language' => array(
-				'taxonomy' => 'language'
+				'taxonomy' => 'language',
 			),
 			'country' => array(
-				'taxonomy' => 'country'
+				'taxonomy' => 'country',
 			),
 			'published' => array(
 				'title'       => __('Published', 'rt'),
@@ -85,6 +84,9 @@ add_action( 'init', function() {
 
 		# Add a dropdown filter to the admin screen:
 		'admin_filters' => array(
+			'submission_type' => array(
+				'taxonomy' => 'submission_type'
+			),
 			'theme' => array(
 				'taxonomy' => 'theme'
 			),
@@ -99,6 +101,7 @@ add_action( 'init', function() {
 	));
 
 	$args = array( 'hierarchical' => false );
+	register_extended_taxonomy( 'submission_type', 'submission', $args );
 	register_extended_taxonomy( 'theme', 'submission', $args );
 	register_extended_taxonomy( 'language', 'submission', $args );
 	register_extended_taxonomy( 'country', 'submission', $args, array( 'plural' => 'Countries', 'singular' => 'Country' ) );
