@@ -33,6 +33,7 @@ $('#upload-form .open-modal-textbox').click(function(){
 		modal.find('textarea').val('');
 	}
 	modal.find('textarea').attr('placeholder', placeholder);
+	modal.find('textarea').attr('name', inputType);
 	modal.attr('data-sumbission-type', inputType);
 	modal.show();	
 });
@@ -47,7 +48,9 @@ $('#upload-form .modal .cancel').click(function(){
 $('#upload-form').on('submit', function( event ){
 	event.preventDefault();
 	var formData = new FormData(this);
-	formData.append('thumbnail', $('#thumbnail')[0].files[0]);
+	if (typeof $('#thumbnail')[0].files[0] != 'undefined') {
+		formData.append('thumbnail', $('#thumbnail')[0].files[0]);
+	}
 	formData.append('action', 'rt_submission');
 	$.ajax('/wp-admin/admin-ajax.php', {
 		processData: false,
@@ -59,6 +62,9 @@ $('#upload-form').on('submit', function( event ){
 			switch (response.next) {
 				case 'login' :
 					$('#show-login-modal').trigger('click');
+					break;
+				case 'success' :
+					window.location.href = response.submission;
 					break;
 			}
 		}
