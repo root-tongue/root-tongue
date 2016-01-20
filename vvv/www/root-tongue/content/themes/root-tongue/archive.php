@@ -58,10 +58,12 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php $type = get_field('type'); 
+				<?php 
+					$terms = get_the_terms( $post->ID, 'submission_type' );
+				 	$type =  $terms[0]->name; 
 					switch ($type) {
 
-				    case "Image":?>
+				    case "image":?>
 					<?php $image = get_field('image'); ?>
 					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $image['url']; ?>);">
 						<a href="<?php the_permalink(); ?>">
@@ -70,7 +72,7 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 
-				    case "Video":?>
+				    case "video":?>
 					<?php $video = get_field('video_url'); ?>
 					<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>">
 						<a href="<?php the_permalink(); ?>">
@@ -79,7 +81,7 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 
-				    case "Audio":?>
+				    case "audio":?>
 					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
 					$url = $thumb['0']; ?>
 					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
@@ -89,7 +91,7 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 
-				    case "Text":?>
+				    case "text":?>
 					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
 					$url = $thumb['0']; ?>
 					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
@@ -99,8 +101,6 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 				    
-				    default:
-				        echo "There is no media to show";
 				}
 				?>
 

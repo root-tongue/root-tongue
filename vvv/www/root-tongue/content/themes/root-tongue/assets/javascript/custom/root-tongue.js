@@ -116,8 +116,8 @@ $('.toggle-list').click(function(){
 // Gallery Page Video Thumbnails						
 
 $( window ).load(function() {
-	if ($('.grid.Video').length > 0) { 
-		$('.grid.Video').each(function(){
+	if ($('.grid.video').length > 0) { 
+		$('.grid.video').each(function(){
 			var $this = $(this);
 			var video = $this.attr('data-video-url');
 			function parseVideo(url) {
