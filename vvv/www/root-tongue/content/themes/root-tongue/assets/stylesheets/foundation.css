@@ -7283,6 +7283,7 @@ body.page-template-page-green-background .container {
         letter-spacing: 0.04em; }
     body.page-template-default .container #page .entry-content,
     body.page-template-page-green-background .container #page .entry-content {
+      color: #fff;
       float: right;
       width: 60%;
       padding: 0.25rem 3em 0 0; }
@@ -7291,6 +7292,9 @@ body.page-template-page-green-background .container {
         font-size: 0.75rem;
         line-height: 1.5em;
         margin-bottom: 1.25rem; }
+      body.page-template-default .container #page .entry-content a,
+      body.page-template-page-green-background .container #page .entry-content a {
+        color: #d0dc28; }
       body.page-template-default .container #page .entry-content .rt-button,
       body.page-template-page-green-background .container #page .entry-content .rt-button {
         font-size: 1.875rem;
@@ -7326,9 +7330,11 @@ body.page-template-page-green-background {
   color: #000; }
   body.page-template-page-green-background .container #page header h1 {
     color: #000; }
-  body.page-template-page-green-background .container #page .entry-content a {
-    color: #000;
-    font-family: "FuturaBT-Bold"; }
+  body.page-template-page-green-background .container #page .entry-content {
+    color: #000; }
+    body.page-template-page-green-background .container #page .entry-content a {
+      color: #000;
+      font-family: "FuturaBT-Bold"; }
   body.page-template-page-green-background .container #page:before {
     background: #d0dc28 url("../images/diagonal-white.png") repeat-x;
     background-size: auto 100%; }

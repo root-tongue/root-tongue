@@ -1136,6 +1136,7 @@ body.page-template-page-green-background {
         }
       }
       .entry-content {
+        color:#fff;
         float: right;
         width: 60%;
         padding: rem-calc(4px) 3em 0 0;
@@ -1144,6 +1145,9 @@ body.page-template-page-green-background {
           font-size: rem-calc(12px);
           line-height: 1.5em;
           margin-bottom: 1.25rem;
+        }
+        a {
+          color: $primary-color;
         }
         .rt-button {
           font-size: rem-calc(30px);
@@ -1187,6 +1191,7 @@ body.page-template-page-green-background {
       color: #000;
     }
     .entry-content {
+      color: #000;
       a {
         color: #000;
         font-family: $bold-font;
