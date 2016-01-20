@@ -97,6 +97,7 @@ class Upload_Handler extends Abstracts\Hooks {
 		// set the featured image
 		if ( $image ) {
 			set_post_thumbnail( $new_post, $image );
+			update_post_meta( $new_post, 'image', $image );
 		} elseif ( $thumbnail ) {
 			set_post_thumbnail( $new_post, $thumbnail );
 		}
