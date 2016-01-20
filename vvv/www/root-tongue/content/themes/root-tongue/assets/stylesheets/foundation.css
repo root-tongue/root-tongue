@@ -6537,20 +6537,32 @@ body.single-video #masthead {
           float: right; } }
 
 body.home {
-  background: url("../images/intro_bg.jpg") top center;
+  background: url("../images/gifs/Root_Tongue_1.gif") top center;
   background-size: cover; }
   body.home #masthead {
     background: none; }
     body.home #masthead a#logo {
       display: none !important; }
-  body.home #intro {
-    text-align: center;
-    padding: 25px 25px 0; }
-    @media screen and (min-width: 48em) {
-      body.home #intro {
-        padding: 125px 125px 0; } }
-    body.home #intro img {
-      max-width: 100%; }
+  body.home .container {
+    position: absolute;
+    width: 100%;
+    height: 100%; }
+  body.home .intro {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 55rem; }
+    body.home .intro #intro {
+      text-align: center;
+      padding: 0 5rem;
+      position: absolute;
+      top: 45%;
+      -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%);
+      width: 100%; }
+      body.home .intro #intro img {
+        max-width: 100%; }
 
 /*** Global Stuff ***/
 ::-webkit-scrollbar {

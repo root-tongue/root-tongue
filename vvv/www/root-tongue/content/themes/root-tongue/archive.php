@@ -64,8 +64,9 @@ get_header(); ?>
 					switch ($type) {
 
 				    case "image":?>
-					<?php $image = get_field('image'); ?>
-					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $image['url']; ?>);">
+					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+					$url = $thumb['0']; ?>
+					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
 						<a href="<?php the_permalink(); ?>">
 							<span>I</span>
 						</a>

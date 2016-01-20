@@ -19,10 +19,7 @@ get_header(); ?>
 
 				    case "image":?>
 					<div class="media-holder">
-						<?php $image = get_field('image');
-						if( !empty($image) ): ?>
-							<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-						<?php endif; ?>
+						<?php the_post_thumbnail(); ?>
 					</div>
 				     <?php  break;
 
