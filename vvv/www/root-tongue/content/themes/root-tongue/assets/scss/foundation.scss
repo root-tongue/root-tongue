@@ -923,6 +923,7 @@ body.single-submission {
             font-size: 1.2rem;
             line-height: 1.75rem;
             margin-right: rem-calc(5px);
+            margin-bottom: rem-calc(5px);
           }
         }
         #comments {
@@ -1234,6 +1235,7 @@ body.page-template-page-green-background {
         top: 30%;
         text-align: center;
         font-family: $bold-font;
+        color: #fff;
       }
   }
 }
