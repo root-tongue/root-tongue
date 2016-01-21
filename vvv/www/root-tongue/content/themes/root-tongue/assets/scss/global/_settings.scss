@@ -57,7 +57,8 @@ $black: #000;
 $white: #fff;
 $body-background: none;
 $body-font-color: $white;
-$body-font-family: 'FuturaBT-Book';
+//$body-font-family: 'FuturaBT-Book';
+$body-font-family: Arial, sans-serif;
 $body-antialiased: true;
 $text-direction: ltr;
 $global-margin: 1rem;
@@ -94,8 +95,8 @@ $grid-column-gutter: 30px;
 // ------------------
 
 
-$skinny-font: 'TandelleRg-Regular';
-$bold-font: 'FuturaBT-Bold';
+$skinny-font: TandelleRg-Regular;
+$bold-font: FuturaBT-Bold;
 
 $header-font-family: $skinny-font;
 $header-font-weight: $global-weight-normal;

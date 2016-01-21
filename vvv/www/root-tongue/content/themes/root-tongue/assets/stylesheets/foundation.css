@@ -3038,7 +3038,7 @@ body {
 body {
   padding: 0;
   margin: 0;
-  font-family: "FuturaBT-Book";
+  font-family: Arial, sans-serif;
   font-weight: normal;
   line-height: 1.5;
   color: #fff;
@@ -3832,7 +3832,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "TandelleRg-Regular";
+  font-family: TandelleRg-Regular;
   font-weight: normal;
   font-style: normal;
   color: inherit;
@@ -5856,7 +5856,7 @@ table.hover tr:nth-of-type(even):hover {
     #masthead .top-bar .nav-toggle {
       z-index: 9999;
       position: relative;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.75rem;
       letter-spacing: 0.06em;
       cursor: pointer;
@@ -5951,7 +5951,7 @@ table.hover tr:nth-of-type(even):hover {
           display: block; }
           #masthead .top-bar #main-nav ul.menu li a {
             color: #000;
-            font-family: "TandelleRg-Regular";
+            font-family: TandelleRg-Regular;
             font-size: 1.5rem;
             line-height: 1em;
             text-transform: uppercase;
@@ -5984,7 +5984,7 @@ table.hover tr:nth-of-type(even):hover {
             background-position: 0 -150px; }
           #masthead .top-bar #main-nav ul.menu li.menu-item-has-children > a:after {
             content: '+';
-            font-family: "FuturaBT-Bold";
+            font-family: FuturaBT-Bold;
             font-size: 10px;
             line-height: 12px;
             display: block;
@@ -6016,7 +6016,7 @@ table.hover tr:nth-of-type(even):hover {
                 border-bottom: none; }
               #masthead .top-bar #main-nav ul.menu li ul.sub-menu li a {
                 font-size: 0.75rem;
-                font-family: "FuturaBT-Bold";
+                font-family: FuturaBT-Bold;
                 letter-spacing: 0.05em;
                 padding: 0;
                 text-transform: none; }
@@ -6606,7 +6606,7 @@ h1 {
 
 #single-question .entry-content p {
   text-transform: uppercase;
-  font-family: "FuturaBT-Bold";
+  font-family: FuturaBT-Bold;
   font-size: 18px;
   line-height: 1.2em; }
 
@@ -6614,7 +6614,7 @@ h1 {
   padding: 1rem 0; }
 
 .rt-button {
-  font: 1.5rem/2rem "TandelleRg-Regular";
+  font: 1.5rem/2rem TandelleRg-Regular;
   letter-spacing: 0.03em;
   color: #000;
   background: #d0dc28;
@@ -6647,7 +6647,7 @@ h1 {
 #upload {
   padding: 2.5rem 0; }
   #upload h1 {
-    font: 18px/1em "FuturaBT-Bold";
+    font: 18px/1em FuturaBT-Bold;
     color: #000;
     text-align: center; }
   #upload .file-row {
@@ -6659,7 +6659,7 @@ h1 {
     height: 4.6875rem;
     margin: 0 1.25rem;
     border: 3px solid #000;
-    font: 12px/75px "FuturaBT-Bold";
+    font: 12px/75px FuturaBT-Bold;
     color: #000;
     vertical-align: top;
     cursor: pointer; }
@@ -6689,7 +6689,7 @@ h1 {
     padding: 0 0.625rem; }
     #upload .login a {
       color: #000;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.875rem; }
   #upload .input-row {
     padding: 0 0 0.625rem; }
@@ -6702,7 +6702,7 @@ h1 {
       background: #000;
       color: #fff;
       box-shadow: none;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.875rem;
       outline: none; }
       #upload .input-row input[type='text']:focus {
@@ -6734,21 +6734,21 @@ h1 {
         color: #000; }
     #upload .input-row ::-webkit-input-placeholder {
       color: #fff;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.875rem; }
     #upload .input-row ::-moz-placeholder {
       color: #fff;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.875rem; }
     #upload .input-row :-ms-input-placeholder {
       color: #fff;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.875rem; }
     #upload .input-row select {
       border: none;
       background-color: #000;
       color: #fff;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.875rem;
       outline: none;
       background-image: url("../images/downarrow.png");
@@ -6762,7 +6762,7 @@ h1 {
       background: #000;
       text-align: center;
       line-height: 2.4375rem;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 1.5rem;
       cursor: pointer;
       display: inline-block;
@@ -6783,7 +6783,7 @@ h1 {
       display: inline-block;
       vertical-align: top;
       line-height: 2.4375rem;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 0.875rem;
       color: #000;
       padding: 0 0 0 0.4375rem; }
@@ -6889,15 +6889,15 @@ h1 {
       color: #000; }
     .modal .modal-content ::-webkit-input-placeholder {
       color: #000;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       text-transform: uppercase; }
     .modal .modal-content ::-moz-placeholder {
       color: #000;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       text-transform: uppercase; }
     .modal .modal-content :-ms-input-placeholder {
       color: #000;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       text-transform: uppercase; }
     .modal .modal-content .bottom {
       height: 2.5rem;
@@ -6917,7 +6917,7 @@ h1 {
   text-align: center; }
   .modal#viewed-all .modal-content p {
     color: #000;
-    font-family: "FuturaBT-Bold";
+    font-family: FuturaBT-Bold;
     font-size: 0.8125rem;
     letter-spacing: 0.08em; }
   .modal#viewed-all .modal-content .button-row {
@@ -6972,12 +6972,12 @@ h1 {
     font-size: 10rem;
     line-height: 0.9em;
     letter-spacing: 0;
-    font-family: "TandelleRg-Regular";
+    font-family: TandelleRg-Regular;
     color: #d0dc28; }
   #upload-complete section.upload-complete .subtitle {
     margin: 0.5rem 0 0; }
     #upload-complete section.upload-complete .subtitle p {
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 1.125rem;
       line-height: 1.1em;
       margin: 0; }
@@ -6990,7 +6990,7 @@ h1 {
   height: auto; }
   .modal#login-form .modal-content h1, .modal#registered-email-login-form .modal-content h1 {
     color: #fff;
-    font-family: "TandelleRg-Regular";
+    font-family: TandelleRg-Regular;
     font-size: 3.125rem;
     line-height: 1.2em;
     text-align: center; }
@@ -7003,7 +7003,7 @@ h1 {
       height: 2.1875rem;
       border: none;
       box-shadow: none;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       outline: none;
       font-size: 0.875rem;
       margin-bottom: 0.75rem;
@@ -7015,7 +7015,7 @@ h1 {
     .modal#login-form .modal-content form .rt-button, .modal#registered-email-login-form .modal-content form .rt-button {
       background: #d0dc28;
       color: #000;
-      font: 1.5rem/2rem "TandelleRg-Regular"; }
+      font: 1.5rem/2rem TandelleRg-Regular; }
     .modal#login-form .modal-content form .lost-password, .modal#registered-email-login-form .modal-content form .lost-password {
       color: #d0dc28;
       cursor: pointer;
@@ -7023,7 +7023,7 @@ h1 {
       padding: 0.5rem 0 0; }
   .modal#login-form .modal-content .cta, .modal#registered-email-login-form .modal-content .cta {
     text-align: center;
-    font-family: "FuturaBT-Bold";
+    font-family: FuturaBT-Bold;
     font-size: 0.75rem;
     line-height: 1.1em;
     padding: 0 0 0.625rem 0; }
@@ -7058,7 +7058,7 @@ body.single-submission .container {
       body.single-submission .container .main-content .left .media-holder .audioWrapper iframe {
         width: 100% !important; }
       body.single-submission .container .main-content .left .media-holder p.text {
-        font-family: "FuturaBT-Bold";
+        font-family: FuturaBT-Bold;
         font-size: 0.75rem; }
     body.single-submission .container .main-content .right {
       float: right;
@@ -7075,14 +7075,14 @@ body.single-submission .container {
         body.single-submission .container .main-content .right .meta .data-label {
           display: inline-block;
           color: #484747;
-          font-family: "FuturaBT-Bold";
+          font-family: FuturaBT-Bold;
           font-size: 0.5625rem;
           letter-spacing: 0.07em;
           vertical-align: middle;
           line-height: 1.5625rem; }
         body.single-submission .container .main-content .right .meta .data {
           display: inline-block;
-          font-family: "TandelleRg-Regular";
+          font-family: TandelleRg-Regular;
           font-size: 1.125rem;
           letter-spacing: 0.04em;
           vertical-align: middle;
@@ -7092,16 +7092,16 @@ body.single-submission .container {
           body.single-submission .container .main-content .right .meta.user .data-label, body.single-submission .container .main-content .right .meta.user .data {
             color: #000;
             font-size: 0.625rem;
-            font-family: "FuturaBT-Bold"; }
+            font-family: FuturaBT-Bold; }
           body.single-submission .container .main-content .right .meta.user .data-label {
-            font-family: "FuturaBT-Book"; }
+            font-family: Arial, sans-serif; }
       body.single-submission .container .main-content .right .description {
         font-size: 0.6875rem;
         line-height: 1.5em;
         padding: 0.75rem 0 0; }
         body.single-submission .container .main-content .right .description .description-label {
           font-size: 0.4375rem;
-          font-family: "FuturaBT-Bold";
+          font-family: FuturaBT-Bold;
           letter-spacing: 0.07em;
           text-transform: uppercase;
           color: #484747;
@@ -7125,7 +7125,7 @@ body.single-submission .container {
         margin: 0 0 0.625rem; }
       body.single-submission .container .main-content #comments .comment-meta {
         font-size: 0.4375rem;
-        font-family: "FuturaBT-Bold";
+        font-family: FuturaBT-Bold;
         letter-spacing: 0.07em;
         text-transform: uppercase;
         color: #484747; }
@@ -7150,7 +7150,7 @@ body.page-template-community-gallery .container, body.archive .container {
       width: 50%;
       height: 3.4375rem;
       padding: 0 1.5rem;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       font-size: 1.25rem;
       line-height: 3.4375rem; }
     body.page-template-community-gallery .container #gallery-top .gallery-filter, body.archive .container #gallery-top .gallery-filter {
@@ -7168,7 +7168,7 @@ body.page-template-community-gallery .container, body.archive .container {
           width: 37%; }
         body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .toggle-list, body.archive .container #gallery-top .gallery-filter .dropdown .toggle-list {
           color: #000;
-          font-family: "FuturaBT-Bold";
+          font-family: FuturaBT-Bold;
           font-size: 0.6875rem;
           height: 3.4375rem;
           line-height: 3.4375rem;
@@ -7202,7 +7202,7 @@ body.page-template-community-gallery .container, body.archive .container {
             body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu ul li, body.archive .container #gallery-top .gallery-filter .dropdown .menu ul li {
               display: block; }
               body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu ul li a, body.archive .container #gallery-top .gallery-filter .dropdown .menu ul li a {
-                font-family: "FuturaBT-Bold";
+                font-family: FuturaBT-Bold;
                 font-size: 0.5625rem;
                 line-height: 1em;
                 padding: 0.3125rem 0;
@@ -7240,7 +7240,7 @@ body.page-template-community-gallery .container, body.archive .container {
           color: #fff;
           background: #000;
           text-align: center;
-          font-family: "FuturaBT-Bold";
+          font-family: FuturaBT-Bold;
           height: 1.25rem;
           width: 1.25rem;
           font-size: 1rem;
@@ -7259,7 +7259,7 @@ body.page-template-community-gallery .container, body.archive .container {
       width: 20%;
       display: inline-block;
       font-size: 0.75rem;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       line-height: 2rem; }
       body.page-template-community-gallery .container #bottom-key .key span, body.archive .container #bottom-key .key span {
         color: #fff; }
@@ -7299,7 +7299,7 @@ body.page-template-page-green-background .container {
         letter-spacing: 0.05em; }
       body.page-template-default .container #page .entry-content h4,
       body.page-template-page-green-background .container #page .entry-content h4 {
-        font-family: "FuturaBT-Bold";
+        font-family: FuturaBT-Bold;
         font-size: 0.75rem;
         line-height: 1em;
         margin-bottom: 0;
@@ -7331,7 +7331,7 @@ body.page-template-page-green-background {
     color: #000; }
     body.page-template-page-green-background .container #page .entry-content a {
       color: #000;
-      font-family: "FuturaBT-Bold"; }
+      font-family: FuturaBT-Bold; }
   body.page-template-page-green-background .container #page:before {
     background: #d0dc28 url("../images/diagonal-white.png") repeat-x;
     background-size: auto 100%; }
@@ -7356,7 +7356,7 @@ body.page-template-page-green-background {
 #warning-message {
   display: none; }
 
-@media only screen and (min-device-width: 320px) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 768px) and (orientation: portrait) {
   #warning-message {
     display: block;
     position: fixed;
@@ -7373,7 +7373,7 @@ body.page-template-page-green-background {
       position: relative;
       top: 30%;
       text-align: center;
-      font-family: "FuturaBT-Bold";
+      font-family: FuturaBT-Bold;
       color: #fff; } }
 
 /*# sourceMappingURL=foundation.css.map */
