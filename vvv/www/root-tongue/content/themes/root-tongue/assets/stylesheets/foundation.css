@@ -3038,7 +3038,7 @@ body {
 body {
   padding: 0;
   margin: 0;
-  font-family: "FuturaBT-Book", sans-serif;
+  font-family: "FuturaBT-Book";
   font-weight: normal;
   line-height: 1.5;
   color: #fff;
@@ -7094,7 +7094,7 @@ body.single-submission .container {
             font-size: 0.625rem;
             font-family: "FuturaBT-Bold"; }
           body.single-submission .container .main-content .right .meta.user .data-label {
-            font-family: "FuturaBT-Book", sans-serif; }
+            font-family: "FuturaBT-Book"; }
       body.single-submission .container .main-content .right .description {
         font-size: 0.6875rem;
         line-height: 1.5em;
@@ -7292,9 +7292,6 @@ body.page-template-page-green-background .container {
         font-size: 0.75rem;
         line-height: 1.5em;
         margin-bottom: 1.25rem; }
-      body.page-template-default .container #page .entry-content a,
-      body.page-template-page-green-background .container #page .entry-content a {
-        color: #d0dc28; }
       body.page-template-default .container #page .entry-content .rt-button,
       body.page-template-page-green-background .container #page .entry-content .rt-button {
         font-size: 1.875rem;
