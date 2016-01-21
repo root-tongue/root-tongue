@@ -2,6 +2,8 @@
 
 require_once 'includes/post-types.php';
 
+require_once 'includes/ux-json.php';
+
 add_theme_support( 'post-thumbnails' );
 
 /** Various clean up functions */
