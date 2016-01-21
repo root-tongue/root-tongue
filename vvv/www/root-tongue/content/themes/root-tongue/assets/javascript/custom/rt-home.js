@@ -7,7 +7,7 @@
 				} else {
 					console.log(rt);
 				}
-			}, 3000);
+			}, 5250);
 		}
 	})
 })(jQuery);
