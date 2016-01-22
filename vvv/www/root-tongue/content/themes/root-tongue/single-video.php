@@ -21,7 +21,7 @@ get_header(); ?>
       				controls: true,
       				loop: false,
 				    onFinished: function(){
-				        location.href=rt['videos'][rt['current_video']].question.link; // @todo: grab url of next question
+				        location.href=rt['videos'][rt['current_video']].question.link;
 				        //$('.modal').show(); @todo: do this if it's the last video
 				    }
 				});
