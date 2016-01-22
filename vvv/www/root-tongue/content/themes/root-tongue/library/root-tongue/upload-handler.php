@@ -73,6 +73,15 @@ class Upload_Handler extends Abstracts\Hooks {
 			return;
 		}
 
+		// connect the submission to the question they were answering
+		$question_id = $_REQUEST['question'];
+		if ( $question_id ) {
+			p2p_create_connection( 'submission_to_question', array(
+				'from' => $new_post,
+				'to' => $question_id,
+			) );
+		}
+
 		// if the submitter is not logged in, we need to create a user for them
 		if ( ! is_user_logged_in() ) {
 			$new_user = $this->create_submission_author();

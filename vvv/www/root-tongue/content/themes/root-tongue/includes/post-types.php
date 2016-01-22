@@ -142,4 +142,25 @@ add_action( 'p2p_init', function () {
 		),
 	) );
 
+
+	p2p_register_connection_type( array(
+		'name' => 'submission_to_question',
+		'from' => 'submission',
+		'to' => 'question',
+		'cardinality' => 'one-to-one',
+		'admin_box' => array(
+			'context' => 'advanced',
+		),
+		'title' => array(
+			'from' => __( 'Question', 'rt' ),
+			'to' => __( 'Submission', 'rt' )
+		),
+		'from_labels' => array(
+			'create' => __( 'Choose Submission', 'rt' ),
+		),
+		'to_labels' => array(
+			'create' => __( 'Choose Question', 'rt' ),
+		),
+	) );
+
 } );

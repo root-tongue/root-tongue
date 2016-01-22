@@ -16,7 +16,7 @@ get_header(); ?>
 				<?php the_content(); ?>
 			</div>
 			<div class="next-buttons">
-				<a class="rt-button" href="/upload/">UPLOAD MEDIA</a>
+				<a class="rt-button" href="/upload/?q=<?php echo get_the_ID() ?>">UPLOAD MEDIA</a>
 				<a class="rt-button show-modal" id="show-later-modal" href="#">SUBMIT LATER</a>
 				<a class="rt-button" href="#">WATCH NEXT VIDEO</a>
 			</div>

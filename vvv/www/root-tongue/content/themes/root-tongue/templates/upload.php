@@ -56,6 +56,7 @@ get_header(); ?>
 			</div>
 			<div class="submit-row">
 				<?php wp_nonce_field('rt-submission'); ?>
+				<input type="hidden" name="question" value="<?php echo $_GET['q']  ?>">
 				<input type="submit" id="submit" value="SUBMIT" class="rt-button">
 				<a class="rt-button" onClick="history.go(-1)">CANCEL</a>
 			</div>
