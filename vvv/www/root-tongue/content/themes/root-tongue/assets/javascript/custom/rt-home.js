@@ -4,8 +4,6 @@
 			setTimeout(function () {
 				if (typeof rt['videos'] != 'undefined' && rt['videos'].length) {
 					window.location.href = rt['videos'][0].link;
-				} else {
-					console.log(rt);
 				}
 			}, 5250);
 		}

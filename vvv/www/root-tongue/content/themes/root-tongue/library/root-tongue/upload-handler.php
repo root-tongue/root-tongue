@@ -38,14 +38,14 @@ class Upload_Handler extends Abstracts\Hooks {
 		$submission->post_status  = 'publish';
 		$submission->tax_input    = array(
 			'submission_type' => $_REQUEST['submissionType'],
-			'language' => $_REQUEST['language'],
-			'country'  => $_REQUEST['country'],
-			'theme'    => $_REQUEST['theme']
+			'language'        => $_REQUEST['language'],
+			'country'         => $_REQUEST['country'],
+			'theme'           => $_REQUEST['theme']
 		);
 		$submission->meta_input   = array(
 			'video_url' => ! empty( $_REQUEST['video'] ) ? $_REQUEST['video'] : '',
 			'audio_url' => ! empty( $_REQUEST['audio'] ) ? $_REQUEST['audio'] : '',
-			'text'  => ! empty( $_REQUEST['text'] ) ? $_REQUEST['text'] : '',
+			'text'      => ! empty( $_REQUEST['text'] ) ? $_REQUEST['text'] : '',
 		);
 
 		return (array) $submission;
@@ -78,7 +78,7 @@ class Upload_Handler extends Abstracts\Hooks {
 		if ( $question_id ) {
 			p2p_create_connection( 'submission_to_question', array(
 				'from' => $new_post,
-				'to' => $question_id,
+				'to'   => $question_id,
 			) );
 		}
 
@@ -127,14 +127,26 @@ class Upload_Handler extends Abstracts\Hooks {
 	}
 
 	private function create_submission_author() {
+		$password = wp_generate_password( 12, true );
 		$new_user = wp_insert_user( array(
 			'user_login'   => $_REQUEST['email'],
 			'user_email'   => $_REQUEST['email'],
-			'user_pass'    => wp_generate_password( 12, true ),
+			'user_pass'    => $password,
 			'display_name' => explode( '@', $_REQUEST['email'] )[0],
+			'role'         => 'contributor',
 		) );
-
+		if ( ! is_wp_error( $new_user ) ) {
+			$user = get_userdata( $new_user );
+			wp_mail( $user->user_email, __('Your password for Root Tongue'), $this->get_new_user_message($user->user_login, $password ) );
+		}
 		return $new_user;
+	}
+
+	private function get_new_user_message( $username, $password ) {
+		return "
+		Username: $username
+		Password: $password
+		";
 	}
 
 	private function set_submission_author( $post_id, $user_id ) {
