@@ -6537,7 +6537,7 @@ body.single-video #masthead {
           float: right; } }
 
 body.home {
-  background: url("../images/gifs/rt1_1.gif") top center;
+  background: url("../images/gifs/rt1_4.gif") top center;
   background-size: cover; }
   body.home #masthead {
     background: none; }
@@ -7032,7 +7032,7 @@ h1 {
 
 /*** Single Submission ***/
 body.single-submission .container {
-  padding: 3.5rem 1.5rem 0; }
+  padding: 3.5rem 1.5rem 1.5rem; }
   body.single-submission .container .main-content {
     padding: 1rem 0;
     text-align: left; }

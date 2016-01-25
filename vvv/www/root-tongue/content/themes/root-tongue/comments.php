@@ -19,7 +19,7 @@ if ( have_comments() ) :
 		<?php endif; // end have_comments() ?>
 		
 		<?php wp_list_comments( array(
-		    'callback' => rt_custom_comments,           
+		    'callback' => 'rt_custom_comments',           
 		) ); ?>
  	</section>
 <?php
