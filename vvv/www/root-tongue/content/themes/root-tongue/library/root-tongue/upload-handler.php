@@ -173,10 +173,6 @@ class Upload_Handler extends Abstracts\Hooks {
 
 	}
 
-	private function get_submission_type() {
-		return $_REQUEST['submissionType'];
-	}
-
 	private function return_response() {
 		$response           = $this->response;
 		$response['errors'] = $this->errors;
