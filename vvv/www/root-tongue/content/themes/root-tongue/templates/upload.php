@@ -45,8 +45,13 @@ get_header(); ?>
 				<div class="col">
 					<input type="text" name="language" id="language" placeholder="LANGUAGE &nbsp;(separate languages with a comma)">
 					<select name="theme" id="theme">
-						<option value="theme1">THEME1</option>
-						<option value="theme2">THEME2</option>
+						<?php 
+						$terms = get_terms( 'theme', [
+						  'hide_empty' => false, 
+						]);
+						foreach( $terms as $term ) {
+						    echo '<option value="' . $term->name . '">' . $term->name . '</option>';
+						} ?>
 					</select>
 					<div class="upload-thumbnail" style="display:none;">
 						<div class="upload-button">+

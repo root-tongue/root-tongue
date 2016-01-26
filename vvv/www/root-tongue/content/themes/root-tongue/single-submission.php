@@ -14,49 +14,53 @@ get_header(); ?>
 			<div class="left">
 				<?php
 					$terms = get_the_terms( $post->ID, 'submission_type' );
-				 	$type =  $terms[0]->name; 
-					switch ($type) {
+	    			if ( !empty( $terms ) ) {
+					 	$type =  $terms[0]->name; 
+						switch ($type) {
 
-				    case "image":?>
-					<div class="media-holder">
-						<?php the_post_thumbnail(); ?>
-					</div>
-				     <?php  break;
+						    case "image":?>
+							<div class="media-holder">
+								<?php if ( has_post_thumbnail() ) {
+									the_post_thumbnail();
+								} ?>
+							</div>
+						     <?php  break;
 
-				    case "video":?>
-					<div class="media-holder">
-						<?php $video = get_field('video_url');
-						if( !empty($video) ): ?>
-						<div  class="videoWrapper">
-						<?php echo wp_oembed_get($video, ''); ?>
-						</div>
-						<?php endif; ?>
-					</div>
-				     <?php  break;
+						    case "video":?>
+							<div class="media-holder">
+								<?php $video = get_field('video_url');
+								if( !empty($video) ): ?>
+								<div  class="videoWrapper">
+								<?php echo wp_oembed_get($video, ''); ?>
+								</div>
+								<?php endif; ?>
+							</div>
+						     <?php  break;
 
-				    case "audio":?>
-					<div class="media-holder">
-						<?php $audio = get_field('audio_url');
-						if( !empty($audio) ): ?>
-						<div  class="audioWrapper">
-						<?php echo wp_oembed_get($audio, ''); ?>
-						</div>
-						<?php endif; ?>
-					</div>
-				     <?php  break;
+						    case "audio":?>
+							<div class="media-holder">
+								<?php $audio = get_field('audio_url');
+								if( !empty($audio) ): ?>
+								<div  class="audioWrapper">
+								<?php echo wp_oembed_get($audio, ''); ?>
+								</div>
+								<?php endif; ?>
+							</div>
+						     <?php  break;
 
-				    case "text":?>
-					<div class="media-holder">
-						<?php $text = get_field('text');
-						if( !empty($text) ): ?>
-						<p class="text"><?php echo $text; ?></p>
-						<?php endif; ?>
-					</div>
-				     <?php  break;
-				    
-				    default:
-				        echo "There is no media to show";
-				}
+						    case "text":?>
+							<div class="media-holder">
+								<?php $text = get_field('text');
+								if( !empty($text) ): ?>
+								<p class="text"><?php echo $text; ?></p>
+								<?php endif; ?>
+							</div>
+						     <?php  break;
+						    
+						    default:
+						        echo "There is no media to show";
+						}
+					}
 				?>
 			</div>
 			<div class="right">

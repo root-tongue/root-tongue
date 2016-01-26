@@ -6537,7 +6537,7 @@ body.single-video #masthead {
           float: right; } }
 
 body.home {
-  background: url("../images/gifs/rt1_1.gif") top center;
+  background: url("../images/gifs/rt1_4.gif") top center;
   background-size: cover; }
   body.home #masthead {
     background: none; }
@@ -6750,6 +6750,7 @@ h1 {
       color: #fff;
       font-family: "FuturaBT-Bold";
       font-size: 0.875rem;
+      text-transform: uppercase;
       outline: none;
       background-image: url("../images/downarrow.png");
       background-size: 14px auto; }
@@ -7032,7 +7033,7 @@ h1 {
 
 /*** Single Submission ***/
 body.single-submission .container {
-  padding: 3.5rem 1.5rem 0; }
+  padding: 3.5rem 1.5rem 1.5rem; }
   body.single-submission .container .main-content {
     padding: 1rem 0;
     text-align: left; }
@@ -7213,7 +7214,7 @@ body.page-template-community-gallery .container, body.archive .container {
                 body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .menu ul li a:hover, body.archive .container #gallery-top .gallery-filter .dropdown .menu ul li a:hover {
                   color: #d0dc28; }
   body.page-template-community-gallery .container .gallery-list, body.archive .container .gallery-list {
-    padding-top: 7.5rem; }
+    padding: 7.5rem 0 2rem; }
     body.page-template-community-gallery .container .gallery-list:after, body.archive .container .gallery-list:after {
       clear: both;
       content: '';

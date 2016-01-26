@@ -5,7 +5,7 @@
 				if (typeof rt['videos'] != 'undefined' && rt['videos'].length) {
 					window.location.href = rt['videos'][0].link;
 				}
-			}, 5250);
+			}, 5000);
 		}
 	})
 })(jQuery);

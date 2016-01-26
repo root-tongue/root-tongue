@@ -58,52 +58,54 @@ get_header(); ?>
 		  if ( have_posts() ) : while ( have_posts() ) : the_post();
 		?>
 
-				<?php 
-					$terms = get_the_terms( $post->ID, 'submission_type' );
+			<?php 
+				$terms = get_the_terms( $post->ID, 'submission_type' );
+    			if ( !empty( $terms ) ) {
 				 	$type =  $terms[0]->name; 
-					switch ($type) {
+			 	}
+				switch ($type) {
 
-				    case "image":?>
-					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-					$url = $thumb['0']; ?>
-					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
-						<a href="<?php the_permalink(); ?>">
-							<span>I</span>
-						</a>
-					</div>
-				     <?php  break;
+			    case "image":?>
+				<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+				$url = $thumb['0']; ?>
+				<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+					<a href="<?php the_permalink(); ?>">
+						<span>I</span>
+					</a>
+				</div>
+			     <?php  break;
 
-				    case "video":?>
-					<?php $video = get_field('video_url'); ?>
-					<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>">
-						<a href="<?php the_permalink(); ?>">
-							<span>V</span>
-						</a>
-					</div>
-				     <?php  break;
+			    case "video":?>
+				<?php $video = get_field('video_url'); ?>
+				<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>">
+					<a href="<?php the_permalink(); ?>">
+						<span>V</span>
+					</a>
+				</div>
+			     <?php  break;
 
-				    case "audio":?>
-					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-					$url = $thumb['0']; ?>
-					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
-						<a href="<?php the_permalink(); ?>">
-							<span>A</span>
-						</a>
-					</div>
-				     <?php  break;
+			    case "audio":?>
+				<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+				$url = $thumb['0']; ?>
+				<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+					<a href="<?php the_permalink(); ?>">
+						<span>A</span>
+					</a>
+				</div>
+			     <?php  break;
 
-				    case "text":?>
-					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-					$url = $thumb['0']; ?>
-					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
-						<a href="<?php the_permalink(); ?>">
-							<span>T</span>
-						</a>
-					</div>
-				     <?php  break;
-				    
-					}
-				?>
+			    case "text":?>
+				<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+				$url = $thumb['0']; ?>
+				<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+					<a href="<?php the_permalink(); ?>">
+						<span>T</span>
+					</a>
+				</div>
+			     <?php  break;
+			    
+				}
+			?>
 
 		<?php endwhile; endif; wp_reset_query(); ?>
 			
