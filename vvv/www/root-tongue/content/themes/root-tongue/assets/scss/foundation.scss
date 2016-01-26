@@ -454,7 +454,7 @@ h1 {
         }
 
     }
-     ::-webkit-input-placeholder {
+    ::-webkit-input-placeholder {
        color: #fff;
       font-family: $bold-font;
       font-size: rem-calc(14px);
@@ -475,6 +475,7 @@ h1 {
       color:#fff;
       font-family: $bold-font;
       font-size: rem-calc(14px);
+      text-transform: uppercase;
       outline: none;
       background-image: url('../images/downarrow.png');
       background-size: 14px auto;
@@ -1060,7 +1061,7 @@ body.page-template-community-gallery, body.archive {
         content: '';
         display: block;
       }
-      padding-top: rem-calc(120px);
+      padding: rem-calc(120px) 0 2rem;
       .grid {
         width: 25%;
         float: left;
