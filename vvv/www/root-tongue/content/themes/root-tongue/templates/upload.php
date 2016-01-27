@@ -2,6 +2,7 @@
 /*
 Template Name: Upload
 */
+$rt = rt_get_rt_obj();
 
 get_header(); ?>
 <div id="upload" role="main">
@@ -132,7 +133,9 @@ get_header(); ?>
 					<div class="next-buttons">
 						<a class="rt-button" id="view-upload" href="#">VIEW UPLOAD</a>
 						<a class="rt-button" href="/community-gallery">COMMUNITY GALLERY</a>
-						<a class="rt-button" id="next-video" href="#">NEXT VIDEO</a>
+						<?php if ( ! $rt->lastVideo ) : ?>
+							<a class="rt-button" id="next-video" href="<?php echo $rt->nextVideo->link ?>">NEXT VIDEO</a>
+						<?php endif; ?>
 					</div>
 				</section>
 			<?php endwhile; ?>

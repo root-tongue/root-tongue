@@ -14,16 +14,27 @@ get_header(); ?>
 		$url = get_field('video_url');
 		?>
 		<script type="text/javascript">
-			$(function(){
+			var videoFinished = function(){
+				var videosPlayed = Cookies.getJSON('videosPlayed') || [];
+				videosPlayed.push(rt['currentVideo']);
+				Cookies.set('videosPlayed', videosPlayed);
+				if ( rt.lastVideo == true) {
+					// if it's the last video, show the "you've watched all videos" link
+					$('.modal').show();
+				} else {
+					// otherwise go to the next video
+					location.href=rt['questions'][rt['videos'][rt['currentVideo']].question].link;
+				}
+
+			};
+			$(document).on('ready', function(){
 			    $.okvideo({
 				    source: '<?php echo $url; ?>',
-      				autoplay: false,
-      				controls: true,
-      				loop: false,
-				    onFinished: function(){
-				        location.href=rt['videos'][rt['current_video']].question.link;
-				        //$('.modal').show(); @todo: do this if it's the last video
-				    }
+      				autoplay: 0,
+      				controls: 1,
+      				loop: 0,
+				    onFinish: videoFinished,
+				    onFinished: videoFinished
 				});
 			});
 		</script>
@@ -36,7 +47,7 @@ get_header(); ?>
 		<div class="modal-content">
 			<p>YOU HAVE VIEWED ALL THE VIDEOS, NOW IT'S YOUR TURN TO SHARE A STORY.</p>
 			<div class="button-row">
-				<a href="/upload" class="rt-button">SHARE STORY</a>
+				<a href="/upload/?q=<?php echo is_singular('question') ? get_the_ID() : rt_get_rt_obj()->videos[get_the_ID()]->question; ?>" class="rt-button">SHARE STORY</a>
 			</div>
 			<div class="button-row">
 				<a href="/community-gallery" class="rt-button">GO TO COMMUNITY GALLERY</a>
