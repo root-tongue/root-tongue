@@ -9,14 +9,15 @@ class Upload_Handler extends Abstracts\Hooks {
 	protected function hook() {
 		add_action( 'wp_ajax_nopriv_rt_submission', array( $this, 'handle_submission' ) );
 		add_action( 'wp_ajax_rt_submission', array( $this, 'handle_submission' ) );
+		add_action( 'wp_ajax_rt_newnonce', array( $this, 'new_nonce' ) );
+		add_action( 'wp_ajax_nopriv_rt_newnonce', array( $this, 'new_nonce' ) );
 	}
 
 	public function handle_submission() {
-		if ( check_ajax_referer( 'rt-submission' ) ) {
+		if ( check_ajax_referer( 'rt-submission', null, false ) ) {
 			if ( ! $this->check_submission() ) {
 				$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
 
-				return false;
 			}
 			$this->do_submit();
 		} else {
@@ -82,6 +83,8 @@ class Upload_Handler extends Abstracts\Hooks {
 			) );
 		}
 
+		$this->response['new_user_created'] = false;
+
 		// if the submitter is not logged in, we need to create a user for them
 		if ( ! is_user_logged_in() ) {
 			$new_user = $this->create_submission_author();
@@ -89,7 +92,7 @@ class Upload_Handler extends Abstracts\Hooks {
 			// for some reason we couldn't create the user, delete the submission because
 			// the whole process should fail, then bail
 			if ( is_wp_error( $new_user ) ) {
-				$this->errors = $new_user->get_error_message();
+				$this->errors[] = $new_user->get_error_message();
 				wp_delete_post( $new_post );
 
 				return;
@@ -97,6 +100,9 @@ class Upload_Handler extends Abstracts\Hooks {
 
 			// the user was successfully created, set them as the submission author
 			$this->set_submission_author( $new_post, $new_user );
+
+			// let the upload page know we created a new user
+			$this->response['new_user_created'] = true;
 		}
 
 		// we got this far, ok to save uploads to the media library
@@ -126,7 +132,7 @@ class Upload_Handler extends Abstracts\Hooks {
 		return wp_insert_post( $submission );
 	}
 
-	private function create_submission_author() {
+	private function create_submission_author( $sign_in = true ) {
 		$password = wp_generate_password( 12, true );
 		$new_user = wp_insert_user( array(
 			'user_login'   => $_REQUEST['email'],
@@ -137,8 +143,12 @@ class Upload_Handler extends Abstracts\Hooks {
 		) );
 		if ( ! is_wp_error( $new_user ) ) {
 			$user = get_userdata( $new_user );
-			wp_mail( $user->user_email, __('Your password for Root Tongue'), $this->get_new_user_message($user->user_login, $password ) );
+			wp_mail( $user->user_email, __( 'Your password for Root Tongue' ), $this->get_new_user_message( $user->user_login, $password ) );
 		}
+		if ( $sign_in ) {
+			wp_signon( array( 'user_login' => $_REQUEST['email'], 'user_password' => $password, 'remember' => true ) );
+		}
+
 		return $new_user;
 	}
 
@@ -173,7 +183,17 @@ class Upload_Handler extends Abstracts\Hooks {
 
 	}
 
+	public function new_nonce() {
+		$this->response['new_nonce'] = wp_create_nonce( 'rt-submission' );
+		$this->response['username'] = wp_get_current_user()->display_name;
+		$this->response['logout_url'] = htmlspecialchars_decode(wp_logout_url());
+		$this->return_response();
+	}
+
 	private function return_response() {
+		if ( ! empty( $this->errors ) ) {
+			$this->response['next'] = 'fail';
+		}
 		$response           = $this->response;
 		$response['errors'] = $this->errors;
 		echo json_encode( $response );

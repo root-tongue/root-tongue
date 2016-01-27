@@ -10,6 +10,7 @@
 		<span class="lwa-status"></span>
 		<div class="login-form-container">
 			<h1>LOGIN</h1>
+			<div id="existing-user-message" class="cta">Your email address is associated with an existing account. Please enter your password to log in.</div>
 			<input type="text" name="log" placeholder="EMAIL ADDRESS" id="user_email">
 			<input type="password" name="pwd" placeholder="PASSWORD" id="user_password">
 			<?php do_action( 'login_form' ); ?>
@@ -34,7 +35,7 @@
 		<h1>RESET PASSWORD</h1>
 		<div class="cta">Please enter your email address. You will receive a link to create a new password via email.</div>
 		<form class="lwa-remember" action="<?php echo esc_attr( LoginWithAjax::$url_remember ) ?>" method="post" id="lost-password">
-			<input type="text" name="user_login" class="lwa-user-remember" placeholder="EMAIL ADDRESS" value="" />
+			<input type="text" name="user_login" id="remember-email" class="lwa-user-remember" placeholder="EMAIL ADDRESS" value="" />
 			<div class="button-row">
 				<input type="submit" value="SUBMIT" class="rt-button">
 				<div class="rt-button cancel">CANCEL</div>

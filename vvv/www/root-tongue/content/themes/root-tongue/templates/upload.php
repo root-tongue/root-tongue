@@ -31,27 +31,33 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
-			<?php if ( ! is_user_logged_in() ) : ?>
 			<div class="login">
 				<a id="show-login-modal" href="#">LOGIN ></a>
 			</div>
-			<?php endif; ?>
+			<div class="logout">
+				<span>LOGGED IN AS <span id="current-user"><?php echo wp_get_current_user()->display_name ?></span></span>
+				<div id="not-you"><a href="javascript: void:(0)">Not you? Log Out</a></div>
+			</div>
 			<div class="input-row">
 				<div class="col">
 					<input type="text" name="title" id="title" placeholder="TITLE">
 					<input type="text" name="country" id="country" placeholder="COUNTRY &nbsp;(separate countries with a comma)">
-					<input type="text" name="email" id="email" placeholder="EMAIL">
+					<?php if ( ! is_user_logged_in() ) : ?>
+						<input type="text" name="email" id="email" placeholder="EMAIL">
+					<?php else : ?>
+						<input type="text" name="email" id="email" disabled="disabled" placeholder="EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
+					<?php endif; ?>
 					<textarea name="description" id="description" placeholder="DESCRIPTION"></textarea>
 				</div>
 				<div class="col">
 					<input type="text" name="language" id="language" placeholder="LANGUAGE &nbsp;(separate languages with a comma)">
 					<select name="theme" id="theme">
-						<?php 
+						<?php
 						$terms = get_terms( 'theme', [
-						  'hide_empty' => false, 
-						]);
-						foreach( $terms as $term ) {
-						    echo '<option value="' . $term->name . '">' . $term->name . '</option>';
+							'hide_empty' => false,
+						] );
+						foreach ( $terms as $term ) {
+							echo '<option value="' . $term->name . '">' . $term->name . '</option>';
 						} ?>
 					</select>
 					<div class="upload-thumbnail" style="display:none;">
@@ -65,7 +71,7 @@ get_header(); ?>
 			<div class="submit-row">
 				<?php wp_nonce_field( 'rt-submission' ); ?>
 				<input type="hidden" name="question" value="<?php echo $_GET['q'] ?>">
-				<input type="submit" id="submit" value="SUBMIT" class="rt-button">
+				<input type="submit" id="submit-btn" value="SUBMIT" class="rt-button">
 				<a class="rt-button" onClick="history.go(-1)">CANCEL</a>
 			</div>
 
@@ -76,37 +82,6 @@ get_header(); ?>
 		<div class="overlay"></div>
 		<div class="modal-content">
 			<?php login_with_ajax( array( 'template' => 'root-tongue' ) ); ?>
-		</div>
-	</div>
-	<!-- The form for registered email detected -->
-	<div class="modal" id="registered-email-login-form">
-		<div class="overlay"></div>
-		<div class="modal-content">
-			<div class="login-form-container">
-				<h1>LOGIN</h1>
-				<div class="cta">Your email address is associated with an existing account. Please enter your password to log in.</div>
-				<form id="user-login" action="">
-					<input type="password" placeholder="PASSWORD" id="user_password">
-					<div class="button-row">
-						<input type="submit" value="LOGIN" class="rt-button">
-						<div class="rt-button cancel">CANCEL</div>
-					</div>
-					<div class="lost-password">
-						Lost your password?
-					</div>
-				</form>
-			</div>
-			<div class="lost-password-form-container">
-				<h1>RESET PASSWORD</h1>
-				<div class="cta">Please enter your email address. You will receive a link to create a new password via email.</div>
-				<form id="lost-password" action="">
-					<input type="text" placeholder="EMAIL ADDRESS" id="user_email">
-					<div class="button-row">
-						<input type="submit" value="SUBMIT" class="rt-button">
-						<div class="rt-button cancel">CANCEL</div>
-					</div>
-				</form>
-			</div>
 		</div>
 	</div>
 	<!-- The loading screen | shows on form submission -->
@@ -137,6 +112,7 @@ get_header(); ?>
 							<a class="rt-button" id="next-video" href="<?php echo $rt->nextVideo->link ?>">NEXT VIDEO</a>
 						<?php endif; ?>
 					</div>
+					<div id="new-user-message" style="display: none">We have also created you a username and password. Please check your email!</div>
 				</section>
 			<?php endwhile; ?>
 			<?php wp_reset_query(); ?>
@@ -147,5 +123,5 @@ get_header(); ?>
 	<!-- end overlays -->
 
 </div>
-
+<a href="<?php echo htmlspecialchars_decode(wp_logout_url()); ?>" id="logout-url"></a>
 <?php get_footer(); ?>

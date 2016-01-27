@@ -343,6 +343,17 @@ h1 {
 
 /*** upload form ***/
 
+.logout {
+  display: none;
+}
+body.logged-in {
+  .logout {
+    display: block;
+  }
+  .login {
+    display: none;
+  }
+}
 #upload {
   padding: rem-calc(40px 0);
   h1{
@@ -393,13 +404,20 @@ h1 {
     float: left;
     padding: 0 rem-calc(10px);
   }
-  .login {
+  .login, .logout {
     padding: 0 0.625rem;   
-    a {
+    a, span {
       color: #000;
       font-family: $bold-font;
       font-size: rem-calc(14px);
     } 
+  }
+  .logout {
+    width: 50%;
+    #not-you {
+      float: right;
+    }
+
   }
   .input-row {
     padding: rem-calc(0 0 10px);
@@ -429,6 +447,9 @@ h1 {
         &:focus:-ms-input-placeholder  {
           color: #000;
         }
+      &:disabled {
+        color: #999;
+      }
     }
     textarea{
       border:none;
@@ -761,7 +782,7 @@ h1 {
     }
   }
 }
-.modal#login-form, .modal#registered-email-login-form {
+.modal#login-form {
   .modal-content {
     background: #000;
     color: #fff;
@@ -809,6 +830,12 @@ h1 {
       }
 
     }
+    .lwa-remember {
+      display: block;
+    }
+    #existing-user-message {
+      display: none;
+    }
     .cta {
         text-align: center;
         font-family: $bold-font;
@@ -818,7 +845,6 @@ h1 {
     }
     .lost-password-form-container {
       display: none;
-      
     } 
   }
 }

@@ -6644,6 +6644,15 @@ h1 {
   background-size: auto 100%; }
 
 /*** upload form ***/
+.logout {
+  display: none; }
+
+body.logged-in .logout {
+  display: block; }
+
+body.logged-in .login {
+  display: none; }
+
 #upload {
   padding: 2.5rem 0; }
   #upload h1 {
@@ -6685,12 +6694,16 @@ h1 {
     width: 50%;
     float: left;
     padding: 0 0.625rem; }
-  #upload .login {
+  #upload .login, #upload .logout {
     padding: 0 0.625rem; }
-    #upload .login a {
+    #upload .login a, #upload .login span, #upload .logout a, #upload .logout span {
       color: #000;
       font-family: "FuturaBT-Bold";
       font-size: 0.875rem; }
+  #upload .logout {
+    width: 50%; }
+    #upload .logout #not-you {
+      float: right; }
   #upload .input-row {
     padding: 0 0 0.625rem; }
     #upload .input-row:after {
@@ -6714,6 +6727,8 @@ h1 {
         color: #000; }
       #upload .input-row input[type='text']:focus:-ms-input-placeholder {
         color: #000; }
+      #upload .input-row input[type='text']:disabled {
+        color: #999; }
     #upload .input-row textarea {
       border: none;
       background: #000;
@@ -6983,22 +6998,22 @@ h1 {
       line-height: 1.1em;
       margin: 0; }
 
-.modal#login-form .modal-content, .modal#registered-email-login-form .modal-content {
+.modal#login-form .modal-content {
   background: #000;
   color: #fff;
   top: 10%;
   padding: 1.5rem 1rem;
   height: auto; }
-  .modal#login-form .modal-content h1, .modal#registered-email-login-form .modal-content h1 {
+  .modal#login-form .modal-content h1 {
     color: #fff;
     font-family: "TandelleRg-Regular";
     font-size: 3.125rem;
     line-height: 1.2em;
     text-align: center; }
-  .modal#login-form .modal-content form, .modal#registered-email-login-form .modal-content form {
+  .modal#login-form .modal-content form {
     max-width: 15.625rem;
     margin: auto; }
-    .modal#login-form .modal-content form input[type="text"], .modal#login-form .modal-content form input[type='password'], .modal#registered-email-login-form .modal-content form input[type="text"], .modal#registered-email-login-form .modal-content form input[type='password'] {
+    .modal#login-form .modal-content form input[type="text"], .modal#login-form .modal-content form input[type='password'] {
       background: #d0dc28;
       color: #000;
       height: 2.1875rem;
@@ -7009,26 +7024,30 @@ h1 {
       font-size: 0.875rem;
       margin-bottom: 0.75rem;
       transition: background 300ms ease-out; }
-      .modal#login-form .modal-content form input[type="text"]:focus, .modal#login-form .modal-content form input[type='password']:focus, .modal#registered-email-login-form .modal-content form input[type="text"]:focus, .modal#registered-email-login-form .modal-content form input[type='password']:focus {
+      .modal#login-form .modal-content form input[type="text"]:focus, .modal#login-form .modal-content form input[type='password']:focus {
         background: #fff; }
-    .modal#login-form .modal-content form .button-row, .modal#registered-email-login-form .modal-content form .button-row {
+    .modal#login-form .modal-content form .button-row {
       text-align: center; }
-    .modal#login-form .modal-content form .rt-button, .modal#registered-email-login-form .modal-content form .rt-button {
+    .modal#login-form .modal-content form .rt-button {
       background: #d0dc28;
       color: #000;
       font: 1.5rem/2rem "TandelleRg-Regular"; }
-    .modal#login-form .modal-content form .lost-password, .modal#registered-email-login-form .modal-content form .lost-password {
+    .modal#login-form .modal-content form .lost-password {
       color: #d0dc28;
       cursor: pointer;
       text-align: center;
       padding: 0.5rem 0 0; }
-  .modal#login-form .modal-content .cta, .modal#registered-email-login-form .modal-content .cta {
+  .modal#login-form .modal-content .lwa-remember {
+    display: block; }
+  .modal#login-form .modal-content #existing-user-message {
+    display: none; }
+  .modal#login-form .modal-content .cta {
     text-align: center;
     font-family: "FuturaBT-Bold";
     font-size: 0.75rem;
     line-height: 1.1em;
     padding: 0 0 0.625rem 0; }
-  .modal#login-form .modal-content .lost-password-form-container, .modal#registered-email-login-form .modal-content .lost-password-form-container {
+  .modal#login-form .modal-content .lost-password-form-container {
     display: none; }
 
 /*** Single Submission ***/
