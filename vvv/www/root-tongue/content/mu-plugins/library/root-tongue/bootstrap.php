@@ -24,7 +24,8 @@ class Bootstrap
 
 	public static function init_classes()
 	{
-		self::$classes['upload_handler'] = new Upload_Handler();
+		self::$classes['submission_handler'] = new Handlers\Submission();
+		self::$classes['new_nonce_handler'] = new Handlers\New_Nonce();
 		self::$classes['email_messages'] = new Email_Messages();
 	}
 

@@ -1,33 +1,17 @@
 <?php
-namespace Root_Tongue;
+namespace Root_Tongue\Handlers;
 
-class Upload_Handler extends Abstracts\Hooks {
+class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 
-	private $errors = array();
-	private $response = array();
+	protected $action = 'rt-submission';
 
-	protected function hook() {
-		add_action( 'wp_ajax_nopriv_rt_submission', array( $this, 'handle_submission' ) );
-		add_action( 'wp_ajax_rt_submission', array( $this, 'handle_submission' ) );
-		add_action( 'wp_ajax_rt_newnonce', array( $this, 'new_nonce' ) );
-		add_action( 'wp_ajax_nopriv_rt_newnonce', array( $this, 'new_nonce' ) );
-	}
-
-	public function handle_submission() {
-		if ( check_ajax_referer( 'rt-submission', null, false ) ) {
-			if ( ! $this->check_submission() ) {
-				$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
-
-			}
-			$this->do_submit();
-		} else {
-			$this->errors['top_level'] = __( 'There was a problem with your submission, please try again.', 'rt' );
+	protected function check_submission() {
+		if ( ! parent::check_submission() ) {
+			return false;
 		}
-		$this->return_response();
-	}
-
-	private function check_submission() {
+		//				$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
 		return true;
+
 	}
 
 	private function prepare_submission() {
@@ -53,7 +37,7 @@ class Upload_Handler extends Abstracts\Hooks {
 
 	}
 
-	private function do_submit() {
+	protected function process_request() {
 
 		// check if someone entered an email that's already been registered
 		// if so, first step is to make them log in
@@ -121,8 +105,6 @@ class Upload_Handler extends Abstracts\Hooks {
 		$this->response['submission'] = get_permalink( $new_post );
 	}
 
-	// @todo: add a flag to the login form that dispays a message requiring why they need to log in
-	// @todo: submit their form upon successful login if this flag is set
 	private function login_required() {
 		$this->response['next'] = 'login';
 		$this->return_response();
@@ -142,21 +124,18 @@ class Upload_Handler extends Abstracts\Hooks {
 			'role'         => 'contributor',
 		) );
 		if ( ! is_wp_error( $new_user ) ) {
-			$user = get_userdata( $new_user );
-			wp_mail( $user->user_email, __( 'Your password for Root Tongue' ), $this->get_new_user_message( $user->user_login, $password ) );
+			$user    = get_userdata( $new_user );
+			$subject = apply_filters( 'rt_new_user_email_title', false );
+			$message = apply_filters( 'rt_new_user_email_message', false, $user->user_login, $password );
+			if ( $subject && $message ) {
+				wp_mail( $user->user_email, $subject, $message );
+			}
 		}
 		if ( $sign_in ) {
 			wp_signon( array( 'user_login' => $_REQUEST['email'], 'user_password' => $password, 'remember' => true ) );
 		}
 
 		return $new_user;
-	}
-
-	private function get_new_user_message( $username, $password ) {
-		return "
-		Username: $username
-		Password: $password
-		";
 	}
 
 	private function set_submission_author( $post_id, $user_id ) {
@@ -168,7 +147,7 @@ class Upload_Handler extends Abstracts\Hooks {
 
 	private function save_media( $file, $post ) {
 		if ( empty( $_FILES[ $file ] ) ) {
-			return;
+			return false;
 		}
 		if ( $_FILES[ $file ]['error'] == UPLOAD_ERR_OK ) {
 			require_once( ABSPATH . "wp-admin" . '/includes/image.php' );
@@ -183,21 +162,11 @@ class Upload_Handler extends Abstracts\Hooks {
 
 	}
 
-	public function new_nonce() {
-		$this->response['new_nonce'] = wp_create_nonce( 'rt-submission' );
-		$this->response['username'] = wp_get_current_user()->display_name;
-		$this->response['logout_url'] = htmlspecialchars_decode(wp_logout_url());
-		$this->return_response();
-	}
-
 	private function return_response() {
 		if ( ! empty( $this->errors ) ) {
 			$this->response['next'] = 'fail';
 		}
-		$response           = $this->response;
-		$response['errors'] = $this->errors;
-		echo json_encode( $response );
-		die();
+		parent::return_result();
 	}
 
 }
