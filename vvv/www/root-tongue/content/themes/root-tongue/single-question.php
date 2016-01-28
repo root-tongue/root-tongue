@@ -37,9 +37,12 @@ $rt = rt_get_rt_obj();
 			<h3>SUBMIT LATER</h3>
 			<p>Praesent gravida blandit tellus et luctus</p>
 			<form>
-				<input type="text" id="email" placeholder="ENTER EMAIL">
+				<input type="text" id="email" name="email" placeholder="ENTER EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
 				<div class="submit-row">
+					<?php wp_nonce_field( 'rt-submit_later' ) ?>
+					<input type="hidden" name="question" value="<?php echo get_the_ID() ?>">
 					<input type="submit" value="SUBMIT" class="rt-button">
+					<input type="hidden" name="action" value="rt-submit_later">
 					<div class="rt-button cancel">CANCEL</div>
 				</div>
 			</form>
