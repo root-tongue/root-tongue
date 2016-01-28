@@ -54,6 +54,12 @@ $('.lost-password-form-container .cancel').click(function () {
 	$('.lost-password-form-container').hide();
 });
 
+$(document).on('click', '#user-login-2 .cancel', function () {
+	$('#user-login-2').remove();
+	$('.login-form-container').show();
+	$('.lost-password-form-container').hide();
+} );
+
 $('#upload-form').on('submit', function (event) {
 	event.preventDefault();
 	$('#loading.overlay-fullscreen').show();
