@@ -91,3 +91,52 @@ $('form.lwa-form, form.lwa-remember, div.lwa-register form').on('submit', functi
 		dataType: 'jsonp'
 	});
 });
+
+function showFormErrors(errors, element) {
+	for (var key in errors) {
+		if ( key == 'top_level') {
+			var $top_level_errors = $('<p class="errors"></p>').append(errors[key]);
+		} else {
+			var $ul_errors = $ul_errors || $('<ul class="errors"/>');
+			$ul_errors.append('<li>' + errors[key] + '</li>');
+		}
+	}
+	if (typeof $top_level_errors != 'undefined')
+		$top_level_errors.insertBefore(element);
+
+	if (typeof $ul_errors != 'undefined')
+		$ul_errors.insertBefore(element);
+}
+
+
+/*!
+ * jQuery serializeObject - v0.2 - 1/20/2010
+ * http://benalman.com/projects/jquery-misc-plugins/
+ *
+ * Copyright (c) 2010 "Cowboy" Ben Alman
+ * Dual licensed under the MIT and GPL licenses.
+ * http://benalman.com/about/license/
+ */
+
+// Whereas .serializeArray() serializes a form into an array, .serializeObject()
+// serializes a form into an (arguably more useful) object.
+
+(function($,undefined){
+	'$:nomunge'; // Used by YUI compressor.
+
+	$.fn.serializeObject = function(){
+		var obj = {};
+
+		$.each( this.serializeArray(), function(i,o){
+			var n = o.name,
+				v = o.value;
+
+			obj[n] = obj[n] === undefined ? v
+				: $.isArray( obj[n] ) ? obj[n].concat( v )
+				: [ obj[n], v ];
+		});
+
+		return obj;
+	};
+
+})(jQuery);

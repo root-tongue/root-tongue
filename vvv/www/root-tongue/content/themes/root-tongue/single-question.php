@@ -35,8 +35,8 @@ $rt = rt_get_rt_obj();
 		<div class="overlay"></div>
 		<div class="modal-content">
 			<h3>SUBMIT LATER</h3>
-			<p>Praesent gravida blandit tellus et luctus</p>
-			<form>
+			<h4>Need more time? Enter your email and we'll send you a link so you can come back later.</h4>
+			<form id="submit-later-form">
 				<input type="text" id="email" name="email" placeholder="ENTER EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
 				<div class="submit-row">
 					<?php wp_nonce_field( 'rt-submit_later' ) ?>
@@ -46,6 +46,13 @@ $rt = rt_get_rt_obj();
 					<div class="rt-button cancel">CANCEL</div>
 				</div>
 			</form>
+			<div id="submit-later-success">
+				<h4>Your perspective makes us better.</h4>
+					<p>We have sent you an email so you can share later. Thanks!</p>
+				<div class="submit-row">
+					<div class="rt-button cancel">CLOSE</div>
+				</div>
+			</div>
 		</div>
 	</div>
 

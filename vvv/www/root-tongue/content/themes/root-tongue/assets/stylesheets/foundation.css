@@ -6604,6 +6604,9 @@ h1 {
   color: #d0dc28;
   letter-spacing: 0.03em; }
 
+#single-question #submit-later-success {
+  display: none; }
+
 #single-question .entry-content p {
   text-transform: uppercase;
   font-family: "FuturaBT-Bold";
@@ -6951,10 +6954,13 @@ body.logged-in .login {
     line-height: 1em;
     letter-spacing: 0.05em;
     margin: 0 0 0.3125rem; }
-  .modal#submit-later .modal-content p {
+  .modal#submit-later .modal-content h4 {
     font-size: 0.625rem;
+    font-family: "FuturaBT-Book", sans-serif;
     text-transform: uppercase;
     margin: 0.3125rem 0 0.75rem; }
+  .modal#submit-later .modal-content p {
+    font-size: 0.75rem; }
   .modal#submit-later .modal-content form input[type='text'] {
     background: #d0dc28;
     color: #000;
@@ -7154,6 +7160,9 @@ body.single-submission .container {
         line-height: 1.5em; }
         body.single-submission .container .main-content #comments .comment-content p {
           margin: 0; }
+
+.errors {
+  color: #CC0000; }
 
 /*** Gallery ***/
 body.page-template-community-gallery .container, body.archive .container {
