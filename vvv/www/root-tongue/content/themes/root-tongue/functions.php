@@ -39,12 +39,11 @@ require_once( 'library/custom-nav.php' );
 
 
 /** Register Menus */
-
-function register_my_menu() {
+add_action( 'init', 'rt_register_menu' );
+function rt_register_menu() {
 	register_nav_menu( 'main-nav', __( 'Main Nav' ) );
 }
 
-add_action( 'init', 'register_my_menu' );
 
 /** Comments Template */
 function rt_custom_comments( $comment, $args, $depth ) {
