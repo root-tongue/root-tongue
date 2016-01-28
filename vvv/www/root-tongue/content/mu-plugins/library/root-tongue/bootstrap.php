@@ -25,6 +25,7 @@ class Bootstrap
 	public static function init_classes()
 	{
 		self::$classes['upload_handler'] = new Upload_Handler();
+		self::$classes['email_messages'] = new Email_Messages();
 	}
 
 	public static function autoloader( $class_name )
