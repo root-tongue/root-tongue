@@ -46,10 +46,6 @@ function register_my_menu() {
 
 add_action( 'init', 'register_my_menu' );
 
-// Register the autoloader
-require_once 'library/root-tongue/bootstrap.php';
-spl_autoload_register( 'Root_Tongue\Bootstrap::autoloader' );
-
 /** Comments Template */
 function rt_custom_comments( $comment, $args, $depth ) {
 	?>

@@ -29,8 +29,8 @@ class Bootstrap
 
 	public static function autoloader( $class_name )
 	{
-		$classes_dir = get_template_directory() . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR;
-		$class_file  = strtolower(str_replace( array('_', '\\'), array('-', '/'), $class_name ) . '.php');
+		$classes_dir = WP_CONTENT_DIR . 'mu-plugins' . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR;
+		$class_file  = strtolower( str_replace( array( '_', '\\' ), array( '-', DIRECTORY_SEPARATOR ), $class_name ) . '.php' );
 		if ( file_exists( $classes_dir . $class_file ) ) {
 			require_once $classes_dir . $class_file;
 		}
