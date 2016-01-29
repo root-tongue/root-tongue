@@ -33,6 +33,7 @@ get_header(); ?>
       				autoplay: 0,
       				controls: 1,
       				loop: 0,
+				    volume: 80,
 				    onFinish: videoFinished,
 				    onFinished: videoFinished
 				});
