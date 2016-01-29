@@ -9,7 +9,101 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		if ( ! parent::check_submission() ) {
 			return false;
 		}
-		//				$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
+
+		$submission_type = $_REQUEST['submissionType'];
+
+		// check required fields in form
+		$required_fields = array(
+			'title'    => 'Title',
+			'country'  => 'Country',
+			'email'    => 'Email',
+			'language' => 'Language',
+			'theme'    => 'Theme',
+		);
+		foreach ( $required_fields as $key => $required_field ) {
+			if ( empty( $_REQUEST[ $key ] ) ) {
+				$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
+				$this->errors[]            = "$required_field is required.";
+			}
+		}
+
+		// check there is a media selected
+		if ( empty( $submission_type ) ) {
+			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
+			$this->errors[]            = __( 'You must upload at least one type of media using the 4 buttons at the top.', 'rt' );
+		}
+
+		// check specific media selected was entered
+		if ( $submission_type != 'image' && ! empty( $submission_type ) && empty( $_REQUEST[ $submission_type ] ) ) {
+			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
+			$this->errors[]            = sprintf( __( 'You did not enter any %s.', 'rt' ), $submission_type );
+		}
+
+		// special check for image 
+		if ( $submission_type == 'image' && empty( $_FILES['image']['name'] ) ) {
+			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
+			$this->errors[]            = __( 'You did not select an image.', 'rt' );
+		}
+
+		// check the video url is youtube or vimeo
+		if ( ! empty( $_REQUEST['video'] ) && $submission_type == 'video' ) {
+			$regexp = '/^https?:\/\/(youtube.com|youtu.be|vimeo.com)\/(.*)$/';
+			if ( ! preg_match( $regexp, $_REQUEST['video'] ) ) {
+				$video_error = __( 'Your video URL must come from <a href="http://youtube.com" target="_blank">Youtube</a> or <a href="http://vimeo.com" target="_blank">Vimeo</a>', 'rt' );
+				if ( ! empty( $this->errors['top_level'] ) ) {
+					$this->errors[] = $video_error;
+				} else {
+					$this->errors['top_level'] = $video_error;
+				}
+			}
+		}
+
+		// check the audio url is soundcloud
+		if ( ! empty( $_REQUEST['audio'] ) && $submission_type == 'audio' ) {
+			$regexp = '/^https?:\/\/(soundcloud.com|snd.sc)\/(.*)$/';
+			if ( ! preg_match( $regexp, $_REQUEST['audio'] ) ) {
+				$audio_error = __( 'Your audio URL must come from <a href="http://soundcloud.com" target="_blank">SoundCloud</a>', 'rt' );
+				if ( ! empty( $this->errors['top_level'] ) ) {
+					$this->errors[] = $audio_error;
+				} else {
+					$this->errors['top_level'] = $audio_error;
+				}
+			}
+		}
+
+		// check the email address entered was valid
+		if ( ! empty( $_POST['email'] ) && ! is_email( $_POST['email'] ) ) {
+			$email_error = __( 'The email address you entered is not valid.', 'rt' );
+			if ( ! empty( $this->errors['top_level'] ) ) {
+				$this->errors[] = $email_error;
+			} else {
+				$this->errors['top_level'] = $email_error;
+			}
+		}
+
+		// check the uploaded files are ok
+		foreach ( array( 'image', 'thumbnail' ) as $file ) {
+			if ( $file == 'image' && $submission_type != 'image' ) {
+				continue;
+			}
+			if ( ! empty( $_FILES[ $file ]['name'] ) && $_FILES[ $file ]['error'] != UPLOAD_ERR_OK ) {
+				if ( $_FILES[ $file ]['error'] == UPLOAD_ERR_INI_SIZE || $_FILES[ $file ]['error'] == UPLOAD_ERR_FORM_SIZE ) {
+					$file_error = sprintf( __( 'The %s you uploaded is too large. The limit is %s.', 'rt' ), $file, esc_html( size_format( wp_max_upload_size() ) ) );
+				} else {
+					$file_error = sprintf( __( 'An error occurred while saving your %s. Please try again.', 'rt' ), $file );
+				}
+				if ( ! empty( $this->errors['top_level'] ) ) {
+					$this->errors[] = $file_error;
+				} else {
+					$this->errors['top_level'] = $file_error;
+				}
+			}
+		}
+
+		if ( ! empty( $this->errors['top_level'] ) ) {
+			return false;
+		}
+
 		return true;
 
 	}
@@ -28,9 +122,9 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			'theme'           => $_REQUEST['theme']
 		);
 		$submission->meta_input   = array(
-			'video_url' => ! empty( $_REQUEST['video'] ) ? $_REQUEST['video'] : '',
-			'audio_url' => ! empty( $_REQUEST['audio'] ) ? $_REQUEST['audio'] : '',
-			'text'      => ! empty( $_REQUEST['text'] ) ? $_REQUEST['text'] : '',
+			'video_url' => ! empty( $_REQUEST['video'] ) && $_REQUEST['submissionType'] == 'video' ? $_REQUEST['video'] : '',
+			'audio_url' => ! empty( $_REQUEST['audio'] ) && $_REQUEST['submissionType'] == 'audio' ? $_REQUEST['audio'] : '',
+			'text'      => ! empty( $_REQUEST['text'] ) && $_REQUEST['submissionType'] == 'text' ? $_REQUEST['text'] : '',
 		);
 
 		return (array) $submission;
@@ -90,14 +184,19 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		}
 
 		// we got this far, ok to save uploads to the media library
-		$image     = $this->save_media( 'image', $new_post );
-		$thumbnail = $this->save_media( 'thumbnail', $new_post );
+		if ( $_REQUEST['submissionType'] == 'image' ) {
+			$image = $this->save_media( 'image', $new_post );
+		}
+
+		if ( in_array( $_REQUEST['submissionType'], array( 'audio', 'text' ) ) ) {
+			$thumbnail = $this->save_media( 'thumbnail', $new_post );
+		}
 
 		// set the featured image
-		if ( $image ) {
+		if ( ! empty( $image ) ) {
 			set_post_thumbnail( $new_post, $image );
 			update_post_meta( $new_post, 'image', $image );
-		} elseif ( $thumbnail ) {
+		} elseif ( ! empty( $thumbnail ) ) {
 			set_post_thumbnail( $new_post, $thumbnail );
 		}
 

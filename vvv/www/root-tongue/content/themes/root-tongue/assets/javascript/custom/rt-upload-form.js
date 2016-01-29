@@ -86,11 +86,8 @@ $('#upload-form').on('submit', function (event) {
 					$('#view-upload').attr("href", response.submission);
 					break;
 				case 'fail' :
-					var $ul_errors = $('<ul class="errors"/>');
-					$.each(response.errors, function (i, error) {
-						$ul_errors.append('<li>' + error + '</li>');
-					})
-					$ul_errors.insertBefore('.login');
+					showFormErrors(response.errors, '.login');
+					break;
 			}
 			if (response.new_user_created == true) {
 				$('#new-user-message').show();

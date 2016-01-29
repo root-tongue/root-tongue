@@ -45,7 +45,7 @@ get_header(); ?>
 					<?php if ( ! is_user_logged_in() ) : ?>
 						<input type="text" name="email" id="email" placeholder="EMAIL">
 					<?php else : ?>
-						<input type="text" name="email" id="email" disabled="disabled" placeholder="EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
+						<input type="text" name="email" id="email" readonly="readonly" placeholder="EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
 					<?php endif; ?>
 					<textarea name="description" id="description" placeholder="DESCRIPTION"></textarea>
 				</div>
