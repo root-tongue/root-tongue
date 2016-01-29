@@ -137,6 +137,8 @@ var player, OKEvents, options;
 
       if (/youtube.com/.test(base.options.video)){
         return { "provider" : "youtube", "id" : a.href.slice(a.href.indexOf('v=') + 2).toString() };
+      } else if (/youtu.be/.test(base.options.video)) {
+        return { "provider" : "youtube", "id" : a.href.split('/')[3].toString() };
       } else if (/vimeo.com/.test(base.options.video)) {
         return { "provider" : "vimeo", "id" : a.href.split('/')[3].toString() };
       } else if (/[-A-Za-z0-9_]+/.test(base.options.video)) {
