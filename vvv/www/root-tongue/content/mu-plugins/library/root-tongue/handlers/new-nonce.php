@@ -14,4 +14,8 @@ class New_Nonce extends \Root_Tongue\Abstracts\Ajax_Handler {
 		$this->response['logout_url'] = htmlspecialchars_decode( wp_logout_url() );
 	}
 
+	protected function check_ajax_referer( $action ) {
+		return true;
+	}
+
 }
