@@ -9,6 +9,8 @@ add_action( 'init', function() {
 
 		'menu_icon' => 'dashicons-editor-video',
 
+		'supports'        => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+
 		# Add some custom columns to the admin screen:
 		'admin_cols' => array(
 			'featured_image' => array(
