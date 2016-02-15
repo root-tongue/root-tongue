@@ -54,7 +54,7 @@ get_header(); ?>
 		</header>
 		<section class="gallery-list">
 		<?php
-		  query_posts( array( 'post_type' => 'submission'  ) );
+		  query_posts( array( 'post_type' => 'submission', 'posts_per_page' => -1  ) );
 		  if ( have_posts() ) : while ( have_posts() ) : the_post();
 		?>
 
@@ -62,59 +62,62 @@ get_header(); ?>
 				$terms = get_the_terms( $post->ID, 'submission_type' );
     			if ( !empty( $terms ) ) {
 				 	$type =  $terms[0]->name; 
-			 	}
-				switch ($type) {
+			 	
+					switch ($type) {
+				    case "image":?>
+					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+					$url = $thumb['0']; ?>
+					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+						<a href="<?php the_permalink(); ?>">
+							<span>I</span>
+						</a>
+					</div>
+				     <?php  break;
 
-			    case "image":?>
-				<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-				$url = $thumb['0']; ?>
-				<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
-					<a href="<?php the_permalink(); ?>">
-						<span>I</span>
-					</a>
-				</div>
-			     <?php  break;
+				    case "video":?>
+					<?php $video = get_field('video_url'); ?>
+					<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>">
+						<a href="<?php the_permalink(); ?>">
+							<span>V</span>
+						</a>
+					</div>
+				     <?php  break;
 
-			    case "video":?>
-				<?php $video = get_field('video_url'); ?>
-				<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>">
-					<a href="<?php the_permalink(); ?>">
-						<span>V</span>
-					</a>
-				</div>
-			     <?php  break;
+				    case "audio":?>
+					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+					$url = $thumb['0']; ?>
+					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+						<a href="<?php the_permalink(); ?>">
+							<span>A</span>
+						</a>
+					</div>
+				     <?php  break;
 
-			    case "audio":?>
-				<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-				$url = $thumb['0']; ?>
-				<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
-					<a href="<?php the_permalink(); ?>">
-						<span>A</span>
-					</a>
-				</div>
-			     <?php  break;
+				    case "text":?>
+					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+					$url = $thumb['0']; ?>
+					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+						<a href="<?php the_permalink(); ?>">
+							<span>T</span>
+						</a>
+					</div>
+				     <?php  break;
 
-			    case "text":?>
-				<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-				$url = $thumb['0']; ?>
-				<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
-					<a href="<?php the_permalink(); ?>">
-						<span>T</span>
-					</a>
-				</div>
-			     <?php  break;
-			    
-				}
+				   default:
+				    
+					} //end switch
+
+				} //end if
 			?>
 
 		<?php endwhile; endif; wp_reset_query(); ?>
 			
 		</section>
 		<section id="bottom-key">
-			<div class="key"><span>V</span> = VIDEO</div>
-			<div class="key"><span>I</span> = IMAGE</div>
-			<div class="key"><span>A</span> = AUDIO</div>
-			<div class="key"><span>T</span> = TEXT</div>
+			<div class="key"><span>V</span> - VIDEO</div>
+			<div class="key"><span>I</span> - IMAGE</div>
+			<div class="key"><span>A</span> - AUDIO</div>
+			<div class="key"><span>T</span> - TEXT</div>
 		</section>
 
 	</section>

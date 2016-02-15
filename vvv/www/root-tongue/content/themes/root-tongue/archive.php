@@ -102,7 +102,7 @@ get_header(); ?>
 					</div>
 				     <?php  break;
 				    
-				}
+					} // End switch.
 				?>
 
 		<?php endwhile; ?>
@@ -113,10 +113,10 @@ get_header(); ?>
 			
 		</section>
 		<section id="bottom-key">
-			<div class="key"><span>V</span> = VIDEO</div>
-			<div class="key"><span>I</span> = IMAGE</div>
-			<div class="key"><span>A</span> = AUDIO</div>
-			<div class="key"><span>T</span> = TEXT</div>
+			<div class="key"><span>V</span> - VIDEO</div>
+			<div class="key"><span>I</span> - IMAGE</div>
+			<div class="key"><span>A</span> - AUDIO</div>
+			<div class="key"><span>T</span> - TEXT</div>
 		</section>
 
 	</section>
