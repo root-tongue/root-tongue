@@ -122,6 +122,22 @@ get_header(); ?>
 
 	</section>
 	<?php do_action( 'foundationpress_after_content' ); ?>
+	
+	<!-- show modal if user is not logged in -->
+	<?php if ( ! is_user_logged_in() ) : 
+	$rt = rt_get_rt_obj(); ?>
+		
+		<div class="modal" id="logged-out">
+			<div class="overlay"></div>
+			<div class="modal-content">
+				<p>To see the community gallery please watch a video and submit a response.</p>
+				<div class="button-row">
+					<a href="<?php echo $rt->nextVideo->link ?>" class="rt-button">Go to next video</a>
+				</div>
+			</div>
+		</div>
+
+	<?php endif; ?>
 
 </div>
 

@@ -7304,6 +7304,24 @@ body.page-template-community-gallery .container, body.archive .container {
       body.page-template-community-gallery .container #bottom-key .key span, body.archive .container #bottom-key .key span {
         color: #fff; }
 
+body.page-template-community-gallery .modal#logged-out, body.archive .modal#logged-out {
+  display: block !important; }
+  body.page-template-community-gallery .modal#logged-out .overlay, body.archive .modal#logged-out .overlay {
+    background: rgba(0, 0, 0, 0.8); }
+  body.page-template-community-gallery .modal#logged-out .modal-content, body.archive .modal#logged-out .modal-content {
+    height: auto;
+    width: 50%;
+    left: 25%;
+    background: #fff;
+    padding: 3.125rem 1.875rem;
+    text-align: center; }
+    body.page-template-community-gallery .modal#logged-out .modal-content p, body.archive .modal#logged-out .modal-content p {
+      color: #000;
+      font-family: "FuturaBT-Bold";
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase; }
+
 /*** Default Page Template ***/
 body.page-template-default .container,
 body.page-template-page-green-background .container {

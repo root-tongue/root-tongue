@@ -1180,6 +1180,28 @@ body.page-template-community-gallery, body.archive {
 			}
 		}
 	}
+	.modal#logged-out {
+		display: block !important;
+		.overlay {
+			background: rgba(0, 0, 0, 0.8);
+		}
+		.modal-content {
+			height: auto;
+			width: 50%;
+			left: 25%;
+			background: #fff;
+			padding: rem-calc(50px 30px);
+			text-align: center;
+			p {
+				color: #000;
+				font-family: $bold-font;
+				font-size: rem-calc(13px);
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+			}
+		}	
+	}
+
 }
 
 /*** Default Page Template ***/
