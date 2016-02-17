@@ -10,7 +10,10 @@
 			}, 5000);
 			setTimeout(function () {
 				$('body.home').addClass('show-intro2');
-			}, 9500);
+			}, 10000);
+			setTimeout(function () {
+				$('body.home').addClass('show-intro3');
+			}, 15000);
 		}
 	})
 })(jQuery);

@@ -5982,6 +5982,8 @@ table.hover tr:nth-of-type(even):hover {
             margin-top: 5px; }
           #masthead .top-bar #main-nav ul.menu li.about a:before {
             background-position: 0 -150px; }
+          #masthead .top-bar #main-nav ul.menu li.watch a:before {
+            background-position: 0 -225px; }
           #masthead .top-bar #main-nav ul.menu li.menu-item-has-children > a:after {
             content: '+';
             font-family: "FuturaBT-Bold";
@@ -6581,13 +6583,21 @@ body.home {
     transition: all 1s ease-in-out 1s;
     -webkit-transition: all 1s ease-in-out 1s; }
     body.home .instructions h1 {
-      font-size: 2.8125rem;
+      font-size: 2.1875rem;
       position: absolute;
       top: 50%;
       -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
               transform: translateY(-50%);
       width: calc(100% - 6.25rem); }
+    @media screen and (min-height: 375px) {
+      body.home .instructions .how-it-works {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+        width: calc(100% - 6.25rem); } }
     body.home .instructions p {
       font-family: "FuturaBT-Bold";
       font-size: 1rem;
@@ -6597,7 +6607,10 @@ body.home {
       body.home .instructions p:first-child {
         margin-bottom: 1.125rem; }
     body.home .instructions ul {
-      margin: 0; }
+      margin: 0;
+      text-align: left;
+      max-width: 33.125rem;
+      margin: auto; }
       body.home .instructions ul li {
         font-family: "FuturaBT-Bold";
         font-size: 0.875rem;
@@ -6622,8 +6635,8 @@ body.home {
       margin-top: 0.625rem;
       padding-left: 1.25rem;
       padding-right: 1.25rem; }
-  body.home .instructions2 {
-    padding-top: 5rem; }
+  body.home .instructions3 {
+    padding-top: 4rem; }
   body.home.show-intro .container {
     background: #000; }
   body.home.show-intro #masthead a#logo {
@@ -6639,8 +6652,14 @@ body.home {
     body.home.show-intro2 .instructions1 {
       opacity: 0; }
     body.home.show-intro2 .instructions2 {
-      opacity: 1;
-      height: auto; }
+      opacity: 1; }
+  body.home.show-intro3 .instructions1, body.home.show-intro3 .instructions2 {
+    opacity: 0; }
+  body.home.show-intro3 .instructions3 {
+    opacity: 1; }
+  @media screen and (max-height: 374px) {
+    body.home.show-intro3 .instructions3 {
+      height: auto; } }
 
 /*** Global Stuff ***/
 ::-webkit-scrollbar {

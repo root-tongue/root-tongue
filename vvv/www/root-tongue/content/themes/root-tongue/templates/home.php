@@ -17,15 +17,19 @@ get_header(); ?>
 
 	</section>
 	<section class="instructions instructions2" role="main">
-		<p>Root Tongue enables you to explore the challenges of language endangerment and preservation by experiencing and sharing stories of language loss and revival.</p>
-		<p>How it works:</p>
-		<ul>
-			<li><span>1</span>watch the videos</li>
-			<li><span>2</span>after each video plays you will be asked a question</li>
-			<li><span>3</span>respond with your stories in text, image, audio or video</li>
-			<li><span>4</span>visit the community gallery to see and comment on other responses</li>
-		</ul>
-		<a href="" class="rt-button" id="enter-site">ENTER</a>
+		<h1>Root Tongue enables you to explore the challenges of language endangerment and preservation by experiencing and sharing stories of language loss and revival.</h1>
+	</section>
+	<section class="instructions instructions3" role="main">
+		<div class="how-it-works">
+			<p>How it works:</p>
+			<ul>
+				<li><span>1</span>watch the videos</li>
+				<li><span>2</span>after each video plays you will be asked a question</li>
+				<li><span>3</span>respond with your stories in text, image, audio or video</li>
+				<li><span>4</span>visit the community gallery to see and comment on other responses</li>
+			</ul>
+			<a href="" class="rt-button" id="enter-site">ENTER</a>
+		</div>
 	</section>
 <?php endwhile;?>
 <?php do_action( 'foundationpress_after_content' ); ?>

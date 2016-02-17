@@ -156,6 +156,9 @@
           &.about a:before {
             background-position: 0 -150px;
           }
+          &.watch a:before {
+            background-position: 0 -225px;
+          }
           &.menu-item-has-children > a:after {
             content: '+';
             font-family: $bold-font;

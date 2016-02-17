@@ -50,12 +50,20 @@ body.home {
 			transition: all 1s ease-in-out 1s;
 			-webkit-transition: all 1s ease-in-out 1s;
 			h1 {
-				font-size: rem-calc(45px);
+				font-size: rem-calc(35px);
 				position: absolute;
 		    	top: 50%;
 		    	transform: translateY(-50%);
 		    	width: calc(100% - 6.25rem);
 			}
+		@media screen and ( min-height: 375px ){
+			.how-it-works {
+				position: absolute;
+		    	top: 50%;
+		    	transform: translateY(-50%);
+		    	width: calc(100% - 6.25rem);
+			}
+		}
 			p {
 				font-family: $bold-font;
 				font-size: rem-calc(16px);
@@ -68,6 +76,9 @@ body.home {
 			}
 			ul {
 				margin:0;
+				text-align: left;
+				max-width: rem-calc(530px);
+    			margin: auto;
 				li {
 					font-family: $bold-font;
 					font-size: rem-calc(14px);
@@ -97,8 +108,8 @@ body.home {
 				padding-right: rem-calc(20px);
 			}
 		}
-		.instructions2 { 
-			padding-top: 5rem;
+		.instructions3 { 
+			padding-top: 4rem;
 		}
 
 	&.show-intro {
@@ -127,7 +138,19 @@ body.home {
 		}
 		.instructions2 {
 			opacity: 1;
-			height: auto;
+		}
+	}
+	&.show-intro3 {
+		.instructions1, .instructions2 {
+			opacity: 0;
+		}
+		.instructions3 {
+			opacity: 1;
+		}
+		@media screen and ( max-height: 374px ){
+			.instructions3 {
+				height: auto;		
+			}		
 		}
 	}
 }
