@@ -1,8 +1,10 @@
 body.home {
+	.container {
+		background: rgba(0,0,0,0);
+		transition: all 1s ease-in-out;
+	}
 		background: url('../images/gifs/rt1_4.gif') top center;
 		background-size: cover;
-		transition: all 1s ease-in-out;
-		-webkit-transition: all 1s ease-in-out;
 		#masthead {
 			background: none;
 			a#logo {
@@ -36,12 +38,15 @@ body.home {
 			}
 		}
 		.instructions {
-			position: relative;
+			position: absolute;
 			width: 100%;
-			height: 0;
+			height: 100%;
+			top: 0;
+			left: 0;
 			text-align: center;
 			opacity: 0;
 			overflow: hidden;
+			padding: 3.5rem 3.125rem 3.125rem;
 			transition: all 1s ease-in-out 1s;
 			-webkit-transition: all 1s ease-in-out 1s;
 			h1 {
@@ -49,7 +54,7 @@ body.home {
 				position: absolute;
 		    	top: 50%;
 		    	transform: translateY(-50%);
-		    	width: 100%;
+		    	width: calc(100% - 6.25rem);
 			}
 			p {
 				font-family: $bold-font;
@@ -93,11 +98,13 @@ body.home {
 			}
 		}
 		.instructions2 { 
-			padding: 0;
+			padding-top: 5rem;
 		}
 
 	&.show-intro {
-		background: #000;
+		.container {
+			background: #000;
+		}
 		#masthead {
 			a#logo {
 				display: block !important;
@@ -105,28 +112,22 @@ body.home {
 		}
 		.intro {
 			opacity: 0;
-			height: 0;
-			width: 0;
 		}
 		.instructions1 {
-			padding: rem-calc(30px) 0;
-			height: 100%;
 			opacity: 1;
 		}
 	}
 	&.show-intro2 {
+		background: #000;
 		#masthead {
 			background: #000;
 		}
 		.instructions1 {
 			opacity: 0;
-			height: 0;
-			padding: 0;
 		}
 		.instructions2 {
-			height: auto;
 			opacity: 1;
-			padding: rem-calc(15px 0 40px);
+			height: auto;
 		}
 	}
 }

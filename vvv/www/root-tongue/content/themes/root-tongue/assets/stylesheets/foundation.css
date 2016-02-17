@@ -6538,9 +6538,10 @@ body.single-video #masthead {
 
 body.home {
   background: url("../images/gifs/rt1_4.gif") top center;
-  background-size: cover;
-  transition: all 1s ease-in-out;
-  -webkit-transition: all 1s ease-in-out; }
+  background-size: cover; }
+  body.home .container {
+    background: transparent;
+    transition: all 1s ease-in-out; }
   body.home #masthead {
     background: none; }
     body.home #masthead a#logo {
@@ -6568,12 +6569,15 @@ body.home {
       body.home .intro #intro img {
         max-width: 100%; }
   body.home .instructions {
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
     text-align: center;
     opacity: 0;
     overflow: hidden;
+    padding: 3.5rem 3.125rem 3.125rem;
     transition: all 1s ease-in-out 1s;
     -webkit-transition: all 1s ease-in-out 1s; }
     body.home .instructions h1 {
@@ -6583,7 +6587,7 @@ body.home {
       -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
               transform: translateY(-50%);
-      width: 100%; }
+      width: calc(100% - 6.25rem); }
     body.home .instructions p {
       font-family: "FuturaBT-Bold";
       font-size: 1rem;
@@ -6619,29 +6623,24 @@ body.home {
       padding-left: 1.25rem;
       padding-right: 1.25rem; }
   body.home .instructions2 {
-    padding: 0; }
-  body.home.show-intro {
+    padding-top: 5rem; }
+  body.home.show-intro .container {
     background: #000; }
-    body.home.show-intro #masthead a#logo {
-      display: block !important; }
-    body.home.show-intro .intro {
-      opacity: 0;
-      height: 0;
-      width: 0; }
-    body.home.show-intro .instructions1 {
-      padding: 1.875rem 0;
-      height: 100%;
-      opacity: 1; }
-  body.home.show-intro2 #masthead {
+  body.home.show-intro #masthead a#logo {
+    display: block !important; }
+  body.home.show-intro .intro {
+    opacity: 0; }
+  body.home.show-intro .instructions1 {
+    opacity: 1; }
+  body.home.show-intro2 {
     background: #000; }
-  body.home.show-intro2 .instructions1 {
-    opacity: 0;
-    height: 0;
-    padding: 0; }
-  body.home.show-intro2 .instructions2 {
-    height: auto;
-    opacity: 1;
-    padding: 0.9375rem 0 2.5rem; }
+    body.home.show-intro2 #masthead {
+      background: #000; }
+    body.home.show-intro2 .instructions1 {
+      opacity: 0; }
+    body.home.show-intro2 .instructions2 {
+      opacity: 1;
+      height: auto; }
 
 /*** Global Stuff ***/
 ::-webkit-scrollbar {
