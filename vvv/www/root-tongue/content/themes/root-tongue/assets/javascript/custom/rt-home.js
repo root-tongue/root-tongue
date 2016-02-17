@@ -13,7 +13,7 @@
 			}, 10000);
 			setTimeout(function () {
 				$('body.home').addClass('show-intro3');
-			}, 15000);
+			}, 17000);
 		}
 	})
 })(jQuery);
