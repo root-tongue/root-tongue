@@ -1,12 +1,16 @@
 (function ($) {
 	$(document).on('ready', function () {
 		if ($('body.home').length) {
+			if (typeof rt['firstVideoID'] != 'undefined' && typeof rt['videos'] != 'undefined') {
+				var firstVideo = rt['videos'][rt['firstVideoID']];
+				$('#enter-site').attr("href", firstVideo.link);
+			}
 			setTimeout(function () {
-				if (typeof rt['firstVideoID'] != 'undefined' && typeof rt['videos'] != 'undefined') {
-					var firstVideo = rt['videos'][rt['firstVideoID']];
-					window.location.href = firstVideo.link;
-				}
+				$('body.home').addClass('show-intro');
 			}, 5000);
+			setTimeout(function () {
+				$('body.home').addClass('show-intro2');
+			}, 9500);
 		}
 	})
 })(jQuery);
