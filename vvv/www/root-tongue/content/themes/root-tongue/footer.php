@@ -15,6 +15,7 @@
 
 
 	<!-- Close content wrapper -->
+	<div class="diagonal"></div>
 	</div>
 <div id="warning-message">
 	<h4>This website is best experienced in landscape mode. Please rotate your device.</h4>

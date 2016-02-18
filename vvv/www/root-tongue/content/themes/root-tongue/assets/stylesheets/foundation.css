@@ -6690,10 +6690,10 @@ body {
   box-shadow: none; }
 
 .container {
-  padding: 3.5rem 3.125rem 3.125rem; }
+  padding: 3.5rem 3.125rem 1.5rem; }
 
 .main-content {
-  padding: 2rem 0;
+  padding: 2rem 0 10px;
   text-align: center; }
 
 h1 {
@@ -6732,17 +6732,6 @@ h1 {
 .next-buttons .rt-button {
   margin: 0 0.75rem; }
 
-#single-question:after {
-  content: '';
-  height: 20px;
-  display: block;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #000 url("../images/diagonal-chartreuse.png") repeat-x;
-  background-size: auto 100%; }
-
 /*** upload form ***/
 .logout {
   display: none; }
@@ -6754,7 +6743,7 @@ body.logged-in .login {
   display: none; }
 
 #upload {
-  padding: 2.5rem 0; }
+  padding: 2.5rem 0 0.625rem; }
   #upload h1 {
     font: 18px/1em "FuturaBT-Bold";
     color: #000;
@@ -7459,18 +7448,6 @@ body.page-template-page-green-background .container {
         line-height: 1em;
         margin-bottom: 0;
         text-transform: uppercase; }
-    body.page-template-default .container #page:before,
-    body.page-template-page-green-background .container #page:before {
-      content: '';
-      height: 20px;
-      display: block;
-      position: fixed;
-      z-index: 9;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #000 url("../images/diagonal-chartreuse.png") repeat-x;
-      background-size: auto 100%; }
     body.page-template-default .container #page:after,
     body.page-template-page-green-background .container #page:after {
       clear: both;
@@ -7487,26 +7464,6 @@ body.page-template-page-green-background {
     body.page-template-page-green-background .container #page .entry-content a {
       color: #000;
       font-family: "FuturaBT-Bold"; }
-  body.page-template-page-green-background .container #page:before {
-    background: #d0dc28 url("../images/diagonal-white.png") repeat-x;
-    background-size: auto 100%; }
-
-.page-template-upload:after,
-.single-submission:after {
-  content: '';
-  height: 20px;
-  display: block;
-  position: fixed;
-  z-index: 9;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff url("../images/diagonal-chartreuse.png") repeat-x;
-  background-size: auto 100%; }
-
-.page-template-upload:after {
-  background: #d0dc28 url("../images/diagonal-white.png") repeat-x;
-  background-size: auto 100%; }
 
 #warning-message {
   display: none; }
@@ -7530,5 +7487,31 @@ body.page-template-page-green-background {
       text-align: center;
       font-family: "FuturaBT-Bold";
       color: #fff; } }
+
+/* Diagonal Decor */
+.diagonal {
+  height: 20px;
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url("../images/diagonal-chartreuse.png") repeat-x;
+  background-size: auto 100% !important;
+  opacity: 0;
+  z-index: -1;
+  transition: all 300ms ease-out; }
+
+body.single-question.show-diagonal .diagonal,
+body.page-template-default.show-diagonal .diagonal,
+body.single-submission.show-diagonal .diagonal {
+  opacity: 1;
+  z-index: 1; }
+
+body.page-template-page-green-background.show-diagonal .diagonal,
+body.page-template-upload.show-diagonal .diagonal {
+  background: url("../images/diagonal-white.png") repeat-x;
+  opacity: 1;
+  z-index: 1; }
 
 /*# sourceMappingURL=foundation.css.map */

@@ -140,3 +140,23 @@ function showFormErrors(errors, element) {
 	};
 
 })(jQuery);
+
+// Add class if content is shorter than window
+
+$( document ).ready(function() {
+
+	function testSize(){
+		var contentHeight = $('#body-wrapper').height();
+		var windowHeight = $(window).height();
+		if(contentHeight < windowHeight){
+			$('body').addClass('show-diagonal');
+		} else {
+			$('body').removeClass('show-diagonal');
+		}
+	}
+	$(window).on('load resize', function(){ 
+	    testSize();
+	});
+	
+});
+
