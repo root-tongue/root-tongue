@@ -8,12 +8,15 @@
 			setTimeout(function () {
 				$('body.home').addClass('show-intro');
 			}, 5000);
-			setTimeout(function () {
+			$('.instructions1 #next').click(function () {
 				$('body.home').addClass('show-intro2');
-			}, 10000);
-			setTimeout(function () {
+			});
+			$('.instructions2 #next').click(function () {
 				$('body.home').addClass('show-intro3');
-			}, 17000);
+			});
+			$('.instructions3 #next').click(function () {
+				$('body.home').addClass('show-intro4');
+			});
 		}
 	})
 })(jQuery);

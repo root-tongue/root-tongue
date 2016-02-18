@@ -6580,9 +6580,9 @@ body.home {
     opacity: 0;
     overflow: hidden;
     padding: 3.5rem 3.125rem 3.125rem;
-    transition: all 1s ease-in-out 1s;
-    -webkit-transition: all 1s ease-in-out 1s; }
-    body.home .instructions h1 {
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out; }
+    body.home .instructions .centered {
       font-size: 2.1875rem;
       position: absolute;
       top: 50%;
@@ -6598,6 +6598,8 @@ body.home {
             -ms-transform: translateY(-50%);
                 transform: translateY(-50%);
         width: calc(100% - 6.25rem); } }
+    body.home .instructions h1 {
+      font-size: 2rem; }
     body.home .instructions p {
       font-family: "FuturaBT-Bold";
       font-size: 1rem;
@@ -6617,7 +6619,8 @@ body.home {
         list-style: none;
         line-height: 1.1em;
         margin-bottom: 0.4375rem; }
-        body.home .instructions ul li span {
+        body.home .instructions ul li:before {
+          content: '1';
           display: inline-block;
           text-align: center;
           width: 26px;
@@ -6628,6 +6631,26 @@ body.home {
           color: #000;
           border-radius: 50%;
           margin: 0 6px 0 0; }
+      body.home .instructions ul li:nth-child(1):before {
+        content: "1"; }
+      body.home .instructions ul li:nth-child(2):before {
+        content: "2"; }
+      body.home .instructions ul li:nth-child(3):before {
+        content: "3"; }
+      body.home .instructions ul li:nth-child(4):before {
+        content: "4"; }
+      body.home .instructions ul li:nth-child(5):before {
+        content: "5"; }
+      body.home .instructions ul li:nth-child(6):before {
+        content: "6"; }
+      body.home .instructions ul li:nth-child(7):before {
+        content: "7"; }
+      body.home .instructions ul li:nth-child(8):before {
+        content: "8"; }
+      body.home .instructions ul li:nth-child(9):before {
+        content: "9"; }
+      body.home .instructions ul li:nth-child(10):before {
+        content: "10"; }
     body.home .instructions .rt-button {
       font-size: 1.875rem;
       line-height: 2.375rem;
@@ -6635,7 +6658,7 @@ body.home {
       margin-top: 0.625rem;
       padding-left: 1.25rem;
       padding-right: 1.25rem; }
-  body.home .instructions3 {
+  body.home .instructions4 {
     padding-top: 4rem; }
   body.home.show-intro .container {
     background: #000; }
@@ -6644,7 +6667,8 @@ body.home {
   body.home.show-intro .intro {
     opacity: 0; }
   body.home.show-intro .instructions1 {
-    opacity: 1; }
+    opacity: 1;
+    z-index: 99; }
   body.home.show-intro2 {
     background: #000; }
     body.home.show-intro2 #masthead {
@@ -6652,13 +6676,20 @@ body.home {
     body.home.show-intro2 .instructions1 {
       opacity: 0; }
     body.home.show-intro2 .instructions2 {
-      opacity: 1; }
+      opacity: 1;
+      z-index: 99; }
   body.home.show-intro3 .instructions1, body.home.show-intro3 .instructions2 {
     opacity: 0; }
   body.home.show-intro3 .instructions3 {
-    opacity: 1; }
+    opacity: 1;
+    z-index: 99; }
+  body.home.show-intro4 .instructions1, body.home.show-intro4 .instructions2, body.home.show-intro4 .instructions3 {
+    opacity: 0; }
+  body.home.show-intro4 .instructions4 {
+    opacity: 1;
+    z-index: 99; }
   @media screen and (max-height: 374px) {
-    body.home.show-intro3 .instructions3 {
+    body.home.show-intro4 .instructions4 {
       height: auto; } }
 
 /*** Global Stuff ***/

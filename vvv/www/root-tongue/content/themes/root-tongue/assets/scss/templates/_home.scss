@@ -47,23 +47,26 @@ body.home {
 			opacity: 0;
 			overflow: hidden;
 			padding: 3.5rem 3.125rem 3.125rem;
-			transition: all 1s ease-in-out 1s;
-			-webkit-transition: all 1s ease-in-out 1s;
-			h1 {
+			transition: all 1s ease-in-out;
+			-webkit-transition: all 1s ease-in-out;
+			.centered {
 				font-size: rem-calc(35px);
 				position: absolute;
 		    	top: 50%;
 		    	transform: translateY(-50%);
 		    	width: calc(100% - 6.25rem);
 			}
-		@media screen and ( min-height: 375px ){
-			.how-it-works {
-				position: absolute;
-		    	top: 50%;
-		    	transform: translateY(-50%);
-		    	width: calc(100% - 6.25rem);
+			@media screen and ( min-height: 375px ){
+				.how-it-works {
+					position: absolute;
+			    	top: 50%;
+			    	transform: translateY(-50%);
+			    	width: calc(100% - 6.25rem);
+				}
 			}
-		}
+			h1 {
+				font-size: rem-calc(32px);
+			}
 			p {
 				font-family: $bold-font;
 				font-size: rem-calc(16px);
@@ -85,7 +88,8 @@ body.home {
 					list-style: none;
 					line-height: 1.1em;
 					margin-bottom: rem-calc(7px);
-					span {
+					&:before {
+						content:'1';
 						display: inline-block;
 						text-align: center;
 						width: 26px;
@@ -98,6 +102,13 @@ body.home {
 						margin: 0 6px 0 0;
 					}
 				}
+			  @for $i from 1 through 10 {
+			    li:nth-child(#{$i}) {
+			      &:before {
+			        content: '#{$i}';
+			      }
+			    }
+			  }
 			}
 			.rt-button {
 				font-size: rem-calc(30px);
@@ -108,7 +119,7 @@ body.home {
 				padding-right: rem-calc(20px);
 			}
 		}
-		.instructions3 { 
+		.instructions4 { 
 			padding-top: 4rem;
 		}
 
@@ -126,6 +137,7 @@ body.home {
 		}
 		.instructions1 {
 			opacity: 1;
+			z-index: 99;
 		}
 	}
 	&.show-intro2 {
@@ -138,6 +150,7 @@ body.home {
 		}
 		.instructions2 {
 			opacity: 1;
+			z-index: 99;
 		}
 	}
 	&.show-intro3 {
@@ -146,9 +159,19 @@ body.home {
 		}
 		.instructions3 {
 			opacity: 1;
+			z-index: 99;
+		}
+	}
+	&.show-intro4 {
+		.instructions1, .instructions2, .instructions3 {
+			opacity: 0;
+		}
+		.instructions4 {
+			opacity: 1;
+			z-index: 99;
 		}
 		@media screen and ( max-height: 374px ){
-			.instructions3 {
+			.instructions4 {
 				height: auto;		
 			}		
 		}
