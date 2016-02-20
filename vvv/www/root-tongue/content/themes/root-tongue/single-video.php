@@ -44,7 +44,7 @@ get_header(); ?>
 			<div class="intro-text">
 		    	<p><?php echo $intro;?></p>
 		    	<div class="button-row">
-		    		<div class="rt-button cancel">watch video</div>
+		    		<div class="rt-button cancel">continue to video</div>
 		    	</div>
 
 			</div>
