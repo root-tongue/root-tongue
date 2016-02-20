@@ -6599,7 +6599,11 @@ body.home {
                 transform: translateY(-50%);
         width: calc(100% - 6.25rem); } }
     body.home .instructions h1 {
-      font-size: 2rem; }
+      font-size: 2rem;
+      color: #fff; }
+      body.home .instructions h1 em {
+        color: #d0dc28;
+        font-style: normal; }
     body.home .instructions p {
       font-family: "FuturaBT-Bold";
       font-size: 1rem;
@@ -6724,7 +6728,7 @@ body {
   padding: 3.5rem 3.125rem 1.5rem; }
 
 .main-content {
-  padding: 2rem 0 10px;
+  padding: 2rem 0 1rem;
   text-align: center; }
 
 h1 {
@@ -7052,22 +7056,40 @@ body.logged-in .login {
       margin: 0 0.4375rem 0;
       vertical-align: top; }
 
-.modal#viewed-all .modal-content {
+.modal#viewed-all .modal-content,
+.modal#video-intro .modal-content {
   height: auto;
   width: 50%;
   left: 25%;
   background: #fff;
   padding: 3rem 1.5625rem;
   text-align: center; }
-  .modal#viewed-all .modal-content p {
+  .modal#viewed-all .modal-content p,
+  .modal#video-intro .modal-content p {
     color: #000;
     font-family: "FuturaBT-Bold";
     font-size: 0.8125rem;
     letter-spacing: 0.08em; }
-  .modal#viewed-all .modal-content .button-row {
+  .modal#viewed-all .modal-content .button-row,
+  .modal#video-intro .modal-content .button-row {
     margin: 0 0 0.9375rem; }
-  .modal#viewed-all .modal-content .button-row:last-of-type {
+  .modal#viewed-all .modal-content .button-row:last-of-type,
+  .modal#video-intro .modal-content .button-row:last-of-type {
     margin: 0; }
+
+.modal#video-intro {
+  display: block;
+  text-transform: uppercase; }
+  .modal#video-intro .modal-content {
+    height: auto;
+    width: 70%;
+    left: 15%;
+    padding: 2.5rem 1.5625rem; }
+    .modal#video-intro .modal-content p {
+      color: #000;
+      font-family: "FuturaBT-Bold";
+      font-size: 0.75rem;
+      letter-spacing: 0.04em; }
 
 .modal#submit-later .modal-content {
   text-align: center;

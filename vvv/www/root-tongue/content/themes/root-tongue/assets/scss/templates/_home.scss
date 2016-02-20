@@ -66,6 +66,11 @@ body.home {
 			}
 			h1 {
 				font-size: rem-calc(32px);
+				color: #fff;
+				em {
+					color: $primary-color;
+					font-style: normal;
+				}
 			}
 			p {
 				font-family: $bold-font;

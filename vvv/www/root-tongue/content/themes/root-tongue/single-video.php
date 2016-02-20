@@ -20,7 +20,7 @@ get_header(); ?>
 				Cookies.set('videosPlayed', videosPlayed);
 				if ( rt.lastVideo == true) {
 					// if it's the last video, show the "you've watched all videos" link
-					$('.modal').show();
+					$('#viewed-all').show();
 				} else {
 					// otherwise go to the next video
 					location.href=rt['questions'][rt['videos'][rt['currentVideo']].question].link;
@@ -55,6 +55,23 @@ get_header(); ?>
 			</div>
 		</div>
 	</div>
+	
+	<?php $intro = get_field( "intro_text" );
+	if( $intro ) {?>
+	<div class="modal" id="video-intro">
+		<div class="overlay"></div>
+		<div class="modal-content">
+			<div class="intro-text">
+		    	<p><?php echo $intro;?></p>
+		    	<div class="button-row">
+		    		<div class="rt-button cancel">watch video</div>
+		    	</div>
+
+			</div>
+		</div>	
+	</div>
+	<?php } ?>
+
 
 </div>
 <?php get_footer(); ?>
