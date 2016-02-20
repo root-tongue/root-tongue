@@ -6006,7 +6006,7 @@ table.hover tr:nth-of-type(even):hover {
             margin: 0 0 0 1.5rem;
             transition: max-height 300ms ease-out, 0.15s 300ms ease-out, ease-out 300ms ease-out; }
             #masthead .top-bar #main-nav ul.menu li ul.sub-menu.open {
-              max-height: 400px;
+              max-height: 1000px;
               transition: max-height 300ms ease-out, 0.25s 300ms ease-out, ease-in 300ms ease-out; }
             #masthead .top-bar #main-nav ul.menu li ul.sub-menu li {
               margin: 0;
