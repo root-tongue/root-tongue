@@ -73,6 +73,7 @@ get_header(); ?>
 				<input type="hidden" name="question" value="<?php echo $_GET['q'] ?>">
 				<input type="submit" id="submit-btn" value="SUBMIT" class="rt-button">
 				<a class="rt-button" onClick="history.go(-1)">CANCEL</a>
+				<p>your media will be posted in the public community gallery</p>
 			</div>
 
 		</form>
