@@ -141,7 +141,7 @@
           &.gallery a:before {
             background-position: 0 -50px;
           }
-          &.resources a:before {
+          &.resources a:before, &.terms a:before {
             background-position: 0 -75px;
             margin-top: 1px;
           }

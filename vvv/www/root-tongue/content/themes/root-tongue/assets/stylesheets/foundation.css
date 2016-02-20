@@ -5971,7 +5971,7 @@ table.hover tr:nth-of-type(even):hover {
               left: 0; }
           #masthead .top-bar #main-nav ul.menu li.gallery a:before {
             background-position: 0 -50px; }
-          #masthead .top-bar #main-nav ul.menu li.resources a:before {
+          #masthead .top-bar #main-nav ul.menu li.resources a:before, #masthead .top-bar #main-nav ul.menu li.terms a:before {
             background-position: 0 -75px;
             margin-top: 1px; }
           #masthead .top-bar #main-nav ul.menu li.donate a:before {
