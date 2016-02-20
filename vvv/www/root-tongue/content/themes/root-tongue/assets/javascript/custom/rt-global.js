@@ -147,7 +147,7 @@ $( document ).ready(function() {
 
 	function testSize(){
 		var contentHeight = $('#body-wrapper').height();
-		var windowHeight = $(window).height();
+		var windowHeight = window.innerHeight ? window.innerHeight : $(window).height();
 		if(contentHeight < windowHeight){
 			$('body').addClass('show-diagonal');
 		} else {
