@@ -47,7 +47,7 @@ get_header(); ?>
 					<?php else : ?>
 						<input type="text" name="email" id="email" readonly="readonly" placeholder="EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
 					<?php endif; ?>
-					<textarea name="description" id="description" placeholder="DESCRIPTION"></textarea>
+					<textarea name="description" id="description" placeholder="DESCRIPTION (optional)"></textarea>
 				</div>
 				<div class="col">
 					<input type="text" name="language" id="language" placeholder="LANGUAGE &nbsp;(separate languages with a comma)">
