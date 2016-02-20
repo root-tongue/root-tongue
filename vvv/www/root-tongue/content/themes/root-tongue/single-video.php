@@ -18,14 +18,7 @@ get_header(); ?>
 				var videosPlayed = Cookies.getJSON('videosPlayed') || [];
 				videosPlayed.push(rt['currentVideo']);
 				Cookies.set('videosPlayed', videosPlayed);
-				if ( rt.lastVideo == true) {
-					// if it's the last video, show the "you've watched all videos" link
-					$('#viewed-all').show();
-				} else {
-					// otherwise go to the next video
-					location.href=rt['questions'][rt['videos'][rt['currentVideo']].question].link;
-				}
-
+				location.href=rt['questions'][rt['videos'][rt['currentVideo']].question].link;
 			};
 			$(document).on('ready', function(){
 			    $.okvideo({
@@ -43,19 +36,6 @@ get_header(); ?>
 
 	<?php do_action( 'foundationpress_after_content' ); ?>
 
-	<div class="modal" id="viewed-all">
-		<div class="overlay"></div>
-		<div class="modal-content">
-			<p>YOU HAVE VIEWED ALL THE VIDEOS, NOW IT'S YOUR TURN TO SHARE A STORY.</p>
-			<div class="button-row">
-				<a href="/upload/?q=<?php echo is_singular('question') ? get_the_ID() : rt_get_rt_obj()->videos[get_the_ID()]->question; ?>" class="rt-button">SHARE STORY</a>
-			</div>
-			<div class="button-row">
-				<a href="/community-gallery" class="rt-button">GO TO COMMUNITY GALLERY</a>
-			</div>
-		</div>
-	</div>
-	
 	<?php $intro = get_field( "intro_text" );
 	if( $intro ) {?>
 	<div class="modal" id="video-intro">

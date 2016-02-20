@@ -21,7 +21,11 @@ $rt = rt_get_rt_obj();
 			<div class="next-buttons">
 				<a class="rt-button" href="/upload/?q=<?php echo get_the_ID() ?>">UPLOAD RESPONSE</a>
 				<a class="rt-button show-modal" id="show-later-modal" href="#">SUBMIT LATER</a>
+				<?php if ( ! $rt->lastVideo ) : ?>
 				<a class="rt-button" href="<?php echo $rt->nextVideo->link ?>">WATCH NEXT VIDEO</a>
+				<?php else : ?>
+				<a class="rt-button" id="last-question-continue" href="#">CONTINUE</a>
+				<?php endif; ?>
 			</div>
 			<div class="watch-again">
 				<a onClick="history.go(-1)">Watch this video again</a>
@@ -52,6 +56,18 @@ $rt = rt_get_rt_obj();
 				<div class="submit-row">
 					<div class="rt-button cancel">CLOSE</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="viewed-all">
+		<div class="overlay"></div>
+		<div class="modal-content">
+			<p>YOU HAVE VIEWED ALL THE VIDEOS, NOW IT'S YOUR TURN TO SHARE A STORY.</p>
+			<div class="button-row">
+				<a href="/upload/?q=<?php echo is_singular('question') ? get_the_ID() : rt_get_rt_obj()->videos[get_the_ID()]->question; ?>" class="rt-button">SHARE STORY</a>
+			</div>
+			<div class="button-row">
+				<a href="/community-gallery" class="rt-button">GO TO COMMUNITY GALLERY</a>
 			</div>
 		</div>
 	</div>

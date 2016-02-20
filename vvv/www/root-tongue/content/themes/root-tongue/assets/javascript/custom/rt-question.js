@@ -30,3 +30,8 @@ $('#submit-later-success .cancel').on('click', function(){
 	$('#submit-later-form').show();
 	$('#submit-later p:first').show();
 })
+
+$('#last-question-continue').on('click', function(){
+	$('#viewed-all').show();
+	return false;
+})
