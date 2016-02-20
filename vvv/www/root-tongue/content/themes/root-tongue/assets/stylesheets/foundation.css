@@ -6951,6 +6951,9 @@ body.logged-in .login {
       height: 2.5rem;
       font-size: 1.75rem;
       margin: 0 1.25rem 0 0; }
+    #upload .submit-row p {
+      color: #000;
+      margin-top: 10px; }
 
 /**** Upload form - loading screen, done screen ***/
 .overlay-fullscreen {
