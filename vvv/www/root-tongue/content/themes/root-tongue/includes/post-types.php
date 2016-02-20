@@ -7,6 +7,8 @@ add_action( 'init', function() {
 
 	register_extended_post_type( 'video', array(
 
+		'has_archive' => false,
+
 		'menu_icon' => 'dashicons-editor-video',
 
 		'supports'        => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
@@ -31,6 +33,8 @@ add_action( 'init', function() {
 	));
 
 	register_extended_post_type( 'question', array(
+
+		'has_archive' => false,
 
 		'menu_icon' => 'dashicons-editor-help',
 
