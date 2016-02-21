@@ -1,8 +1,10 @@
 # Force provisioning script to use LF, even on Windows
-* text eol=lf
+#* text eol=lf
 *.png binary
+*.jpg binary
 *.ttf binary
 *.gif binary
 *.eot binary
 *.woff binary
 *.woff2 binary
+
