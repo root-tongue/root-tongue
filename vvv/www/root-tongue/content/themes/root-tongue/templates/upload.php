@@ -52,6 +52,7 @@ get_header(); ?>
 				<div class="col">
 					<input type="text" name="language" id="language" placeholder="LANGUAGE &nbsp;(separate languages with a comma)">
 					<select name="theme" id="theme">
+						<option value="" disabled selected>Theme</option>
 						<?php
 						$terms = get_terms( 'theme', [
 							'hide_empty' => false,
