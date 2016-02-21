@@ -85,7 +85,11 @@ get_header(); ?>
 
 				    case "audio":?>
 					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-					$url = $thumb['0']; ?>
+					    if ( $thumb ) {
+						    $url = $thumb[0];
+					    } else {
+						    $url = get_stylesheet_directory_uri() . '/assets/images/default-image-audio.jpg';
+					    } ?>
 					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
 						<a href="<?php the_permalink(); ?>">
 							<span>A</span>
@@ -95,7 +99,11 @@ get_header(); ?>
 
 				    case "text":?>
 					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
-					$url = $thumb['0']; ?>
+					    if ( $thumb ) {
+						    $url = $thumb[0];
+					    } else {
+						    $url = get_stylesheet_directory_uri() . '/assets/images/default-image-text.jpg';
+					    } ?>
 					<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
 						<a href="<?php the_permalink(); ?>">
 							<span>T</span>
