@@ -1254,6 +1254,25 @@ body.page-template-page-green-background {
 					margin-bottom: 0;
 					text-transform: uppercase;
 				}
+				.film-wrapper {
+					width: 100%;
+					position: relative;
+			        padding-bottom: 75%; 
+			        height: 0;
+					iframe {
+					        position: absolute;
+					        top: 0;
+					        left: 0;
+					        width: 100%;
+					        height: 100%;
+					}
+					p {
+						margin: 0;
+					} 
+				}
+				&.watch-film {
+					padding-right:0;
+				}
 			}
 			&:after {
 				clear: both;

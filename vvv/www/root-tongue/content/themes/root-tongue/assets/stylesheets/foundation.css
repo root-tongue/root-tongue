@@ -7504,6 +7504,25 @@ body.page-template-page-green-background .container {
         line-height: 1em;
         margin-bottom: 0;
         text-transform: uppercase; }
+      body.page-template-default .container #page .entry-content .film-wrapper,
+      body.page-template-page-green-background .container #page .entry-content .film-wrapper {
+        width: 100%;
+        position: relative;
+        padding-bottom: 75%;
+        height: 0; }
+        body.page-template-default .container #page .entry-content .film-wrapper iframe,
+        body.page-template-page-green-background .container #page .entry-content .film-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%; }
+        body.page-template-default .container #page .entry-content .film-wrapper p,
+        body.page-template-page-green-background .container #page .entry-content .film-wrapper p {
+          margin: 0; }
+      body.page-template-default .container #page .entry-content.watch-film,
+      body.page-template-page-green-background .container #page .entry-content.watch-film {
+        padding-right: 0; }
     body.page-template-default .container #page:after,
     body.page-template-page-green-background .container #page:after {
       clear: both;

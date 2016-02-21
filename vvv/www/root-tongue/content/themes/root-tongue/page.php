@@ -21,9 +21,19 @@
          <h1 class="entry-title"><?php the_title(); ?></h1>
      </header>
      <?php do_action( 'foundationpress_page_before_entry_content' ); ?>
-     <div class="entry-content">
-         <?php the_content(); ?>
-     </div>
+     <?php if (is_page( 'watch-the-film' )){ ?>
+	     <div class="entry-content watch-film">
+	     	<div class="film-wrapper">
+	        	<?php the_content(); ?>
+	        </div> 
+	     </div>
+    <?php  } else { ?>
+	     <div class="entry-content">
+	         <?php the_content(); ?>
+	     </div>
+
+    <?php  } ?>
+ 
  <?php endwhile;?>
 
  <?php do_action( 'foundationpress_after_content' ); ?>
