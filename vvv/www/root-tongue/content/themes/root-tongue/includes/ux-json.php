@@ -64,7 +64,7 @@ function rt_get_rt_obj() {
 	if ( empty( $rt->currentVideo ) ) {
 		if ( is_singular( 'question' ) ) {
 			$rt->currentVideo = $rt->questions[ get_the_ID() ]->video;
-		} elseif ( is_page_template( 'templates/upload.php' ) && ! empty($_REQUEST['q'])) {
+		} elseif ( is_page_template( 'templates/upload.php' ) && ! empty( $_REQUEST['q'] ) ) {
 			$rt->currentVideo = $rt->questions[ $_REQUEST['q'] ]->video;
 		} else {
 			// default
@@ -75,7 +75,7 @@ function rt_get_rt_obj() {
 	// find the unwatched videos
 	$videos_played    = array_merge( $rt->videosPlayed, array( $rt->currentVideo ) );
 	$all_videos       = array_keys( $rt->videos );
-	$unwatched_videos = array_diff( $all_videos, $videos_played );
+	$unwatched_videos = array_values( array_diff( $all_videos, $videos_played ) );
 
 	// find out if we've watched all the other videos, if so, then this is the last one
 	if ( empty( $unwatched_videos ) ) {
