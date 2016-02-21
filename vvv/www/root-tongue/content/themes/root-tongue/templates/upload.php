@@ -25,7 +25,7 @@ get_header(); ?>
 					<div class="modal-content">
 						<textarea placeholder=""></textarea>
 						<div class="bottom">
-							<div class="rt-button submit">SUBMIT</div>
+							<div class="rt-button submit">SAVE</div>
 							<div class="rt-button cancel">CANCEL</div>
 						</div>
 					</div>
