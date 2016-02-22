@@ -44,6 +44,13 @@ function rt_register_menu() {
 	register_nav_menu( 'main-nav', __( 'Main Nav' ) );
 }
 
+/** Hide admin bar for non admins */
+add_action( 'after_setup_theme', 'rt_remove_admin_bar' );
+function rt_remove_admin_bar() {
+	if ( ! current_user_can( 'administrator' ) && ! is_admin() ) {
+		show_admin_bar( false );
+	}
+}
 
 /** Comments Template */
 function rt_custom_comments( $comment, $args, $depth ) {
@@ -71,3 +78,5 @@ function rt_custom_comments( $comment, $args, $depth ) {
 		</article><!-- .comment-body -->
 	</div>
 <?php } ?>
+
+
