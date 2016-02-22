@@ -20,7 +20,7 @@ $rt = rt_get_rt_obj();
 			</div>
 			<div class="next-buttons">
 				<a class="rt-button" href="/upload/?q=<?php echo get_the_ID() ?>">UPLOAD RESPONSE</a>
-				<a class="rt-button show-modal" id="show-later-modal" href="#">SUBMIT LATER</a>
+				<a class="rt-button" id="show-later-modal" href="#">SUBMIT LATER</a>
 				<?php if ( ! $rt->lastVideo ) : ?>
 				<a class="rt-button" href="<?php echo $rt->nextVideo->link ?>">WATCH NEXT VIDEO</a>
 				<?php else : ?>
