@@ -7,7 +7,7 @@ class Email_Messages extends Abstracts\Hooks {
 		add_filter( 'retrieve_password_title', array( $this, 'retrieve_password_title' ) );
 		add_filter( 'retrieve_password_message', array( $this, 'retrieve_password_message' ), 10, 3 );
 		add_filter( 'rt_new_user_email_title', array( $this, 'new_user_email_title' ) );
-		add_filter( 'rt_new_user_email_message', array( $this, 'new_user_email_message' ), 10, 2 );
+		add_filter( 'rt_new_user_email_message', array( $this, 'new_user_email_message' ), 10, 3 );
 		add_filter( 'rt_submit_later_title', array( $this, 'submit_later_title' ) );
 		add_filter( 'rt_submit_later_message', array( $this, 'submit_later_message' ), 10, 2 );
 	}
@@ -46,7 +46,7 @@ The Root Tongue Team
 		return __( 'Root Tongue: Registration Information', 'rt' );
 	}
 
-	public function new_user_email_message( $username, $password ) {
+	public function new_user_email_message( $message, $username, $password ) {
 		return sprintf( __( "
 Thank you for registering for Root Tongue! We very happy to have you here. Here is your username and password:
 
