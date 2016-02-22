@@ -282,8 +282,6 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		if ( ! empty( $this->errors ) ) {
 			$this->response['next'] = 'fail';
 		}
-		print_r( $this->response );
-		die();
 		parent::return_result();
 	}
 
