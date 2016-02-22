@@ -222,6 +222,16 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 
 	private function create_submission_author( $sign_in = true ) {
 		$password = wp_generate_password( 12, true );
+
+		// if sanitize_user() changed the person's email address, re-filter it less strictly
+		add_filter( 'pre_user_login', function ( $username ) {
+			if ( $username != $_REQUEST['email'] ) {
+				$username = sanitize_user( $_REQUEST['email'], false );
+			}
+
+			return $username;
+		} );
+
 		$new_user = wp_insert_user( array(
 			'user_login'   => $_REQUEST['email'],
 			'user_email'   => $_REQUEST['email'],
@@ -272,6 +282,8 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		if ( ! empty( $this->errors ) ) {
 			$this->response['next'] = 'fail';
 		}
+		print_r( $this->response );
+		die();
 		parent::return_result();
 	}
 
