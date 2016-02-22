@@ -142,8 +142,15 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		}
 
 		// prepare & create the submission
+		if ( ! is_user_logged_in() ) {
+			wp_set_current_user( 1 );
+			$log_user_out = true;
+		}
 		$submission = $this->prepare_submission();
 		$new_post   = $this->create_submission_post( $submission );
+		if ( ! empty( $log_user_out ) ) {
+			wp_set_current_user( 0 );
+		}
 
 		// if that failed, bail
 		if ( is_wp_error( $new_post ) ) {
