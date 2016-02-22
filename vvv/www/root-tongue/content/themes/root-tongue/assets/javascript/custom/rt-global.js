@@ -63,6 +63,9 @@ $('form.lwa-form, form.lwa-remember, div.lwa-register form').on('submit', functi
 										$('.logout').show().find('#current-user').text(response.username);
 										$('#not-you').show();
 									}
+									if (response.email) {
+										$('#email').val(response.email).prop('readonly', true);
+									}
 								}
 							}
 						})
