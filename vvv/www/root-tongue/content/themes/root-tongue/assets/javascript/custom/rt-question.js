@@ -21,6 +21,11 @@ $('#submit-later').on('submit', function (e) {
 	})
 });
 
+$('#show-later-modal').click(function (e) {
+	e.preventDefault();
+	$('#submit-later').show();
+});
+
 $('#submit-later .cancel').on('click', function () {
 	$('.errors').remove();
 })
