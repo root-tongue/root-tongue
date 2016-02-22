@@ -100,7 +100,7 @@ $('#upload-form').on('submit', function (event) {
 
 $('#not-you').on('click', function () {
 	$.get($('#logout-url').attr('href'), function () {
-		$('#email').val('').prop('disabled', false);
+		$('#email').val('').prop('readonly', false);
 		$('#not-you').hide();
 		$('.logout').hide();
 		$('.login').show();
