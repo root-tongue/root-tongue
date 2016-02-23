@@ -87,6 +87,8 @@ $('#upload-form').on('submit', function (event) {
 					break;
 				case 'fail' :
 					showFormErrors(response.errors, '.login');
+					var offset = $('p.errors').offset().top - 65;
+					$('html, body').animate({ scrollTop: offset });
 					break;
 			}
 			if (response.new_user_created == true) {
