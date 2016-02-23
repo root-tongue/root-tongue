@@ -23,19 +23,19 @@ $('.modal .cancel').click(function (e) {
 $('form.lwa-form, form.lwa-remember, div.lwa-register form').on('submit', function (event) {
 	//Stop event, add loading pic...
 	event.preventDefault();
-	var form = $(this);
-	var ajaxFlag = form.find('.lwa-ajax');
+	var $form = $(this);
+	var ajaxFlag = $form.find('.lwa-ajax');
 	if (ajaxFlag.length == 0) {
 		ajaxFlag = $('<input class="lwa-ajax" name="lwa" type="hidden" value="1" />');
-		form.prepend(ajaxFlag);
+		$form.prepend(ajaxFlag);
 	}
 	//Make Ajax Call
-	var form_action = form.attr('action');
+	var form_action = $form.attr('action');
 	if (typeof LWA !== 'undefined') form_action = LWA.ajaxurl;
 	$.ajax({
 		type    : 'POST',
 		url     : form_action,
-		data    : form.serialize(),
+		data    : $form.serialize(),
 		success : function (data) {
 			if (data.result === true) {
 				switch (data.action) {
@@ -55,7 +55,7 @@ $('form.lwa-form, form.lwa-remember, div.lwa-register form').on('submit', functi
 									$('#logout-url').attr('href', response.logout_url);
 								}
 								$('.modal').hide();
-								if (form.data('next') == 'submit') {
+								if ($form.data('next') == 'submit') {
 									$('#upload-form #submit-btn').trigger('click');
 								} else {
 									$('.login').hide();
@@ -86,6 +86,8 @@ $('form.lwa-form, form.lwa-remember, div.lwa-register form').on('submit', functi
 						break;
 
 				}
+			} else {
+				$form.find('h1').after('<p>That username and password combination is incorrect.</p>');
 			}
 		},
 		error   : function () {
