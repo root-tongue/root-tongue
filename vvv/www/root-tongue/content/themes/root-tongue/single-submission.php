@@ -150,7 +150,7 @@ get_header(); ?>
 					<?php if ( is_user_logged_in() ) : ?>
 						<a class="rt-button show-modal" href="#">POST A COMMENT</a>
 					<?php else : ?>
-						<a class="rt-button" id="show-login-modal" href="#">LOG IN TO COMMENT</a>
+						<a class="rt-button" href="/upload/">PARTICIPATE TO COMMENT</a>
 
 						<div class="modal" id="login-form">
 							<div class="overlay"></div>
