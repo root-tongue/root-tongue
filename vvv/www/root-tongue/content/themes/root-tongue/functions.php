@@ -57,7 +57,7 @@ function rt_last_seen_question_url() {
 	if ( ! empty( $rt_obj->videosPlayed ) ) {
 		return get_permalink( $rt_obj->videos[ end( $rt_obj->videosPlayed ) ]->question );
 	} else {
-		return get_permalink( reset($rt_obj->videos)->question );
+		return get_permalink( reset( $rt_obj->videos )->question );
 	}
 
 	return '';
