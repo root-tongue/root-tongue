@@ -143,14 +143,18 @@ get_header(); ?>
 					</span>
 				</div>
 				<div class="description">
-					<div class="description-label">description</div>
-					<?php the_content(); ?>
+					<?php $description = get_the_content();
+					if ( ! empty( $description ) ) :
+						?>
+						<div class="description-label">description</div>
+						<?php the_content(); ?>
+					<?php endif; ?>
 				</div>
 				<div class="button-row">
 					<?php if ( is_user_logged_in() ) : ?>
 						<a class="rt-button show-modal" href="#">POST A COMMENT</a>
 					<?php else : ?>
-						<a class="rt-button" href="/upload/">PARTICIPATE TO COMMENT</a>
+						<a class="rt-button" href="<?php echo rt_last_seen_question_url() ?>">PARTICIPATE TO COMMENT</a>
 
 						<div class="modal" id="login-form">
 							<div class="overlay"></div>
@@ -184,7 +188,7 @@ get_header(); ?>
 						</div>
 
 					<?php endif; ?>
-					<a class="rt-button" href="/community-gallery">RETURN TO THE GALLERY</a>
+					<a class="rt-button" href="/community-gallery/">RETURN TO THE GALLERY</a>
 				</div>
 
 				<?php comments_template(); ?>
