@@ -7284,19 +7284,12 @@ body.single-submission .container {
           padding: 0 0 0.3125rem; }
         body.single-submission .container .main-content .right .description p {
           margin-bottom: 0.75rem; }
-      body.single-submission .container .main-content .right .button-row {
-        white-space: nowrap;
-        overflow: visible; }
-        body.single-submission .container .main-content .right .button-row .rt-button {
-          outline: none;
-          font-size: 1rem;
-          line-height: 1.75rem;
-          margin-right: 0.1875rem;
-          margin-bottom: 0.1875rem;
-          letter-spacing: normal;
-          padding: 2px 6px 0; }
-          body.single-submission .container .main-content .right .button-row .rt-button:last-child {
-            margin-right: 0; }
+      body.single-submission .container .main-content .right .button-row .rt-button {
+        outline: none;
+        font-size: 1.2rem;
+        line-height: 1.75rem;
+        margin-right: 0.3125rem;
+        margin-bottom: 0.3125rem; }
     body.single-submission .container .main-content #comments {
       border-top: 1px solid #000;
       margin-top: 1.25rem; }

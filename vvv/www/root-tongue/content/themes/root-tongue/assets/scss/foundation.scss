@@ -982,22 +982,12 @@ body.single-submission {
 						margin-bottom: 0.75rem;
 					}
 				}
-				.button-row {
-					white-space: nowrap;
-					overflow: visible;
-					.rt-button {
-						outline: none;
-						font-size: 1rem;
-						line-height: 1.75rem;
-						margin-right: rem-calc(3px);
-						margin-bottom: rem-calc(3px);
-						letter-spacing: normal;
-						&:last-child {
-							margin-right: 0;
-						}
-						padding: 2px 6px 0;
-					}
-
+				.button-row .rt-button {
+					outline: none;
+					font-size: 1.2rem;
+					line-height: 1.75rem;
+					margin-right: rem-calc(5px);
+					margin-bottom: rem-calc(5px);
 				}
 			}
 			#comments {
