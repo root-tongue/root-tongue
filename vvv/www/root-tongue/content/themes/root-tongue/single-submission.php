@@ -33,7 +33,7 @@ get_header(); ?>
 								<?php $video = get_field( 'video_url' );
 								if ( ! empty( $video ) ): ?>
 									<div class="videoWrapper">
-										<?php echo wp_oembed_get( $video, '' ); ?>
+										<?php echo do_shortcode( '[video]'.$video.'[/video]' ); ?>
 									</div>
 								<?php endif; ?>
 							</div>
@@ -42,10 +42,15 @@ get_header(); ?>
 						case "audio":
 							?>
 							<div class="media-holder">
+								<?php if ( has_post_thumbnail() ) :
+									the_post_thumbnail();
+								else :
+									?><img src="http://fakeimg.pl/1400x800/?text=Audio&font=bebas"><?php
+								endif; ?>
 								<?php $audio = get_field( 'audio_url' );
 								if ( ! empty( $audio ) ): ?>
 									<div class="audioWrapper">
-										<?php echo wp_oembed_get( $audio, '' ); ?>
+										<?php echo do_shortcode( '[audio]'.$audio.'[/audio]' ); ?>
 									</div>
 								<?php endif; ?>
 							</div>

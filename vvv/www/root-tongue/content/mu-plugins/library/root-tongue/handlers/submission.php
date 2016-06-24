@@ -34,41 +34,32 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		}
 
 		// check specific media selected was entered
-		if ( $submission_type != 'image' && ! empty( $submission_type ) && empty( $_REQUEST[ $submission_type ] ) ) {
+		if ( ! in_array( $submission_type, array(
+				'image',
+				'video',
+				'audio'
+			) ) && ! empty( $submission_type ) && empty( $_REQUEST[ $submission_type ] )
+		) {
 			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
 			$this->errors[]            = sprintf( __( 'You did not enter any %s.', 'rt' ), $submission_type );
 		}
 
-		// special check for image 
+		// check for image file
 		if ( $submission_type == 'image' && empty( $_FILES['image']['name'] ) ) {
 			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
 			$this->errors[]            = __( 'You did not select an image.', 'rt' );
 		}
 
-		// check the video url is youtube or vimeo
-		if ( ! empty( $_REQUEST['video'] ) && $submission_type == 'video' ) {
-			$regexp = '/^https?:\/\/(youtube.com|youtu.be|vimeo.com)\/(.*)$/';
-			if ( ! preg_match( $regexp, $_REQUEST['video'] ) ) {
-				$video_error = __( 'Your video URL must come from <a href="http://youtube.com" target="_blank">Youtube</a> or <a href="http://vimeo.com" target="_blank">Vimeo</a>', 'rt' );
-				if ( ! empty( $this->errors['top_level'] ) ) {
-					$this->errors[] = $video_error;
-				} else {
-					$this->errors['top_level'] = $video_error;
-				}
-			}
+		// check for video file
+		if ( $submission_type == 'video' && empty( $_FILES['video']['name'] ) ) {
+			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
+			$this->errors[]            = __( 'You did not upload a video.', 'rt' );
 		}
 
-		// check the audio url is soundcloud
-		if ( ! empty( $_REQUEST['audio'] ) && $submission_type == 'audio' ) {
-			$regexp = '/^https?:\/\/(soundcloud.com|snd.sc)\/(.*)$/';
-			if ( ! preg_match( $regexp, $_REQUEST['audio'] ) ) {
-				$audio_error = __( 'Your audio URL must come from <a href="http://soundcloud.com" target="_blank">SoundCloud</a>', 'rt' );
-				if ( ! empty( $this->errors['top_level'] ) ) {
-					$this->errors[] = $audio_error;
-				} else {
-					$this->errors['top_level'] = $audio_error;
-				}
-			}
+		// check for audio file
+		if ( $submission_type == 'audio' && empty( $_FILES['audio']['name'] ) ) {
+			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
+			$this->errors[]            = __( 'You did not upload an audio file.', 'rt' );
 		}
 
 		// check the email address entered was valid
@@ -82,8 +73,12 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		}
 
 		// check the uploaded files are ok
-		foreach ( array( 'image', 'thumbnail' ) as $file ) {
-			if ( $file == 'image' && $submission_type != 'image' ) {
+		foreach ( array( 'image', 'thumbnail', 'audio', 'video' ) as $file ) {
+			if ( ( $file == 'thumbnail' && ! in_array( $submission_type, array(
+						'image',
+						'text'
+					) ) ) || $file != $submission_type
+			) {
 				continue;
 			}
 			if ( ! empty( $_FILES[ $file ]['name'] ) && $_FILES[ $file ]['error'] != UPLOAD_ERR_OK ) {
@@ -109,22 +104,21 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 	}
 
 	private function prepare_submission() {
-		$submission = new \stdClass();
+		$submission      = new \stdClass();
+		$submission_type = $_REQUEST['submissionType'];
 
 		$submission->post_title   = $_REQUEST['title'];
 		$submission->post_content = $_REQUEST['description'];
 		$submission->post_type    = 'submission';
 		$submission->post_status  = 'publish';
 		$submission->tax_input    = array(
-			'submission_type' => $_REQUEST['submissionType'],
+			'submission_type' => $submission_type,
 			'language'        => $_REQUEST['language'],
 			'country'         => $_REQUEST['country'],
 			'theme'           => $_REQUEST['theme']
 		);
 		$submission->meta_input   = array(
-			'video_url' => ! empty( $_REQUEST['video'] ) && $_REQUEST['submissionType'] == 'video' ? $_REQUEST['video'] : '',
-			'audio_url' => ! empty( $_REQUEST['audio'] ) && $_REQUEST['submissionType'] == 'audio' ? $_REQUEST['audio'] : '',
-			'text'      => ! empty( $_REQUEST['text'] ) && $_REQUEST['submissionType'] == 'text' ? $_REQUEST['text'] : '',
+			'text'      => ! empty( $_REQUEST['text'] ) && $submission_type == 'text' ? $_REQUEST['text'] : '',
 		);
 
 		return (array) $submission;
@@ -199,6 +193,20 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			$thumbnail = $this->save_media( 'thumbnail', $new_post );
 		}
 
+		if ( $_REQUEST['submissionType'] == 'audio' ) {
+			$audio = $this->save_media( 'audio', $new_post );
+			update_post_meta( $new_post, 'audio_url', wp_get_attachment_url( $audio ) );
+		}
+
+		if ( $_REQUEST['submissionType'] == 'video' ) {
+			$video_metadata = wp_read_video_metadata( $_FILES['video']['tmp_name'] );
+			if ( $video_metadata['dataformat'] == 'quicktime' && $video_metadata['fileformat'] == 'mp4' ) {
+				$_FILES['video']['name'] = str_replace( '.mov', '.mp4', $_FILES['video']['name'] );
+			}
+			$video = $this->save_media( 'video', $new_post );
+			update_post_meta( $new_post, 'video_url', wp_get_attachment_url( $video ) );
+		}
+
 		// set the featured image
 		if ( ! empty( $image ) ) {
 			set_post_thumbnail( $new_post, $image );
@@ -269,9 +277,9 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			require_once( ABSPATH . "wp-admin" . '/includes/image.php' );
 			require_once( ABSPATH . "wp-admin" . '/includes/file.php' );
 			require_once( ABSPATH . "wp-admin" . '/includes/media.php' );
-			$img_id = media_handle_upload( $file, $post );
+			$media_id = media_handle_upload( $file, $post );
 
-			return $img_id;
+			return $media_id;
 		}
 
 		return false;
