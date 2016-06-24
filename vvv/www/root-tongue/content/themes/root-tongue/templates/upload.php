@@ -13,13 +13,13 @@ get_header(); ?>
 
 			<div class="file-row">
 				<div class="submission-type upload-button video" data-type="video" data-prompt="please upload or create a video">VIDEO
-					<input type="file" accept="video/*;capture=camcorder" name="video">
+					<input type="file" accept="video/*" capture="camcorder" name="video">
 				</div>
 				<div class="submission-type upload-button image" data-type="image">IMAGE
-					<input type="file" name="image">
+					<input type="file" accept="image/*" capture="camera" name="image">
 				</div>
-				<div class="submission-type upload-button audio" data-type="audio" data-prompt="please enter a Soundcloud URL">AUDIO
-					<input type="file" accept="audio/*;capture=microphone" name="audio">
+				<div class="submission-type upload-button audio" data-type="audio" data-prompt="please upload an audio file">AUDIO
+					<input type="file" accept="audio/*" capture="microphone" name="audio">
 				</div>
 				<div class="submission-type open-modal-textbox text" data-type="text" data-prompt="Enter text here...">TEXT</div>
 				<input type="hidden" id="submissionType" name="submissionType" value="">

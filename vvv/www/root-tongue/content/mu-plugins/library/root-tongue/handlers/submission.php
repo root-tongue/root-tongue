@@ -62,6 +62,22 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			$this->errors[]            = __( 'You did not upload an audio file.', 'rt' );
 		}
 
+		// check the correct file type was uploaded
+		if ( in_array( $submission_type, array( 'audio', 'image', 'video' ) ) ) {
+			if ( strpos( $_FILES[ $submission_type ]['type'], $submission_type ) !== 0 ) {
+				if ( $submission_type == 'video' ) {
+					$file_type_error = sprintf( __( 'The file you chose was not a %s file. If you want to upload a different file type, please choose one of the other media buttons.', 'rt' ), $submission_type );
+				} else {
+					$file_type_error = sprintf( __( 'The file you chose was not an %s file. If you want to upload a different file type, please choose one of the other media buttons.', 'rt' ), $submission_type );
+				}
+				if ( ! empty( $this->errors['top_level'] ) ) {
+					$this->errors[] = $file_type_error;
+				} else {
+					$this->errors['top_level'] = $file_type_error;
+				}
+			}
+		}
+
 		// check the email address entered was valid
 		if ( ! empty( $_POST['email'] ) && ! is_email( $_POST['email'] ) ) {
 			$email_error = __( 'The email address you entered is not valid.', 'rt' );
