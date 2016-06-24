@@ -201,7 +201,7 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		if ( $_REQUEST['submissionType'] == 'video' ) {
 			$video_metadata = wp_read_video_metadata( $_FILES['video']['tmp_name'] );
 			if ( $video_metadata['dataformat'] == 'quicktime' && $video_metadata['fileformat'] == 'mp4' ) {
-				$_FILES['video']['name'] = str_replace( '.mov', '.mp4', $_FILES['video']['name'] );
+				$_FILES['video']['name'] = str_ireplace( '.mov', '.mp4', $_FILES['video']['name'] );
 			}
 			$video = $this->save_media( 'video', $new_post );
 			update_post_meta( $new_post, 'video_url', wp_get_attachment_url( $video ) );
