@@ -33,7 +33,7 @@ get_header(); ?>
 								<?php $video = get_field( 'video_url' );
 								if ( ! empty( $video ) ): ?>
 									<div class="videoWrapper">
-										<?php echo do_shortcode( '[video]'.$video.'[/video]' ); ?>
+										<?php echo do_shortcode( '[embed]'.$video.'[/embed]' ); ?>
 									</div>
 								<?php endif; ?>
 							</div>
