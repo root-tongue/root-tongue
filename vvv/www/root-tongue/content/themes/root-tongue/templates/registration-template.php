@@ -53,7 +53,7 @@ get_header();
 			<p><input type="password" value="" name="password1" class="input_box" id="password1" placeholder="Password" /></p>
 			<button type="submit" name="btnregister" class="button" >SIGN UP</button>
 			<input type="hidden" name="action" value="register" />
-			<div class="alignleft rgmsg_wrap"><p class="rg_msg"><?php if( $sucess != "" ) {	echo $sucess; } ?> <?php if( $error!= "" ) { echo '<span class="err">'.$error.'</span>'; } ?></p></div>
+			<div class="alignleft rgmsg_wrap"><p class="rg_msg"><?php if( $success != "" ) {	echo $success; } ?> <?php if( $error!= "" ) { echo '<span class="err">'.$error.'</span>'; } ?></p></div>
 			<h3 class="sgnup_new"><a href="/videolist">NOT READY TO SIGN UP? <br>
 			CONTINUE TO EXPLORE ROOT TONGUE <i class="fas fa-arrow-circle-right"></i></a></h3>
 		</form>
