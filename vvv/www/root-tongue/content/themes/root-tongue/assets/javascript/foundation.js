@@ -17376,6 +17376,7 @@ $('#upload-form').on('submit', function (event) {
 					break;
 				case 'success' :
 					$('#done.overlay-fullscreen').show();
+					$('body').addClass('done_wrp');
 					$('#view-upload').attr("href", response.submission);
 					break;
 				case 'fail' :

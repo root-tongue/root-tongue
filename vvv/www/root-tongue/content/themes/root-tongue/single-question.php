@@ -21,15 +21,16 @@ $rt = rt_get_rt_obj();
 			<div class="next-buttons">
 				<a class="rt-button" href="/upload/?q=<?php echo get_the_ID() ?>">UPLOAD RESPONSE</a>
 				<a class="rt-button" id="show-later-modal" href="#">SUBMIT LATER</a>
-				<?php if ( ! $rt->lastVideo ) : ?>
+				<a class="rt-button" href="/videolist">BACK TO VIDEO LIST</a>
+				<?php /* if ( ! $rt->lastVideo ) : ?>
 				<a class="rt-button" href="<?php echo $rt->nextVideo->link ?>">WATCH NEXT VIDEO</a>
 				<?php else : ?>
 				<a class="rt-button" id="last-question-continue" href="#">CONTINUE</a>
-				<?php endif; ?>
+				<?php endif; */?>
 			</div>
-			<div class="watch-again">
+			<!--<div class="watch-again">
 				<a onClick="history.go(-1)">Watch this video again</a>
-			</div>
+			</div>-->
 		</article>
 	<?php endwhile; ?>
 
@@ -37,10 +38,11 @@ $rt = rt_get_rt_obj();
 
 	<div class="modal" id="submit-later">
 		<div class="overlay"></div>
-		<div class="modal-content">
-			<h3>SUBMIT LATER</h3>
-			<h4>Need more time? Enter your email and we'll send you a link so you can come back later.</h4>
+		<div class="modal-content smt_later">					
 			<form id="submit-later-form">
+				<p>Need more time? </p>
+				<p>Enter your email address and we'll send you</p>
+				<p> a link so you can come back later.</p>	
 				<input type="text" id="email" name="email" placeholder="ENTER EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
 				<div class="submit-row">
 					<?php wp_nonce_field( 'rt-submit_later' ) ?>
@@ -51,8 +53,10 @@ $rt = rt_get_rt_obj();
 				</div>
 			</form>
 			<div id="submit-later-success">
-				<h4>Your perspective makes us better.</h4>
-					<p>We have sent you an email so you can share later. Thanks!</p>
+				<h1>THANK YOU!</h1>
+				<p>Your perspective makes us better.</p>
+					<p>We have sent you an email so you can share later.</p>
+					<p>&nbsp;</p>
 				<div class="submit-row">
 					<div class="rt-button cancel">CLOSE</div>
 				</div>
