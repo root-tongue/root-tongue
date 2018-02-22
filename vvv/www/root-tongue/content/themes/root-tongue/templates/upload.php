@@ -18,8 +18,8 @@ get_header(); ?>
 				<div class="submission-type upload-button image" data-type="image">IMAGE
 					<input type="file" accept="image/*" capture="camera" name="image">
 				</div>
-				<div class="submission-type upload-button audio" data-type="audio" data-prompt="please upload an audio file">AUDIO
-					<input type="file" accept="audio/*" capture="microphone" name="audio">
+				<div class="submission-type upload-button audio" data-type="video" data-prompt="please upload an audio file">AUDIO
+					<input type="file" accept="video/*" capture="camcorder" name="video">
 				</div>
 				<div class="submission-type open-modal-textbox text" data-type="text" data-prompt="Enter text here...">TEXT</div>
 				<input type="hidden" id="submissionType" name="submissionType" value="">
@@ -37,14 +37,13 @@ get_header(); ?>
 			<div class="login">
 				<a id="show-login-modal" href="#">LOGIN ></a>
 			</div>
-			<div class="logout">
-				<span>LOGGED IN AS <span id="current-user"><?php echo wp_get_current_user()->display_name ?></span></span>
-				<div id="not-you"><a href="javascript: void:(0)">Not you? Log Out</a></div>
+			<div class="logout lgndin">
+				<span>YOU ARE LOGGED IN AS <span id="current-user"><?php echo wp_get_current_user()->display_name ?></span></span>
+				<div id="not-you"><a href="javascript: void:(0)">LOG OUT <i class="fas fa-arrow-circle-right"></i></a></div>
 			</div>
 			<div class="input-row">
 				<div class="col">
-					<input type="text" name="title" id="title" placeholder="TITLE">
-					<input type="text" name="country" id="country" placeholder="COUNTRY &nbsp;(separate countries with a comma)">
+					<input type="text" name="title" id="title" placeholder="TITLE">					
 					<?php if ( ! is_user_logged_in() ) : ?>
 						<input type="text" name="email" id="email" placeholder="EMAIL">
 					<?php else : ?>
@@ -53,7 +52,8 @@ get_header(); ?>
 					<textarea name="description" id="description" placeholder="DESCRIPTION (optional)"></textarea>
 				</div>
 				<div class="col">
-					<input type="text" name="language" id="language" placeholder="LANGUAGE &nbsp;(separate languages with a comma)">
+					<input type="text" name="language" id="language" placeholder="LANGUAGE">
+					<input type="text" name="country" id="country" placeholder="COUNTRY">
 					<select name="theme" id="theme">
 						<option value="" disabled selected>Theme</option>
 						<?php
@@ -70,14 +70,18 @@ get_header(); ?>
 						</div>
 						<span>ADD THUMBNAIL</span>
 					</div>
-				</div>
-			</div>
-			<div class="submit-row">
+
+					<div class="submit-row">
 				<?php wp_nonce_field( 'rt-submission' ); ?>
 				<input type="hidden" name="question" value="<?php echo $_GET['q'] ?>">
 				<input type="submit" id="submit-btn" value="SUBMIT" class="rt-button">
 				<a class="rt-button" onClick="history.go(-1)">CANCEL</a>
-				<p>your media will be posted in the public community gallery</p>
+			</div>
+				</div>
+			</div>
+			
+			<div class="submit-row">
+				<p class="yr_mda">your media will be posted in the public community gallery</p>
 			</div>
 
 		</form>
@@ -106,15 +110,15 @@ get_header(); ?>
 			<?php $the_query = new WP_Query( 'pagename=upload-complete' ); ?>
 			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 				<section class="upload-complete" role="main">
-					<h1 class="large-title">Done</h1>
+					<h1 class="large-title">Done!</h1>
 					<div class="subtitle">
 						<?php the_content(); ?>
 					</div>
 					<div class="next-buttons">
 						<a class="rt-button" id="view-upload" href="#">VIEW UPLOAD</a>
-						<a class="rt-button" href="/community-gallery">COMMUNITY GALLERY</a>
+						<a class="rt-button" href="/community-gallery">GO TO GALLERY</a>
 						<?php if ( ! $rt->lastVideo ) : ?>
-							<a class="rt-button" id="next-video" href="<?php echo $rt->nextVideo->link ?>">NEXT VIDEO</a>
+							<a class="rt-button" id="next-video" href="/videolist">GO TO VIDEO</a>
 						<?php endif; ?>
 					</div>
 					<div id="new-user-message" style="display: none">We have also created you a username and password. Please check your email!</div>

@@ -1,17 +1,22 @@
 <?php
+
 /*
+
  * This is the page users will see logged out. 
+
  * You can edit this, but for upgrade safety you should copy and modify this file into your template folder.
+
  * The location from within your template folder is plugins/login-with-ajax/ (create these directories if they don't exist)
+
 */
+
 ?>
 <div class="lwa lwa-root-tongue"><?php //class must be here, and if this is a template, class name should be that of template directory ?>
 	<form class="lwa-form" action="<?php echo esc_attr( LoginWithAjax::$url_login ); ?>" method="post" id="user-login">
 		<span class="lwa-status"></span>
 		<div class="login-form-container">
-			<h1>LOGIN</h1>
 			<div id="existing-user-message" class="cta">Your email address is associated with an existing account. Please enter your password to log in.</div>
-			<input type="text" name="log" placeholder="EMAIL ADDRESS" id="user_email">
+			<input type="text" name="log" placeholder="EMAIL" id="user_email">
 			<input type="password" name="pwd" placeholder="PASSWORD" id="user_password">
 			<?php do_action( 'login_form' ); ?>
 			<div class="button-row">

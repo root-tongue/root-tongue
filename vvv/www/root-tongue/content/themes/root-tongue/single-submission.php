@@ -17,16 +17,15 @@ get_header(); ?>
 				if ( ! empty( $terms ) ) {
 					$type = $terms[0]->name;
 					switch ( $type ) {
-
 						case "image":
 							?>
 							<div class="media-holder">
+								<div class="img_arrow"><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/img_arrow.png"></div>
 								<?php if ( has_post_thumbnail() ) :
 									the_post_thumbnail();
 								endif; ?>
 							</div>
 							<?php break;
-
 						case "video":
 							?>
 							<div class="media-holder">
@@ -38,7 +37,6 @@ get_header(); ?>
 								<?php endif; ?>
 							</div>
 							<?php break;
-
 						case "audio":
 							?>
 							<div class="media-holder">
@@ -55,7 +53,6 @@ get_header(); ?>
 								<?php endif; ?>
 							</div>
 							<?php break;
-
 						case "text":
 							?>
 							<div class="media-holder">
@@ -65,16 +62,64 @@ get_header(); ?>
 								<?php endif; ?>
 							</div>
 							<?php break;
-
 						default:
 							echo "There is no media to show";
 							break;
 					}
 				}
 				?>
+				<div class="description">
+					<?php $description = get_the_content();
+					if ( ! empty( $description ) ) :
+						?>
+						<?php the_content(); ?>
+					<?php endif; ?>
+				</div>
 			</div>
 			<div class="right">
-				<h1 class="submission-title"><?php the_title(); ?></h1>
+				<div class="type_trm">
+					<?php
+			$terms = get_the_terms( get_the_ID(), 'submission_type' );
+			if ( !empty( $terms ) ) {
+				$type =  $terms[0]->name;
+
+				switch ($type) {
+					case "image":
+					?>
+					<div class="green_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/image_icon.png"></span> PHOTOS
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					case "video":
+					?>
+					<div class="yellow_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/video_icon.png"></span> VIDEO
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					case "audio":
+					?>
+					<div class="prl_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/audio_icon.png"></span> AUDIO
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					case "text":
+					?>
+					<div class="blue_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/text_icon.png"></span> TEXT
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					default:
+							echo " ";
+							break;
+					}
+				}
+							?>
+				</div>
+				
 				<div class="meta user">
 					<span class="data-label">BY</span>
 					<span class="data"><?php the_author(); ?></span>
@@ -147,21 +192,21 @@ get_header(); ?>
 					<?php endif; ?>
 					</span>
 				</div>
-				<div class="description">
-					<?php $description = get_the_content();
-					if ( ! empty( $description ) ) :
-						?>
-						<div class="description-label">description</div>
-						<?php the_content(); ?>
-					<?php endif; ?>
-				</div>
+				
 				<div class="button-row">
 					<?php if ( is_user_logged_in() ) : ?>
 						<a class="rt-button show-modal" href="#">POST A COMMENT</a>
 					<?php else : ?>
-						<a class="rt-button" href="<?php echo rt_last_seen_question_url() ?>">PARTICIPATE TO COMMENT</a>
-
+					
+						<a class="rt-button" href="#" id="show-login-modal">POST A COMMENT</a>
 						<div class="modal" id="login-form">
+						<div class="overlay"></div>
+						<div class="modal-content">
+							<p class="lhead">LOG IN TO POST A COMMENT.</p>
+							<?php login_with_ajax( array( 'template' => 'root-tongue' ) ); ?>
+						</div>
+					</div>
+						<!--<div class="modal" id="login-form">
 							<div class="overlay"></div>
 							<div class="modal-content">
 								<div class="login-form-container">
@@ -190,19 +235,14 @@ get_header(); ?>
 									</form>
 								</div>
 							</div>
-						</div>
-
+						</div>-->
 					<?php endif; ?>
-					<a class="rt-button" href="/community-gallery/">RETURN TO THE GALLERY</a>
+					<a class="rt-button" href="/community-gallery/">BACK TO GALLERY</a>
 				</div>
-
 				<?php comments_template(); ?>
-
 			</div>
 		</article>
 	<?php endwhile; ?>
-
 	<?php do_action( 'foundationpress_after_content' ); ?>
-
 </div>
 <?php get_footer(); ?>

@@ -70,14 +70,15 @@ function rt_custom_comments( $comment, $args, $depth ) {
 		<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 			<div class="row">
 				<div class="comment-meta">
-                <span class="comment-author">
-                    POSTED BY
-	                <?php printf( __( '%s' ), sprintf( '<span class="commenter">%s</span>', get_comment_author_link() ) ); ?>,
-                </span><!-- .comment-author --><span class="comment-metadata">
-                    <time datetime="<?php comment_time( 'n/j/y' ); ?>">
-	                    <?php printf( get_comment_date( 'n/j/y' ) ); ?>
+					<span class="comment-metadata">
+                    <time datetime="<?php comment_time( 'F j, Y' ); ?>">
+	                    <?php printf( get_comment_date( 'F j, Y' ) ); ?>
                     </time>
                  </span><!-- .comment-metadata -->
+                <span class="comment-author">
+                    POSTED BY
+	                <?php printf( __( '%s' ), sprintf( '<span class="commenter">%s</span>', get_comment_author_link() ) ); ?>
+                </span><!-- .comment-author -->
 					<?php if ( '0' == $comment->comment_approved ) : ?>
 						<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
 					<?php endif; ?>
@@ -88,6 +89,70 @@ function rt_custom_comments( $comment, $args, $depth ) {
 			</div>
 		</article><!-- .comment-body -->
 	</div>
-<?php } ?>
+<?php }
+function add_slug_body_class( $classes ) {
+	global $post;
+	if ( isset( $post ) ) {
+		$classes[] = $post->post_type . '-' . $post->post_name;
+		if( get_post_meta( get_the_ID() ,'bg_type',true )=='green' ){
+			$classes[] = 'green_bg';
+		}
+		if( get_post_meta( get_the_ID() ,'bg_type',true )=='white' ){
+			$classes[] = 'white_bg';
+		}
+		if( get_post_type( get_the_ID() ) == 'question' ){
+			$classes[] = 'white_bg';
+		}
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'add_slug_body_class' );
+add_action('init', 'do_output_buffer');
+function do_output_buffer() {
+		ob_start();
+}
+function add_theme_caps() {
+    // gets the administrator role
+	$admins = get_role( 'administrator' );
 
+	$admins->add_cap( 'create_submission' );
+	$admins->add_cap( 'edit_submission' );
+	$admins->add_cap( 'edit_submissions' );
+	$admins->add_cap( 'edit_other_submissions' );
+	$admins->add_cap( 'publish_submissions' );
+	$admins->add_cap( 'read_submission' );
+	$admins->add_cap( 'read_private_submissions' );
+	$admins->add_cap( 'delete_submission' );
+	$admins->add_cap( 'delete_published_submissions' );
+	$admins->add_cap( 'edit_published_submissions' );
 
+	$contributors = get_role( 'contributor' );
+	$contributors->remove_cap( 'create_submission' );
+	$contributors->add_cap( 'edit_submission' );
+	$contributors->add_cap( 'edit_submissions' );
+	$contributors->remove_cap( 'edit_other_submissions' );
+	$contributors->remove_cap( 'publish_submissions' );
+	$contributors->add_cap( 'read_submission' );
+	$contributors->remove_cap( 'read_private_submissions' );
+	$contributors->add_cap( 'delete_submission' );
+	$contributors->add_cap( 'delete_published_submissions' );
+	$contributors->add_cap( 'edit_published_submissions' );
+	$contributors->remove_cap( 'create_submission' );
+	$contributors->add_cap( 'edit_posts' );
+
+}
+add_action( 'admin_init', 'add_theme_caps');
+function remove_menus(){
+	// get current login user's role
+	$roles = wp_get_current_user()->roles;
+
+	// test role
+	if( !in_array( 'contributor',$roles ) ){
+		return;
+	}
+	remove_menu_page( 'edit-comments.php' ); //Comments
+	remove_menu_page( 'tools.php' ); //Tools
+	remove_menu_page( 'edit.php' ); // Pages
+	@add_menu_page( 'edit.php?post_type=submission' ); // submission
+}
+add_action( 'admin_menu', 'remove_menus' , 100 );
