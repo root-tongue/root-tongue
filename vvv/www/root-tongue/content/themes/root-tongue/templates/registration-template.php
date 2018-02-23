@@ -14,9 +14,9 @@ get_header();
 	$success = ''; 
 	global $wpdb, $PasswordHash, $current_user, $user_ID; 
 		if( isset( $_POST['action'] ) && $_POST['action'] == 'register' ) {
-			$password1 = $wpdb->$_POST['password1'];
-			$email = $wpdb->$_POST['email'];
-			$username = $wpdb->$_POST['email'];
+			$password1 = $_POST['password1'];
+			$email = $_POST['email'];
+			$username = $_POST['email'];
 			if( $email == "" || $password1 == "" || $username == "") {
 				$error= 'All Fields Are Required.';
 			} else if( !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
