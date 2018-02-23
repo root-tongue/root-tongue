@@ -20,8 +20,9 @@ get_header(); ?>
 						case "image":
 							?>
 							<div class="media-holder">
-								<div class="img_arrow"><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/img_arrow.png"></div>
-								<?php if ( has_post_thumbnail() ) :
+								<?php if ( has_post_thumbnail() ) :?>
+								<div class="img_arrow" id="img_enlarge"><a href="<?php the_post_thumbnail_url('full'); ?>" data-lightbox="example-1"><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/img_arrow.png"></a></div>
+								<?php 
 									the_post_thumbnail();
 								endif; ?>
 							</div>
@@ -245,4 +246,6 @@ get_header(); ?>
 	<?php endwhile; ?>
 	<?php do_action( 'foundationpress_after_content' ); ?>
 </div>
+	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ;?>/assets/stylesheets/lightbox.min.css">
+	<script src="<?php echo get_stylesheet_directory_uri() ;?>/assets/javascript/custom/lightbox-plus-jquery.min.js"></script>
 <?php get_footer(); ?>
