@@ -18,8 +18,8 @@ get_header(); ?>
 				<div class="submission-type upload-button image" data-type="image">IMAGE
 					<input type="file" accept="image/*" capture="camera" name="image">
 				</div>
-				<div class="submission-type upload-button audio" data-type="video" data-prompt="please upload an audio file">AUDIO
-					<input type="file" accept="video/*" capture="camcorder" name="video">
+				<div class="submission-type upload-button audio" data-type="audio" data-prompt="please upload an audio file">AUDIO
+					<input type="file" accept="audio/*" capture="microphone" name="audio">
 				</div>
 				<div class="submission-type open-modal-textbox text" data-type="text" data-prompt="Enter text here...">TEXT</div>
 				<input type="hidden" id="submissionType" name="submissionType" value="">
@@ -117,9 +117,7 @@ get_header(); ?>
 					<div class="next-buttons">
 						<a class="rt-button" id="view-upload" href="#">VIEW UPLOAD</a>
 						<a class="rt-button" href="/community-gallery">GO TO GALLERY</a>
-						<?php if ( ! $rt->lastVideo ) : ?>
-							<a class="rt-button" id="next-video" href="/videolist">GO TO VIDEO</a>
-						<?php endif; ?>
+						<a class="rt-button" id="next-video" href="/videolist">GO TO VIDEOS</a>
 					</div>
 					<div id="new-user-message" style="display: none">We have also created you a username and password. Please check your email!</div>
 				</section>

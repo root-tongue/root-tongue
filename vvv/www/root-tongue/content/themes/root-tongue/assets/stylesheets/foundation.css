@@ -6922,7 +6922,8 @@ body.white_bg.page-videolis .diagonal{opacity:1!important;position: relative;}
     background: #000000;
     color: #ffffff;
      letter-spacing: 2px;
-    padding: 5px 12px !impotant;
+    padding: 5px!important;
+    min-width: 130px;
 }
 #upload-complete section.upload-complete .subtitle {
     margin: 1rem 0px !impotant;
