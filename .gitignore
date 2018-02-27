@@ -13,3 +13,4 @@
 /vvv/www/default/
 /vvv/www/phpcs/
 /vvv/www/wp-cli/
+.DS_Store

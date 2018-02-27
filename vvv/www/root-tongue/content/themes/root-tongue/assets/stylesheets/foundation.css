@@ -6855,7 +6855,7 @@ a.icon-down_arrow {
     padding: 5px 12px;
     font-size: 1.6rem;
 }
-.go_cl{text-align: center;}
+.go_cl{text-align: center; clear: both;}
 .go_cl a {
     color: #ffffff;
     background: #000000;
@@ -7086,6 +7086,9 @@ color: #fff;
  body.white_bg.page-videolist .diagonal{
   opacity: 0!important;
  }
+ .modal-content input {
+    position: relative;
+}
 @media screen and (max-width: 35.500em) {
 body.home .instructions p{font-size:0.8rem!important;}
 body.home .instructions h1{font-size:4rem!important;
@@ -7125,7 +7128,12 @@ body.single-submission .container .main-content .right h1.submission-title{
 }
 .page-videolist .container{padding-left: 1rem!important; padding-right: 1rem!important;}
 }
-
+.menu .wpml-ls-menu-item a {
+    padding-left: 0 !important;
+}
+.menu .wpml-ls-menu-item a:before{
+    display: none!important;
+}
     /*new css end*/
   body.home .instructions {
     position: absolute;
@@ -7740,7 +7748,8 @@ body.logged-in .login {
     .modal#login-form .modal-content form input[type="text"], .modal#login-form .modal-content form input[type='password'] {
       background: #d0dc28;
       color: #000;
-      height: 2.1875rem;
+      min-height: 2.1875rem;
+      height: auto!important;
       border: none;
       box-shadow: none;
       font-family: "FuturaBT-Bold";

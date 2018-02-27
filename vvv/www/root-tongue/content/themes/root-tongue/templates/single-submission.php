@@ -30,15 +30,7 @@ get_header(); ?>
 						case "video":
 							?>
 							<div class="media-holder">
-								<?php 
-									if(get_field('audio_url')!=''){
-										$video = get_field('audio_url');
-									}
-									else{
-										$video = get_field('video_url');
-									}
-								?>
-								<?php 
+								<?php $video = get_field( 'video_url' );
 								if ( ! empty( $video ) ): ?>
 									<div class="videoWrapper">
 										<?php echo do_shortcode( '[video]'.$video.'[/video]' ); ?>
@@ -102,19 +94,7 @@ get_header(); ?>
 					break;
 					case "video":
 					?>
-					<?php 
-							if(get_field('audio_url')!=''){
-								$icon_v='audio_icon.png';
-								$title_clr='prl_clr';
-								$icon_title='AUDIO';
-							}
-							else{
-								$icon_v='video_icon.png';
-								$title_clr='yellow_clr';
-								$icon_title='VIDEO';
-							}
-						?>
-					<div class="<?php echo $title_clr; ?>"><span><img src="<?php echo get_stylesheet_directory_uri().'/assets/images/'.$icon_v;?>"></span> <?php echo $icon_title;?>
+					<div class="yellow_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/video_icon.png"></span> VIDEO
 					<h1 class="submission-title"><?php the_title(); ?></h1>
 					</div>
 					<?php
