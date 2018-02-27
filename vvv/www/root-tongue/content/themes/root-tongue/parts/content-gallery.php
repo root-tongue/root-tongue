@@ -65,10 +65,19 @@
 						<?php
 						break;
 					case "video":?>
-						<?php $video = get_field('video_url'); ?>
+						<?php 
+							if(get_field('audio_url')!=''){
+								$video = get_field('audio_url');
+								$icon_v='audio_icon.png';
+							}
+							else{
+								$video = get_field('video_url');
+								$icon_v='video_icon.png';
+							}
+						?>
 						<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>">
 							<a href="<?php the_permalink(); ?>">
-								<span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/video_icon.png"></span>
+								<span><img src="<?php echo get_stylesheet_directory_uri().'/assets/images/'.$icon_v;?>"></span>
 							</a>
 						</div>
 						<?php  break;

@@ -42,6 +42,7 @@ require_once( 'library/custom-nav.php' );
 add_action( 'init', 'rt_register_menu' );
 function rt_register_menu() {
 	register_nav_menu( 'main-nav', __( 'Main Nav' ) );
+	register_nav_menu( 'language-nav', __( 'Language Nav' ) );
 }
 
 /** Hide admin bar for non admins */

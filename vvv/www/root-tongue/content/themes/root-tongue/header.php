@@ -83,6 +83,7 @@
 					<a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 			</div>
 			<div class="top-bar-right">
+				<?php wp_nav_menu( array( 'theme_location' => 'language-nav' ) ); ?>
 				<div class="nav-toggle">
 					<span class="menu-label">MENU</span> 
 					<span class="menu-icon">

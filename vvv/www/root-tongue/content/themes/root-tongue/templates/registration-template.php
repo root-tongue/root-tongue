@@ -15,8 +15,8 @@ get_header();
 	global $wpdb, $PasswordHash, $current_user, $user_ID; 
 		if( isset( $_POST['action'] ) && $_POST['action'] == 'register' ) {
 			$password1 = $_POST['password1'];
-			$email = $_POST['email'];
-			$username = $_POST['email'];
+			$email = $_POST['email1'];
+			$username = $_POST['email1'];
 			if( $email == "" || $password1 == "" || $username == "") {
 				$error= 'All Fields Are Required.';
 			} else if( !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
@@ -24,11 +24,25 @@ get_header();
 			} else if( email_exists($email) ) {
 				$error= 'Email already exist.';
 			} else {
-				$user_id = wp_insert_user( array ( 'first_name' => apply_filters( 'pre_user_first_name', '' ), 'last_name' => apply_filters( 'pre_user_last_name', '' ), 'user_pass' => apply_filters( 'pre_user_user_pass', $password1 ), 'user_login' => apply_filters( 'pre_user_user_login', $username ), 'user_email' => apply_filters( 'pre_user_user_email', $email ), 'role' => 'contributor' ) );
-				if( is_wp_error($user_id) ) {
+				$new_user = wp_insert_user( array(
+						'user_login'   => $email,
+						'user_email'   => $username,
+						'user_pass'    => $password1,
+						'display_name' => explode( '@', $email )[0],
+						'role'         => 'contributor',
+					) );
+				if( is_wp_error($new_user) ) {
 					$error= 'Error on user creation.';
-				} else {
-					do_action( 'user_register', $user_id );
+				} 
+				else {
+						$user    = get_userdata( $new_user );
+						$subject = apply_filters( 'rt_new_user_email_title', false );
+						$message = apply_filters( 'rt_new_user_email_message', false, $email, $password1 );
+						if ( $subject && $message ) {
+							wp_mail( $email, $subject, $message );
+						}
+
+					do_action( 'user_register', $new_user);
 					$success = 'You\'re successfully register';
 				}
 			}
@@ -49,7 +63,7 @@ get_header();
 		</div>
 		<form method="post" class="sng_frm">
 			<h3 class="already_acc">ALREADY HAVE AN ACCOUNT? <a href="/login" class="under_line">SIGN IN</a>.</h3>
-			<p><input type="text" value="" placeholder="Email" name="email" class="input_box" id="email" /></p>
+			<p><input type="text" value="" placeholder="Email" name="email1" class="input_box" id="email" /></p>
 			<p><input type="password" value="" name="password1" class="input_box" id="password1" placeholder="Password" /></p>
 			<button type="submit" name="btnregister" class="button" >SIGN UP</button>
 			<input type="hidden" name="action" value="register" />

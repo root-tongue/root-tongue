@@ -18,9 +18,22 @@ get_header(); ?>
 				<div class="submission-type upload-button image" data-type="image">IMAGE
 					<input type="file" accept="image/*" capture="camera" name="image">
 				</div>
-				<div class="submission-type upload-button audio" data-type="audio" data-prompt="please upload an audio file">AUDIO
-					<input type="file" accept="audio/*" capture="microphone" name="audio">
-				</div>
+				<?php
+						$iPod	= stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
+						$iPhone	= stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+						$iPad	= stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+						$Android	= stripos($_SERVER['HTTP_USER_AGENT'],"Android");
+						$webOS	= stripos($_SERVER['HTTP_USER_AGENT'],"webOS");
+
+						if ( $iPod || $iPhone || $iPad || $Android || $webOS ) { ?>
+						<div class="submission-type upload-button video" data-type="audio_video" data-prompt="please upload an audio file">AUDIO
+						<input type="file" accept="video/*" capture="camcorder" name="video2">
+						</div>
+					<?php } else{ ?>
+						<div class="submission-type upload-button audio" data-type="audio" data-prompt="please upload an audio file">AUDIO
+						<input type="file" accept="audio/*" capture="microphone" name="audio">
+						</div>
+					<?php } ?>
 				<div class="submission-type open-modal-textbox text" data-type="text" data-prompt="Enter text here...">TEXT</div>
 				<input type="hidden" id="submissionType" name="submissionType" value="">
 				<div class="modal" data-sumbission-type=''>
