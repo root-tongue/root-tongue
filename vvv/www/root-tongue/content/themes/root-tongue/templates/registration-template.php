@@ -62,15 +62,16 @@ get_header();
 			?>
 		</div>
 		<form method="post" class="sng_frm">
-			<h3 class="already_acc">ALREADY HAVE AN ACCOUNT? <a href="/login" class="under_line">SIGN IN</a>.</h3>
-			<p><input type="text" value="" placeholder="Email" name="email1" class="input_box" id="email" /></p>
-			<p><input type="password" value="" name="password1" class="input_box" id="password1" placeholder="Password" /></p>
-			<button type="submit" name="btnregister" class="button" >SIGN UP</button>
+			<h3 class="already_acc"> <?php esc_attr_e('ALREADY HAVE AN ACCOUNT?','login-with-ajax'); ?> <a href="<?php echo get_home_url(); ?>/login" class="under_line"><?php esc_attr_e('SIGN IN','login-with-ajax'); ?></a>.</h3>
+			<p><input type="text" value="" placeholder="<?php esc_attr_e('email','login-with-ajax'); ?>" name="email1" class="input_box" id="email" /></p>
+			<p><input type="password" value="" name="password1" class="input_box" id="password1" placeholder="<?php esc_attr_e('Password','login-with-ajax'); ?>" /></p>
+			<button type="submit" name="btnregister" class="button" ><?php esc_attr_e('SIGN UP','login-with-ajax'); ?></button>
 			<input type="hidden" name="action" value="register" />
 			<div class="alignleft rgmsg_wrap"><p class="rg_msg"><?php if( $success != "" ) {	echo $success; } ?> <?php if( $error!= "" ) { echo '<span class="err">'.$error.'</span>'; } ?></p></div>
-			<h3 class="sgnup_new"><a href="/videolist">NOT READY TO SIGN UP? <br>
-			CONTINUE TO EXPLORE ROOT TONGUE <i class="fas fa-arrow-circle-right"></i></a></h3>
+			<h3 class="sgnup_new"><a href="<?php echo get_home_url(); ?>/videolist"><?php esc_attr_e('NOT READY TO SIGN UP?','login-with-ajax'); ?> <br>
+			<?php esc_attr_e('CONTINUE TO EXPLORE ROOT TONGUE','login-with-ajax'); ?> <i class="fas fa-arrow-circle-right"></i></a></h3>
 		</form>
 	</div>
+	<div style="clear: both;"></div>
 </div>
 <?php get_footer() ?>

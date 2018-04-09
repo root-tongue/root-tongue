@@ -24,7 +24,6 @@
 	wp_redirect( '/videolist' );
 	exit;
 }	?>
-
 <?php wp_footer(); ?>
 <?php do_action( 'foundationpress_before_closing_body' ); ?>
 
