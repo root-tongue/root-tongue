@@ -1,0 +1,18 @@
+body.home .instructions h1
+{
+	font-size: 4rem!important;
+}
+.sld_title{
+	font-size: 60px;
+}
+.menu-main-nav-chinese-container {
+	margin: 2.25rem 0 0 0;
+	overflow-y: scroll;
+	height: 100%;
+}
+#upload-complete section.upload-complete h1.large-title
+{
+	font-size: 7em!important;
+	margin-bottom: 30px;
+	margin-top: 10px;
+}

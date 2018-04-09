@@ -156,3 +156,12 @@ function remove_menus(){
 	@add_menu_page( 'edit.php?post_type=submission' ); // submission
 }
 add_action( 'admin_menu', 'remove_menus' , 100 );
+function wpse245372_admin_user_css() {
+	$user = wp_get_current_user();
+	if ( in_array( 'contributor', (array) $user->roles ) ) {
+		echo '
+		<style> .updated.error,.user-language-wrap,#postbox-container-2{display:none;}
+		</style>';
+	}
+}
+add_action( 'admin_head', 'wpse245372_admin_user_css' );

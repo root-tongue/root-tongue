@@ -3,14 +3,15 @@
  * You can edit this, but for upgrade safety you should copy and modify this file into your template folder.
  * The location from within your template folder is plugins/login-with-ajax/ (create these directories if they don't exist)
 */
+
 ?>
 <div class="lwa lwa-divs-only">
 	<form class="lwa-form" action="<?php echo esc_attr(LoginWithAjax::$url_login); ?>" method="post">
 		<div class="lwa-username">
-			<input type="text" name="log" id="lwa_user_login" placeholder="EMAIL" class="input input_box" />
+			<input type="text" name="log" id="lwa_user_login" placeholder="<?php esc_attr_e('email','login-with-ajax'); ?>" class="input input_box" />
 		</div>
 		<div class="lwa-password">
-			<input type="password" name="pwd" id="lwa_user_pass" placeholder="Password" class="input input_box" />
+			<input type="password" name="pwd" id="lwa_user_pass" placeholder="<?php esc_attr_e('Password','login-with-ajax'); ?>" class="input input_box" />
 		</div>
 		<div class="lwa-login_form">
 			<?php do_action('login_form'); ?>
@@ -18,7 +19,7 @@
 		<div class="lwa-submit-button">
 			<input type="submit" name="wp-submit" id="lwa_wp-submit" value="<?php esc_attr_e('Log In','login-with-ajax'); ?>" tabindex="100" />
 			<?php if(is_page('login')){?>
-			<a href="<?php echo get_site_url(); ?>/videolist" class="backtovideo">Go To Videos <i class="fas fa-arrow-circle-right"></i></a>
+			<a href="<?php echo get_home_url(); ?>/videolist" class="backtovideo"><?php esc_attr_e('Go To Videos','login-with-ajax') ?> <i class="fas fa-arrow-circle-right"></i></a>
 			<?php } ?>
 			<input type="hidden" name="lwa_profile_link" value="<?php echo esc_attr($lwa_data['profile_link']); ?>" />
 			<input type="hidden" name="login-with-ajax" value="login" />

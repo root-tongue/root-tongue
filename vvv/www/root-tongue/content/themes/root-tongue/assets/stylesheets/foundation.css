@@ -4412,6 +4412,10 @@ select {
     display: none !important; } }
 
 @media screen and (max-width: 63.9375em) {
+    .dropdown .menu{
+    height: 150px;
+    overflow-y: scroll;
+  }
   .show-for-large {
     display: none !important; } }
 
@@ -5941,7 +5945,7 @@ table.hover tr:nth-of-type(even):hover {
         right: 0px; }
       #masthead .top-bar #main-nav .menu-main-nav-container {
         margin: 2.25rem 0 0 0;
-        overflow-y: auto;
+        overflow-y: scroll;
         height: 100%; }
       #masthead .top-bar #main-nav ul.menu {
         padding: 0 1rem 0 0.5rem;
@@ -6593,6 +6597,7 @@ body.page-template-upload .diagonal
       position: relative;
     height: 20px;
     opacity: 1;
+    bottom:0;
 }
 body.home.show-intro2 #masthead {
     background:transparent !important;
@@ -6625,6 +6630,18 @@ body.green_bg .container #page header h1{
     letter-spacing: 3px!important;
     line-height: 60px;
 }
+form#user-login-2 {
+    display: none!important;
+}
+.logged-in .login_user{
+  display: block!important;
+}
+.logged-in .logout_user
+{
+display: none!important;
+}
+.logout_user{display: block;}
+.login_user{ display: none!important; }
 .sng_frm h3{ font-size: 22px; letter-spacing: 1px; }
 .sng_frm h3 img {
     width: 24px;
@@ -7008,7 +7025,7 @@ margin-top: 10px;
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 35px;
+    bottom: 50px;
 }
 .btns_hm a {
     display: block;
@@ -7073,7 +7090,7 @@ color: #fff;
     position: absolute;
     font-size: 20px;
     left: 0;
-    top: 25px;
+    top: 40px;
     color: #000;
     font-family: "FuturaBT-Bold";
     opacity: 0.5;
@@ -7101,7 +7118,7 @@ font-size:50px!important;
     font-size: 18px!important;
   }
 .sld_content p{line-height: 22px!important;}
-a.icon-down_arrow{bottom: 10px!important;}
+a.icon-down_arrow{bottom: 20px!important;}
 body.green_bg .container #page header h1 {
     font-size: 48px!important;
     line-height: 50px;
@@ -7134,6 +7151,7 @@ body.single-submission .container .main-content .right h1.submission-title{
 .menu .wpml-ls-menu-item a:before{
     display: none!important;
 }
+html,body{ -webkit-overflow-scrolling : touch !important; overflow-y: scroll!important; height: 100% !important; }
     /*new css end*/
   body.home .instructions {
     position: absolute;
@@ -8052,7 +8070,9 @@ body.page-template-community-gallery .modal#logged-out, body.archive .modal#logg
 
 body.page-template-default .container,
 body.page-template-page-green-background .container,body.green_bg .container{
-  padding: 3.5rem 1.5rem 3.125rem; }
+  padding: 3.5rem 1.5rem 3.125rem;
+
+   }
   body.page-template-default .container #page,
   body.page-template-page-green-background .container #page ,body.green_bg .container #page{
     padding: 1rem 0; }

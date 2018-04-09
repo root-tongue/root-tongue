@@ -4,7 +4,20 @@
  *
  */
 
-get_header(); ?>
+get_header(); 
+if( get_locale()=='zh_CN'){
+		$back_to_gal='回到画廊';
+		$back_to_gal_url='/zh-hans/community-gallery';
+		$post_a_comment='发表评论';
+		$loging_cm='登錄後才能發表評論。';
+	}
+	else{
+		$back_to_gal='BACK TO GALLERY';
+		$back_to_gal_url='/community-gallery';
+		$post_a_comment='POST A COMMENT';
+		$loging_cm='LOG IN TO POST A COMMENT.';
+	}
+?>
 
 <div id="single-submission" role="main">
 
@@ -216,14 +229,14 @@ get_header(); ?>
 				
 				<div class="button-row">
 					<?php if ( is_user_logged_in() ) : ?>
-						<a class="rt-button show-modal" href="#">POST A COMMENT</a>
+						<a class="rt-button show-modal" href="#"><?php echo $post_a_comment;?></a>
 					<?php else : ?>
 					
-						<a class="rt-button" href="#" id="show-login-modal">POST A COMMENT</a>
+						<a class="rt-button" href="#" id="show-login-modal"><?php echo $post_a_comment;?></a>
 						<div class="modal" id="login-form">
 						<div class="overlay"></div>
 						<div class="modal-content">
-							<p class="lhead">LOG IN TO POST A COMMENT.</p>
+							<p class="lhead"><?php echo $loging_cm;?></p>
 							<?php login_with_ajax( array( 'template' => 'root-tongue' ) ); ?>
 						</div>
 					</div>
@@ -258,7 +271,7 @@ get_header(); ?>
 							</div>
 						</div>-->
 					<?php endif; ?>
-					<a class="rt-button" href="/community-gallery/">BACK TO GALLERY</a>
+					<a class="rt-button" href="<?php echo $back_to_gal_url;?>"><?php echo $back_to_gal;?></a>
 				</div>
 				<?php comments_template(); ?>
 			</div>
