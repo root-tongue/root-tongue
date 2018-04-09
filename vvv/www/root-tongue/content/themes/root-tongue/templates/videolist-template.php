@@ -3,7 +3,7 @@
 Template Name: Video List
 */
 get_header(); 
-if( get_locale()=='zh_CN'){
+if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 		$cg_url='/zh-hant/community-gallery';
 		$cg_btn_title='去創意作品集';
 	}

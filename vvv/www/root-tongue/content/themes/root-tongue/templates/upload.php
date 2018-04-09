@@ -7,7 +7,7 @@ $rt = rt_get_rt_obj();
 get_header(); ?>
 <div id="upload" role="main">
 <?php 
-	if( get_locale()=='zh_CN'){
+	if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 		$select_heading='選擇要上載的媒體類型';
 		$video_title1='影片';
 		$image_title1='影像';
