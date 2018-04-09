@@ -76,17 +76,23 @@ jQuery(document).ready( function($) {
  		$('body').append($('<div class="lwa"></div>').append(modal));
  	});
 	$(document).on('click', ".lwa-links-modal",  function(e){
-		e.preventDefault();
-		target = $(this).parents('.lwa').data('modal');
-		target.reveal({
-			 modalbgclass: 'lwa-modal-bg',
-		     dismissmodalclass: 'lwa-modal-close'    //the class of a button or element that will close an open modal
-		});
+		var target = $(this).parents('.lwa').data('modal');
+		if( typeof target != 'undefined' && target.length > 0 ){
+			e.preventDefault();
+			target.reveal({
+				 modalbgclass: 'lwa-modal-bg',
+			     dismissmodalclass: 'lwa-modal-close'    //the class of a button or element that will close an open modal
+			});
+		}
 	});	
 	//Register
 	$('.lwa-links-register-inline').click(function(event){
-		event.preventDefault();
-		$(this).parents('.lwa').find('.lwa-register').show('slow');
+		var register_form = $(this).parents('.lwa').find('.lwa-register');
+		if( register_form.length > 0 ){
+			event.preventDefault();
+			register_form.show('slow');
+			$(this).parents('.lwa').find('.lwa-remember').hide('slow');
+		}
 	});
 	$('.lwa-links-register-inline-cancel').click(function(event){
 		event.preventDefault();
@@ -96,8 +102,12 @@ jQuery(document).ready( function($) {
 	//Visual Effects for hidden items
 	//Remember
 	$(document).on('click', '.lwa-links-remember', function(event){
-		event.preventDefault();
-		$(this).parents('.lwa').find('.lwa-remember').show('slow');
+		var remember_form = $(this).parents('.lwa').find('.lwa-remember');
+		if( remember_form.length > 0 ){ 
+			event.preventDefault();
+			remember_form.show('slow');
+			$(this).parents('.lwa').find('.lwa-register').hide('slow');
+		}
 	});
 	$(document).on('click', '.lwa-links-remember-cancel', function(event){
 		event.preventDefault();
@@ -115,9 +125,12 @@ jQuery(document).ready( function($) {
 			//Login Failed
 			statusElement.attr('class','lwa-status lwa-status-invalid').html(data.error); //modify status content
 			//We assume a link in the status message is for a forgotten password
-			statusElement.find('a').click(function(event){
-				event.preventDefault();
-				$(this).parents('.lwa').find('form.lwa-remember').show('slow');
+			statusElement.find('a').click( function(event){
+				var remember_form = $(this).parents('.lwa').find('form.lwa-remember');
+				if( remember_form.length > 0 ){
+					event.preventDefault();
+					remember_form.show('slow');
+				}
 			});
 		}else{	
 			//If there already is an error element, replace text contents, otherwise create a new one and insert it

@@ -51,7 +51,7 @@
             </table>
             </div>
         </form>
-        <?php if( !empty($lwa_data['remember']) ): ?>
+        <?php if( !empty($lwa_data['remember']) && $lwa_data['remember'] == 1 ): ?>
         <form class="lwa-remember" action="<?php echo esc_attr(LoginWithAjax::$url_remember) ?>" method="post" style="display:none;">
         	<div>
         	<span class="lwa-status"></span>
@@ -79,7 +79,7 @@
             </div>
         </form>
         <?php endif; ?>
-		<?php if( get_option('users_can_register') && !empty($lwa_data['registration']) ): ?>
+		<?php if( get_option('users_can_register') && !empty($lwa_data['registration']) && $lwa_data['registration'] == 1 ): ?>
 		<div class="lwa-register lwa-register-default lwa-modal" style="display:none;">
 			<h4><?php esc_html_e('Register For This Site','login-with-ajax') ?></h4>
 			<p><em class="lwa-register-tip"><?php esc_html_e('A password will be e-mailed to you.','login-with-ajax') ?></em></p>

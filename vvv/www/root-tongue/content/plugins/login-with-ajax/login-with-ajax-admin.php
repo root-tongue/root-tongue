@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Class initialization
 class LoginWithAjaxAdmin{
 	// action function for above hook
-	function LoginWithAjaxAdmin() {
+	function __construct() {
 		global $user_level;
 		$lwa = LoginWithAjax::$data;
 		add_action ( 'admin_menu', array (&$this, 'menus') );
@@ -145,7 +145,7 @@ class LoginWithAjaxAdmin{
 				</div>
 				<div id="post-body">
 					<div id="post-body-content">
-						<form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
+						<form method="post" action="">
 						<h2><?php _e("General Settings", 'login-with-ajax'); ?></h2>
 						<table class="form-table">
 							<?php if( count(LoginWithAjax::$templates) > 1 ) : ?>
