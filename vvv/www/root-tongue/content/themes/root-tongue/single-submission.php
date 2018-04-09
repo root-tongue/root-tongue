@@ -7,7 +7,7 @@
 get_header(); 
 if( get_locale()=='zh_CN'){
 		$back_to_gal='回到画廊';
-		$back_to_gal_url='/zh-hans/community-gallery';
+		$back_to_gal_url='/zh-hant/community-gallery';
 		$post_a_comment='发表评论';
 		$loging_cm='登錄後才能發表評論。';
 	}

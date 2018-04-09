@@ -4,7 +4,7 @@ Template Name: Video List
 */
 get_header(); 
 if( get_locale()=='zh_CN'){
-		$cg_url='/zh-hans/community-gallery';
+		$cg_url='/zh-hant/community-gallery';
 		$cg_btn_title='去創意作品集';
 	}
 	else{

@@ -26,8 +26,8 @@ get_header(); ?>
 		$your_media_posted_title1='您的媒體將張貼在公共藝廊中';
 		$enter_text_here_title1='在此輸入文字…';
 		$save_title1='保存';
-		$urlred='/zh-hans/videolist';
-		$c_gallery='/zh-hans/community-gallery';
+		$urlred='/zh-hant/videolist';
+		$c_gallery='/zh-hant/community-gallery';
 
 	}
 	else{
@@ -194,8 +194,8 @@ get_header(); ?>
 	jQuery(document).ready(function(){
 		url_upload=jQuery('#menu-item-wpml-ls-3-en a').attr('href');
 		jQuery('#menu-item-wpml-ls-3-en a').attr('href',url_upload+'?q=<?php echo $_GET["q"] ?>');
-		url_upload1=jQuery('#menu-item-wpml-ls-3-zh-hans a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-zh-hans a').attr('href',url_upload1+'?q=<?php echo $_GET["q"] ?>');
+		url_upload1=jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href');
+		jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href',url_upload1+'?q=<?php echo $_GET["q"] ?>');
 	});
 </script>
 <?php }?>
