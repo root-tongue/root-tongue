@@ -53,10 +53,10 @@ class LoginWithAjaxWidget extends WP_Widget {
         ?>
 			<?php if( count(LoginWithAjax::$templates) > 1 ): ?>
 			<p>
-            	<label for="<?php echo $this->get_field_id('template'); ?>"><?php _e('Template', 'login-with-ajax'); ?>:</label>
+            	<label for="<?php echo $this->get_field_id('template'); ?>"><?php esc_html_e('Template', 'login-with-ajax'); ?>:</label>
             	<select class="widefat" id="<?php echo $this->get_field_id('template'); ?>" name="<?php echo $this->get_field_name('template'); ?>" >
             		<?php foreach( array_keys(LoginWithAjax::$templates) as $template ): ?>
-            		<option <?php echo ($instance['template'] == $template) ? 'selected="selected"':""; ?>><?php echo $template ?></option>
+            		<option <?php echo ($instance['template'] == $template) ? 'selected="selected"':""; ?>><?php echo esc_html($template); ?></option>
             		<?php endforeach; ?>
             	</select>
 			</p>
@@ -67,11 +67,20 @@ class LoginWithAjaxWidget extends WP_Widget {
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($instance['title']); ?>" />
 			</p>
             <p>
-                <input id="<?php echo $this->get_field_id('remember'); ?>" name="<?php echo $this->get_field_name('remember'); ?>" type="checkbox" value="1" <?php echo !empty($instance['remember']) ? 'checked="checked"':""; ?> />
-            	<label for="<?php echo $this->get_field_id('remember'); ?>"><?php esc_html_e('Recover Password?', 'login-with-ajax'); ?> </label>
-    			<br />
-                <input id="<?php echo $this->get_field_id('registration'); ?>" name="<?php echo $this->get_field_name('registration'); ?>" type="checkbox" value="1" <?php echo !empty($instance['registration']) ? 'checked="checked"':""; ?> />
-            	<label for="<?php echo $this->get_field_id('registration'); ?>"><?php esc_html_e('AJAX Registration?', 'login-with-ajax'); ?> </label>
+                <label for="<?php echo $this->get_field_id('remember'); ?>"><?php esc_html_e('Show Recover Password?', 'login-with-ajax'); ?> </label>
+            	<select class="widefat" id="<?php echo $this->get_field_id('remember'); ?>" name="<?php echo $this->get_field_name('remember'); ?>" >
+            		<option value="0" <?php echo ($instance['remember'] == 0) ? 'selected="selected"':""; ?>><?php echo esc_html_e('No Link','login-with-ajax'); ?></option>
+            		<option value="1" <?php echo ($instance['remember'] == 1) ? 'selected="selected"':""; ?>><?php echo esc_html_e('Show link with AJAX form','login-with-ajax'); ?></option>
+            		<option value="2" <?php echo ($instance['remember'] == 2) ? 'selected="selected"':""; ?>><?php echo esc_html_e('Show direct link','login-with-ajax'); ?></option>
+            	</select>
+    		</p>
+    		<p>
+                <label for="<?php echo $this->get_field_id('registration'); ?>"><?php esc_html_e('AJAX Registration?', 'login-with-ajax'); ?> </label>
+            	<select class="widefat" id="<?php echo $this->get_field_id('registration'); ?>" name="<?php echo $this->get_field_name('registration'); ?>" >
+            		<option value="0" <?php echo ($instance['registration'] == 0) ? 'selected="selected"':""; ?>><?php echo esc_html_e('No Link','login-with-ajax'); ?></option>
+            		<option value="1" <?php echo ($instance['registration'] == 1) ? 'selected="selected"':""; ?>><?php echo esc_html_e('Show link with AJAX form','login-with-ajax'); ?></option>
+            		<option value="2" <?php echo ($instance['registration'] == 2) ? 'selected="selected"':""; ?>><?php echo esc_html_e('Show direct link','login-with-ajax'); ?></option>
+            	</select>
 			</p>
 			<p><strong><?php esc_html_e('Logged Out','login-with-ajax'); ?></strong></p>	
 			<p>
@@ -82,7 +91,7 @@ class LoginWithAjaxWidget extends WP_Widget {
                 <input id="<?php echo $this->get_field_id('profile_link'); ?>" name="<?php echo $this->get_field_name('profile_link'); ?>" type="checkbox" value="1" <?php echo !empty($instance['profile_link']) ? 'checked="checked"':""; ?> />
                 <label for="<?php echo $this->get_field_id('profile_link'); ?>"><?php esc_html_e('Show profile link?', 'login-with-ajax'); ?> </label>
 			</p>
-        <?php 
+        <?php
     }
 
 }

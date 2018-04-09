@@ -43,7 +43,7 @@
 			<?php endif; ?>
 		</div>
 	</form>
-	<?php if( !empty($lwa_data['remember']) ): ?>
+	<?php if( !empty($lwa_data['remember']) && $lwa_data['remember'] == 1 ): ?>
 	<form class="lwa-remember" action="<?php echo esc_attr(LoginWithAjax::$url_remember); ?>" method="post" style="display:none;">
 		<p><strong><?php esc_html_e("Forgotten Password",'login-with-ajax'); ?></strong></p>
 		<div class="lwa-remember-email">  
@@ -58,7 +58,7 @@
 		</div>
 	</form>
 	<?php endif; ?>
-	<?php if ( $lwa_data['registration'] == true ) : ?>
+	<?php if ( get_option('users_can_register') && !empty($lwa_data['registration']) && $lwa_data['registration'] == 1 ) : ?>
 	<div class="lwa-register" style="display:none;" >
 		<form class="registerform" action="<?php echo esc_attr(LoginWithAjax::$url_register); ?>" method="post">
 			<p><strong><?php esc_html_e('Register For This Site','login-with-ajax'); ?></strong></p>         
