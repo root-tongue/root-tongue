@@ -9,9 +9,13 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		if ( ! parent::check_submission() ) {
 			return false;
 		}
-
+		if($_REQUEST['submissionType']=='audio_video')
+		{
+			$submission_type = 'video';
+		}
+		else{
 		$submission_type = $_REQUEST['submissionType'];
-
+		}
 		// check required fields in form
 		$required_fields = array(
 			'title'    => 'Title',
@@ -22,8 +26,9 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		);
 		foreach ( $required_fields as $key => $required_field ) {
 			if ( empty( $_REQUEST[ $key ] ) ) {
+				
 				$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
-				$this->errors[]            = "$required_field is required.";
+				$this->errors[]            = __( $required_field ." is required.", 'rt' );
 			}
 		}
 
@@ -51,22 +56,33 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 		}
 
 		// check for video file
-		if ( $submission_type == 'video' && empty( $_FILES['video']['name'] ) ) {
+		if ( $submission_type == 'video' && empty( $_FILES['video']['name'] ) && $_REQUEST['submissionType']!='audio_video' ) {
 			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
 			$this->errors[]            = __( 'You did not upload a video.', 'rt' );
 		}
 
-		// check for audio file
-		if ( $submission_type == 'audio' && empty( $_FILES['audio']['name'] ) ) {
-			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
-			$this->errors[]            = __( 'You did not upload an audio file.', 'rt' );
+		if ( $submission_type == 'audio_video' && empty( $_FILES['video2']['name'] ) ) {
+			$this->errors['top_level'] = __( 'Some required fields were missing.' , 'rt' );
+			$this->errors[]            = __( 'You did not upload a audio.', 'rt' );
 		}
 
+		// check for audio file
+		if ( $submission_type == 'audio' && empty( $_FILES['audio']['name'] ) ) {
+			$this->errors['top_level'] = __( $some_fields_missing, 'rt' );
+			$this->errors[]            = __( 'You did not upload an audio file.', 'rt' );
+		}
+		if($_REQUEST['submissionType']=='audio_video'){
+			$file_type_find='video2';
+		}
+		else{
+			$file_type_find=$submission_type;
+		}
 		// check the correct file type was uploaded
 		if ( in_array( $submission_type, array( 'audio', 'image', 'video' ) ) ) {
-			if ( strpos( $_FILES[ $submission_type ]['type'], $submission_type ) !== 0 ) {
+			
+			if ( strpos( $_FILES[ $file_type_find ]['type'], $submission_type ) !== 0 ) {
 				if ( $submission_type == 'video' ) {
-					$file_type_error = sprintf( __( 'The file you chose was not a %s file. If you want to upload a different file type, please choose one of the other media buttons.', 'rt' ), $submission_type );
+					$file_type_error = sprintf( __( 'The file you chose was not a %s file. If you want to upload a different file type, please choose one of the other media buttons', 'rt' ), $submission_type);
 				} else {
 					$file_type_error = sprintf( __( 'The file you chose was not an %s file. If you want to upload a different file type, please choose one of the other media buttons.', 'rt' ), $submission_type );
 				}
@@ -122,6 +138,10 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 	private function prepare_submission() {
 		$submission      = new \stdClass();
 		$submission_type = $_REQUEST['submissionType'];
+		if($submission_type=='audio_video')
+			{
+				$submission_type='video';
+			}
 
 		$submission->post_title   = $_REQUEST['title'];
 		$submission->post_content = $_REQUEST['description'];
@@ -177,6 +197,7 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 				'to'   => $question_id,
 			) );
 		}
+		
 
 		$this->response['new_user_created'] = false;
 
@@ -222,6 +243,14 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			$video = $this->save_media( 'video', $new_post );
 			update_post_meta( $new_post, 'video_url', wp_get_attachment_url( $video ) );
 		}
+		if ( $_REQUEST['submissionType'] == 'audio_video' ) {
+			$video_metadata = wp_read_video_metadata( $_FILES['video2']['tmp_name'] );
+			if ( $video_metadata['dataformat'] == 'quicktime' && $video_metadata['fileformat'] == 'mp4' ) {
+				$_FILES['video2']['name'] = str_ireplace( '.mov', '.mp4', $_FILES['video2']['name'] );
+			}
+			$video = $this->save_media( 'video2', $new_post );
+			update_post_meta( $new_post, 'audio_url', wp_get_attachment_url( $video ) );
+		}
 
 		// set the featured image
 		if ( ! empty( $image ) ) {
@@ -233,6 +262,7 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 
 		$this->response['next']       = 'success';
 		$this->response['submission'] = get_permalink( $new_post );
+		icl_makes_duplicates($new_post);
 	}
 
 	private function login_required() {
