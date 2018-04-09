@@ -5,7 +5,7 @@
  */
 
 get_header(); 
-if( get_locale()=='zh_CN'){
+if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 		$back_to_gal='回到画廊';
 		$back_to_gal_url='/zh-hant/community-gallery';
 		$post_a_comment='发表评论';

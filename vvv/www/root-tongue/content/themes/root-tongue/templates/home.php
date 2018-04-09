@@ -6,7 +6,7 @@ get_header(); ?>
 <?php do_action( 'foundationpress_before_content' ); ?>
 <?php while ( have_posts() ) : the_post(); 
 
-	if( get_locale()=='zh_CN'){
+	if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 		$continue_btn='繼續';
 		$begin_btn='開始';
 		$exlore_video_btn='探索影片';

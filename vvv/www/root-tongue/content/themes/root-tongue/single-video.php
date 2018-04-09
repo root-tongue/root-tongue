@@ -8,7 +8,7 @@ get_header(); ?>
 <div id="single-video" role="main" >
 	<?php do_action( 'foundationpress_before_content' ); ?>
 	<?php while ( have_posts() ) : the_post(); 
-		if( get_locale()=='zh_CN'){
+		if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 		$continue_to_video_btn='繼續觀看視頻';
 		$back_to_video_list_btn='回到視頻列表';
 		$urlred='/zh-hant/videolist';

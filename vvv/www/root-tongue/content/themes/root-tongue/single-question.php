@@ -6,7 +6,7 @@
 
 get_header();
 $rt = rt_get_rt_obj();
-if( get_locale()=='zh_CN'){
+if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans'){
 		$upload_response_btn='上載回應';
 		$submit_later_btn='稍後提交';
 		$back_to_video_list_btn='回到影片列表';

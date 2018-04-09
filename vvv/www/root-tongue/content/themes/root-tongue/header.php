@@ -93,7 +93,7 @@
 			</div>
 			<div class="top-bar-right">
 				<div class="nav-toggle">
-					<span class="menu-label"><?php echo $menu_title;?></span> 
+					<span class="menu-label"><?php echo $menu_title; echo ICL_LANGUAGE_CODE;?></span> 
 					<span class="menu-icon">
 					</span>
 				</div>
