@@ -46,7 +46,18 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			) ) && ! empty( $submission_type ) && empty( $_REQUEST[ $submission_type ] )
 		) {
 			$this->errors['top_level'] = __( 'Some required fields were missing.', 'rt' );
-			$this->errors[]            = sprintf( __( 'You did not enter any %s.', 'rt' ), $submission_type );
+			if($submission_type=='image'){
+					$this->errors[]            = sprintf( __( 'You did not enter any image.', 'rt' ), $submission_type );
+				}
+				else if($submission_type=='audio'){
+					$this->errors[]            = sprintf( __( 'You did not enter any audio.', 'rt' ), $submission_type );
+				}
+				else if($submission_type=='video'){
+					$this->errors[]            = sprintf( __( 'You did not enter any video.', 'rt' ), $submission_type );
+				}
+				else {
+				$this->errors[]            = sprintf( __( 'You did not enter any text.', 'rt' ), $submission_type );
+				}
 		}
 
 		// check for image file
@@ -82,9 +93,13 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			
 			if ( strpos( $_FILES[ $file_type_find ]['type'], $submission_type ) !== 0 ) {
 				if ( $submission_type == 'video' ) {
-					$file_type_error = sprintf( __( 'The file you chose was not a %s file. If you want to upload a different file type, please choose one of the other media buttons', 'rt' ), $submission_type);
-				} else {
-					$file_type_error = sprintf( __( 'The file you chose was not an %s file. If you want to upload a different file type, please choose one of the other media buttons.', 'rt' ), $submission_type );
+					$file_type_error = sprintf( __( 'The file you chose was not a video file. If you want to upload a different file type, please choose one of the other media buttons', 'rt' ), $submission_type);
+				}
+				else if ( $submission_type == 'audio' ) {
+					$file_type_error = sprintf( __( 'The file you chose was not a audio file. If you want to upload a different file type, please choose one of the other media buttons', 'rt' ), $submission_type);
+				}
+				 else {
+					$file_type_error = sprintf( __( 'The file you chose was not an image file. If you want to upload a different file type, please choose one of the other media buttons.', 'rt' ), $submission_type );
 				}
 				if ( ! empty( $this->errors['top_level'] ) ) {
 					$this->errors[] = $file_type_error;
@@ -115,9 +130,9 @@ class Submission extends \Root_Tongue\Abstracts\Ajax_Handler {
 			}
 			if ( ! empty( $_FILES[ $file ]['name'] ) && $_FILES[ $file ]['error'] != UPLOAD_ERR_OK ) {
 				if ( $_FILES[ $file ]['error'] == UPLOAD_ERR_INI_SIZE || $_FILES[ $file ]['error'] == UPLOAD_ERR_FORM_SIZE ) {
-					$file_error = sprintf( __( 'The %s you uploaded is too large. The limit is %s.', 'rt' ), $file, esc_html( size_format( wp_max_upload_size() ) ) );
+					$file_error = sprintf( __( 'The file you uploaded is too large. The limit is %s.', 'rt' ), $file, esc_html( size_format( wp_max_upload_size() ) ) );
 				} else {
-					$file_error = sprintf( __( 'An error occurred while saving your %s. Please try again.', 'rt' ), $file );
+					$file_error = sprintf( __( 'An error occurred while saving your file. Please try again.', 'rt' ), $file );
 				}
 				if ( ! empty( $this->errors['top_level'] ) ) {
 					$this->errors[] = $file_error;
