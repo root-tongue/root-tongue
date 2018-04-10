@@ -90,7 +90,7 @@ if ( comments_open() ) :
 				</p>
 				<?php endif; ?>
 				
-				<textarea name="comment" id="comment" tabindex="4" placeholder="ENTER COMMENT HERE..."></textarea>
+				<textarea name="comment" id="comment" tabindex="4" placeholder="<?php esc_attr_e('ENTER COMMENT HERE...','login-with-ajax'); ?>"></textarea>
 				
 				<!--<p id="allowed_tags" class="small"><strong>XHTML:</strong> 
 					<?php
@@ -101,8 +101,8 @@ if ( comments_open() ) :
 					</code>
 				</p>-->
 				<div class="submit-row">
-					<input class="rt-button cancel" name="submit" class="button" type="submit" id="submit" tabindex="5" value="<?php esc_attr_e( 'Submit', 'foundationpress' ); ?>">
-					<div class="rt-button cancel">CANCEL</div>
+					<input class="rt-button cancel" name="submit" class="button" type="submit" id="submit" tabindex="5" value="<?php esc_attr_e('SUBMIT','login-with-ajax'); ?>">
+					<div class="rt-button cancel"><?php esc_attr_e('CANCEL','login-with-ajax'); ?></div>
 				</div>
 				<?php comment_id_fields(); ?>
 				<?php do_action( 'comment_form', $post->ID ); ?>
