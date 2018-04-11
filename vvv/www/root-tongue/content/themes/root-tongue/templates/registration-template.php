@@ -18,11 +18,11 @@ get_header();
 			$email = $_POST['email1'];
 			$username = $_POST['email1'];
 			if( $email == "" || $password1 == "" || $username == "") {
-				$error= 'All Fields Are Required.';
+				$error= __('All Fields Are Required.','login-with-ajax');
 			} else if( !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
-				$error= 'Invalid email address.';
+				$error= __('Invalid email address.','login-with-ajax');
 			} else if( email_exists($email) ) {
-				$error= 'Email already exist.';
+				$error= __('Email already exist.','login-with-ajax');
 			} else {
 				$new_user = wp_insert_user( array(
 						'user_login'   => $email,
@@ -32,7 +32,7 @@ get_header();
 						'role'         => 'contributor',
 					) );
 				if( is_wp_error($new_user) ) {
-					$error= 'Error on user creation.';
+					$error= __('Error on user creation.','login-with-ajax');
 				} 
 				else {
 						$user    = get_userdata( $new_user );
@@ -43,7 +43,7 @@ get_header();
 						}
 
 					do_action( 'user_register', $new_user);
-					$success = 'You\'re successfully register';
+					$success =  __('You are successfully register','login-with-ajax');
 				}
 			}
 		}
