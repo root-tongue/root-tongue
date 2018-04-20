@@ -5945,7 +5945,9 @@ table.hover tr:nth-of-type(even):hover {
         right: 0px; }
       #masthead .top-bar #main-nav .menu-main-nav-container {
         margin: 2.25rem 0 0 0;
-        overflow-y: scroll;
+       overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
         height: 100%; }
       #masthead .top-bar #main-nav ul.menu {
         padding: 0 1rem 0 0.5rem;
@@ -6823,7 +6825,7 @@ background: #c0cd28;
     width: auto;
     text-align: center;
     margin: auto;
-    display: block;
+    display: table;
     font-size: 70px;
     max-width: max-content;
     max-width: -moz-max-content;
@@ -6845,7 +6847,7 @@ a.icon-down_arrow {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 35px;
+    bottom: 0px;
 }
 #fp-nav ul li a span {
     border: 2px solid #ffffff!important;
@@ -7025,7 +7027,7 @@ margin-top: 10px;
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 50px;
+    bottom: 10px;
 }
 .btns_hm a {
     display: block;
@@ -7115,10 +7117,10 @@ font-size:50px!important;
 }
 .sld_content {
     margin: 10px auto 15px!important;
-    font-size: 18px!important;
+    font-size: 16px!important;
   }
-.sld_content p{line-height: 22px!important;}
-a.icon-down_arrow{bottom: 20px!important;}
+.sld_content p{line-height: 20px!important;}
+a.icon-down_arrow{bottom: 0px!important;}
 body.green_bg .container #page header h1 {
     font-size: 48px!important;
     line-height: 50px;
@@ -7151,8 +7153,22 @@ body.single-submission .container .main-content .right h1.submission-title{
 .menu .wpml-ls-menu-item a:before{
     display: none!important;
 }
+span.spn-lang {
+    position: relative;
+    top: 3px;
+    vertical-align: top;
+}
+span.spn-lang a {
+    vertical-align: middle;
+    color: #ffffff;
+}
 html,body{ -webkit-overflow-scrolling : touch !important; overflow-y: scroll!important; height: 100% !important; }
+body.home #intro{z-index: 9999999;}
     /*new css end*/
+    body.home.show-intro{
+      background-image: none;
+      background-color: #000000;
+    }
   body.home .instructions {
     position: absolute;
     width: 100%;
