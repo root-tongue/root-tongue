@@ -50,6 +50,7 @@
 			<input type="submit" value="<?php esc_attr_e("Get New Password", 'login-with-ajax'); ?>" />
 			<a href="#" class="lwa-links-remember-cancel"><?php esc_attr_e("Cancel", 'login-with-ajax'); ?></a>
 			<input type="hidden" name="login-with-ajax" value="remember" />
+			<p><?php esc_attr_e("Check your spam folder if you do not see the password reset email.", 'login-with-ajax'); ?></p>
 		</div>
 	</form>
 	<?php endif; ?>
