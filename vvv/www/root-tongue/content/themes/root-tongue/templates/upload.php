@@ -26,8 +26,8 @@ get_header(); ?>
 		$your_media_posted_title1='您的媒體將張貼在創意作品集';
 		$enter_text_here_title1='在此輸入文字…';
 		$save_title1='保存';
-		$urlred='/zh-hans/videolist';
-		$c_gallery='/zh-hans/community-gallery';
+		$urlred='/zh-hant/videolist';
+		$c_gallery='/zh-hant/community-gallery';
 
 	}
 	else{
@@ -59,10 +59,10 @@ get_header(); ?>
 
 			<div class="file-row">
 				<div class="submission-type upload-button video" data-type="video" data-prompt="please upload or create a video"><?php echo $video_title1; ?>
-					<input type="file" accept="video/*"  name="video">
+					<input type="file" accept="video/*" capture="camcorder" name="video">
 				</div>
 				<div class="submission-type upload-button image" data-type="image"><?php echo $image_title1; ?>
-					<input type="file" accept="image/*" name="image">
+					<input type="file" accept="image/*" capture="camera" name="image">
 				</div>
 				<?php
 						$iPod	= stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
@@ -73,11 +73,11 @@ get_header(); ?>
 
 						if ( $iPod || $iPhone || $iPad || $Android || $webOS ) { ?>
 						<div class="submission-type upload-button video" data-type="audio_video" data-prompt="please upload an audio file"><?php echo $audio_title1; ?>
-						<input type="file" accept="video/*"  name="video2">
+						<input type="file" accept="video/*" capture="camcorder" name="video2">
 						</div>
 					<?php } else{ ?>
 						<div class="submission-type upload-button audio" data-type="audio" data-prompt="please upload an audio file"><?php echo $audio_title1; ?>
-						<input type="file" accept="audio/*"  name="audio">
+						<input type="file" accept="audio/*" capture="microphone" name="audio">
 						</div>
 					<?php } ?>
 				<div class="submission-type open-modal-textbox text" data-type="text" data-prompt="<?php echo $enter_text_here_title1; ?>"><?php echo $text_title1; ?></div>
