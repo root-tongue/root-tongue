@@ -4,6 +4,12 @@ Template Name: Sign up
 */
 the_post();
 get_header();
+	if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
+		$success_url='/zh-hant/success';
+	}
+	else{
+		$success_url='/success';
+	}
 ?><div id="page" role="main">
 	<header>
 		<h1 class="entry-title"><?php the_title();?></h1>
@@ -57,7 +63,7 @@ get_header();
 			<?php 
 				if(! empty($success) ) :
 					echo '<p class="error">'.$success.'';
-					wp_redirect( '/success' , 301 ); exit;
+					wp_redirect( $success_url , 301 ); exit;
 				endif;
 			?>
 		</div>

@@ -194,8 +194,8 @@ get_header(); ?>
 	jQuery(document).ready(function(){
 		url_upload=jQuery('#menu-item-wpml-ls-3-en a').attr('href');
 		jQuery('#menu-item-wpml-ls-3-en a').attr('href',url_upload+'?q=<?php echo $_GET["q"] ?>');
-		url_upload1=jQuery('#menu-item-wpml-ls-3-zh-hans a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-zh-hans a').attr('href',url_upload1+'?q=<?php echo $_GET["q"] ?>');
+		url_upload1=jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href');
+		jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href',url_upload1+'?q=<?php echo $_GET["q"] ?>');
 	});
 </script>
 <?php }?>
