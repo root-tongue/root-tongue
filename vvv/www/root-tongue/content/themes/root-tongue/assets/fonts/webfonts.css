@@ -49,4 +49,8 @@
  
   
 @font-face {font-family: 'TandelleRg-Regular';src: url('webfonts/2FDD51_3_0.eot');src: url('webfonts/2FDD51_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2FDD51_3_0.woff2') format('woff2'),url('webfonts/2FDD51_3_0.woff') format('woff'),url('webfonts/2FDD51_3_0.ttf') format('truetype');}
+
+@font-face {font-family: 'Futura-Bold';src:url('webfonts/Futura-Bold.ttf'),url('webfonts/FuturaPRO-Bold.otf');}
+@font-face {font-family: 'Futura-Medium';src:url('webfonts/Futura-Medium.ttf'),url('webfonts/FuturaPRO-Medium.otf');}
+
  

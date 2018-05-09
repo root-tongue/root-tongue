@@ -4,12 +4,12 @@ Plugin Name: Login With Ajax
 Plugin URI: http://wordpress.org/extend/plugins/login-with-ajax/
 Description: Ajax driven login widget. Customisable from within your template folder, and advanced settings from the admin area.
 Author: Marcus Sykes
-Version: 3.1.5
+Version: 3.1.7
 Author URI: http://msyk.es
 Tags: Login, Ajax, Redirect, BuddyPress, MU, WPMU, sidebar, admin, widget
 Text Domain: login-with-ajax
 
-Copyright (C) 2015 NetWebLogic LLC
+Copyright (C) 2016 NetWebLogic LLC
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-define('LOGIN_WITH_AJAX_VERSION', '3.1.5');
+define('LOGIN_WITH_AJAX_VERSION', '3.1.7');
 class LoginWithAjax {
 
 	/**
@@ -113,8 +113,8 @@ class LoginWithAjax {
 
 			//Add logout/in redirection
 			add_action('wp_logout', 'LoginWithAjax::logoutRedirect');
-			add_action('logout_url', 'LoginWithAjax::logoutUrl');
-			add_action('login_redirect', 'LoginWithAjax::loginRedirect', 1, 3);
+			add_filter('logout_url', 'LoginWithAjax::logoutUrl');
+			add_filter('login_redirect', 'LoginWithAjax::loginRedirect', 1, 3);
 			add_shortcode('login-with-ajax', 'LoginWithAjax::shortcode');
 			add_shortcode('lwa', 'LoginWithAjax::shortcode');
 		}
@@ -266,7 +266,7 @@ class LoginWithAjax {
 	
 	public static function getRegisterLink(){
 	    $register_link = false;
-	    if ( function_exists('bp_get_signup_page') ) { //Buddypress
+	    if ( function_exists('bp_get_signup_page') && (empty($_REQUEST['action']) || ($_REQUEST['action'] != 'deactivate' && $_REQUEST['action'] != 'deactivate-selected')) ) { //Buddypress
 	    	$register_link = bp_get_signup_page();
 	    }elseif ( is_multisite() ) { //MS
 	    	$register_link = site_url('wp-signup.php', 'login');
@@ -536,4 +536,3 @@ function login_with_ajax($atts = ''){
     if( !array($atts) ) $atts = shortcode_parse_atts($atts);
 	echo LoginWithAjax::shortcode($atts);
 }
-?>

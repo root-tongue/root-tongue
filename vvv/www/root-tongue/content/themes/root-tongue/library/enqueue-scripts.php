@@ -34,6 +34,8 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 		wp_enqueue_script( 'foundation', get_template_directory_uri() . '/assets/javascript/foundation.js', array(
 			'jquery',
 		), '2.0.0', true );
+			wp_enqueue_script( 'jquery-cookie-new', '//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js', array('jquery'), '1.4.1', true );
+
 
 		// Add the comment-reply library on pages where it is necessary
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

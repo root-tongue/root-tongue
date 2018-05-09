@@ -2,8 +2,8 @@
 Contributors: netweblogic
 Tags: login, ajax, ajax login, registration, redirect redirect, buddypress, multi site, sidebar, admin, widget
 Requires at least: 3.7
-Tested up to: 4.3.1
-Stable tag: 3.1.5
+Tested up to: 4.7.2
+Stable tag: 3.1.7
 License: GPLv2 or later
 
 Add smooth ajax login/registration effects and choose where users get redirected upon log in/out. Supports SSL, MultiSite, and BuddyPress.
@@ -24,7 +24,7 @@ Some of the features:
  * WPML - Language-specific redirects
 * SSL-compatible
 * Fallback mechanism, will still work on javascript-disabled browsers
-* Compatible with Wordpress, MultiSite and BuddyPress
+* Compatible with Wordpress, MultiSite, BuddyPress and many other plugins that alter the login/registration form (e.g. captcha plugins)
 * Customizable, upgrade-safe widgets
 * shortcode and template tags available
 * Widget specific option to show link to profile page
@@ -56,7 +56,7 @@ Here's a list of currently translated languages. Translations that have been sub
 * Japanese - [Ryuei Sasaki](http://ryueisasaki.com/)
 * Limburgish - Anonymous
 * Lithuanian - [Gera Dieta](http://www.kulinare.lt/)
-* Persian - [Mohammad Hosein Ameri](http://khandoon.ir/)
+* Persian - [Mohammad Hosein Ameri](http://khandoon.ir/), [Mohammad Akbari](http://www.mo-akbari.com)
 * Polish - Ryszard Rysz
 * Portuguese (Brazil) - Humberto S. Ribeiro, Diogo Goncalves, Fabiano Arruda
 * Romanian - Gabriel Berzescu
@@ -173,6 +173,18 @@ For further questions and answers (or to submit one yourself) go to our [http://
 
 
 == Changelog ==
+= 3.1.7 =
+* fixed XSS security vulnerability on LWA settings page allowing code injection if an authorized user follows a properly structured url to that page, this does not affect the security of the login forms, only the settings page. Kudos Neven Biruski from DefenceCode for responsible disclosure.
+* changed our hooks logout_url and login_redirect added as actions to filters which prevented functionality in some situations
+
+= 3.1.6 =
+* added Persian translation, thanks to Mohammad Akbari
+* fixed PHP 7 deprecated construct error
+* fixed deprecated get_currentuserinfo function PHP warning
+* added option to show direct links (no AJAX forms) to password recovery and registration forms
+* fixed missing text domain in widget/modal/widget_out.php
+* fixed server errors when deactivating BuddyPress whilst LWA is active
+
 = 3.1.5 =
 * fixed 4.3 password update which now sends a link for user to set password instead
 * fixed login redirect issues when using shortcode and template tags

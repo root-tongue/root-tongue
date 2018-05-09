@@ -21,7 +21,10 @@
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/icons/apple-touch-icon-114x114-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/icons/apple-touch-icon-72x72-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/icons/apple-touch-icon-precomposed.png">
-
+		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+		<?php if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans'){ ?>
+		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/stylesheets/chinese_font.css">
+		<?php } ?>
 		<!--
 		/**
 		 * @license
@@ -74,7 +77,13 @@
 	</head>
 	<body <?php body_class(); ?>>
 	<?php do_action( 'foundationpress_after_body' ); ?>
-
+	<?php
+		if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans'){
+			$menu_title='選單';}
+		else{
+			$menu_title='MENU';
+		}
+	?>
 	<div id="body-wrapper">
 
 	<header id="masthead" class="site-header" role="banner">
@@ -84,7 +93,7 @@
 			</div>
 			<div class="top-bar-right">
 				<div class="nav-toggle">
-					<span class="menu-label">MENU</span> 
+					<span class="menu-label"><?php echo $menu_title; ?></span> 
 					<span class="menu-icon">
 					</span>
 				</div>

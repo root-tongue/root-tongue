@@ -54,7 +54,7 @@
 	                </tr>
 	            </table>
 	        </form>
-        	<?php if( !empty($lwa_data['remember']) ): ?>
+        	<?php if( !empty($lwa_data['remember']) && $lwa_data['remember'] == 1 ): ?>
 	        <form name="lwa-remember" class="lwa-remember" action="<?php echo esc_attr(LoginWithAjax::$url_remember); ?>" method="post" style="display:none;">
 	        	<span class="lwa-status"></span>
 	            <table>
@@ -82,7 +82,7 @@
 	            </table>
 	        </form>
 	        <?php endif; ?>
-		    <?php if ( get_option('users_can_register') && !empty($lwa_data['registration']) ) : //Taken from wp-login.php ?>
+		    <?php if ( get_option('users_can_register') && !empty($lwa_data['registration']) && $lwa_data['registration'] == 1 ) : //Taken from wp-login.php ?>
 		    <div class="lwa-register" style="display:none;">
 				<form name="lwa-register"  action="<?php echo esc_attr(LoginWithAjax::$url_register); ?>" method="post">
 	        		<span class="lwa-status"></span>
@@ -118,7 +118,7 @@
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <?php esc_html_e('A password will be e-mailed to you.') ?><br />
+		                        <?php esc_html_e('A password will be e-mailed to you.', 'login-with-ajax'); ?><br />
 								<input type="submit" value="<?php esc_attr_e('Register','login-with-ajax'); ?>" tabindex="100" />
 								<a href="#" class="lwa-links-register-inline-cancel"><?php esc_html_e("Cancel",'login-with-ajax'); ?></a>
 								<input type="hidden" name="login-with-ajax" value="register" />

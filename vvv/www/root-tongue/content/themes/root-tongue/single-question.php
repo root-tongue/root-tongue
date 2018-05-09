@@ -6,7 +6,24 @@
 
 get_header();
 $rt = rt_get_rt_obj();
-
+if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans'){
+		$upload_response_btn='上載回應';
+		$submit_later_btn='稍後提交';
+		$back_to_video_list_btn='回到影片列表';
+		$urlred='/zh-hant/videolist';
+		$upload_url='/zh-hant/upload';
+		$cg_url='/zh-hant/community-gallery';
+		$cg_btn_title='去創意作品集';
+	}
+	else{
+		$upload_response_btn='UPLOAD RESPONSE';
+		$submit_later_btn='SUBMIT LATER';
+		$back_to_video_list_btn='BACK TO VIDEO LIST';
+		$urlred='/videolist';
+		$upload_url='/upload';
+		$cg_url='/community-gallery';
+		$cg_btn_title='GO TO COMMUNITY GALLERY';
+	}
 ?>
 
 <div id="single-question" role="main">
@@ -19,17 +36,18 @@ $rt = rt_get_rt_obj();
 				<?php the_content(); ?>
 			</div>
 			<div class="next-buttons">
-				<a class="rt-button" href="/upload/?q=<?php echo get_the_ID() ?>">UPLOAD RESPONSE</a>
-				<a class="rt-button" id="show-later-modal" href="#">SUBMIT LATER</a>
-				<?php if ( ! $rt->lastVideo ) : ?>
+				<a class="rt-button" href="<?php echo $upload_url;?>/?q=<?php echo get_the_ID() ?>"><?php echo $upload_response_btn;?></a>
+				<a class="rt-button" id="show-later-modal" href="#"><?php echo $submit_later_btn;?></a>
+				<a class="rt-button" href="<?php echo $urlred;?>"><?php echo $back_to_video_list_btn;?></a>
+				<?php /* if ( ! $rt->lastVideo ) : ?>
 				<a class="rt-button" href="<?php echo $rt->nextVideo->link ?>">WATCH NEXT VIDEO</a>
 				<?php else : ?>
 				<a class="rt-button" id="last-question-continue" href="#">CONTINUE</a>
-				<?php endif; ?>
+				<?php endif; */?>
 			</div>
-			<div class="watch-again">
+			<!--<div class="watch-again">
 				<a onClick="history.go(-1)">Watch this video again</a>
-			</div>
+			</div>-->
 		</article>
 	<?php endwhile; ?>
 
@@ -37,24 +55,27 @@ $rt = rt_get_rt_obj();
 
 	<div class="modal" id="submit-later">
 		<div class="overlay"></div>
-		<div class="modal-content">
-			<h3>SUBMIT LATER</h3>
-			<h4>Need more time? Enter your email and we'll send you a link so you can come back later.</h4>
+		<div class="modal-content smt_later">					
 			<form id="submit-later-form">
-				<input type="text" id="email" name="email" placeholder="ENTER EMAIL" value="<?php echo wp_get_current_user()->user_email ?>">
+				<p> <?php esc_attr_e('Need more time?','login-with-ajax'); ?> </p>
+				<p> <?php esc_attr_e('Enter your email address and we\'ll send you','login-with-ajax'); ?></p>
+				<p> <?php esc_attr_e('a link so you can come back later.','login-with-ajax'); ?></p>	
+				<input type="text" id="email" name="email" placeholder="<?php esc_attr_e('ENTER EMAIL','login-with-ajax'); ?>" value="<?php echo wp_get_current_user()->user_email ?>">
 				<div class="submit-row">
 					<?php wp_nonce_field( 'rt-submit_later' ) ?>
 					<input type="hidden" name="question" value="<?php echo get_the_ID() ?>">
-					<input type="submit" value="SUBMIT" class="rt-button">
+					<input type="submit" value="<?php esc_attr_e('SUBMIT','login-with-ajax'); ?>" class="rt-button">
 					<input type="hidden" name="action" value="rt-submit_later">
-					<div class="rt-button cancel">CANCEL</div>
+					<div class="rt-button cancel"><?php esc_attr_e('CANCEL','login-with-ajax'); ?></div>
 				</div>
 			</form>
 			<div id="submit-later-success">
-				<h4>Your perspective makes us better.</h4>
-					<p>We have sent you an email so you can share later. Thanks!</p>
+				<h1><?php esc_attr_e('THANK YOU!','login-with-ajax'); ?></h1>
+				<p><?php esc_attr_e('Your perspective makes us better.','login-with-ajax'); ?></p>
+					<p><?php esc_attr_e('We have sent you an email so you can share later.','login-with-ajax'); ?></p>
+					<p>&nbsp;</p>
 				<div class="submit-row">
-					<div class="rt-button cancel">CLOSE</div>
+					<div class="rt-button cancel"><?php esc_attr_e('CLOSE','login-with-ajax'); ?></div>
 				</div>
 			</div>
 		</div>
@@ -62,12 +83,12 @@ $rt = rt_get_rt_obj();
 	<div class="modal" id="viewed-all">
 		<div class="overlay"></div>
 		<div class="modal-content">
-			<p>YOU HAVE VIEWED ALL THE VIDEOS, NOW IT'S YOUR TURN TO SHARE A STORY.</p>
+			<p><?php esc_attr_e('YOU HAVE VIEWED ALL THE VIDEOS, NOW IT\'S YOUR TURN TO SHARE A STORY.','login-with-ajax'); ?></p>
 			<div class="button-row">
-				<a href="/upload/?q=<?php echo is_singular('question') ? get_the_ID() : rt_get_rt_obj()->videos[get_the_ID()]->question; ?>" class="rt-button">SHARE STORY</a>
+				<a href="<?php echo $upload_url;?>/?q=<?php echo is_singular('question') ? get_the_ID() : rt_get_rt_obj()->videos[get_the_ID()]->question; ?>" class="rt-button"><?php esc_attr_e('SHARE STORY','login-with-ajax'); ?></a>
 			</div>
 			<div class="button-row">
-				<a href="/community-gallery" class="rt-button">GO TO COMMUNITY GALLERY</a>
+				<a href="<?php echo $cg_url;?>" class="rt-button"><?php echo $cg_btn_titlel; ?></a>
 			</div>
 		</div>
 	</div>

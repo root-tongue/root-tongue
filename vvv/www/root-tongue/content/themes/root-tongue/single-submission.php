@@ -4,7 +4,20 @@
  *
  */
 
-get_header(); ?>
+get_header(); 
+if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
+		$back_to_gal='回到作品集';
+		$back_to_gal_url='/zh-hant/community-gallery';
+		$post_a_comment='發表評論';
+		$loging_cm='登錄後才能發表評論。';
+	}
+	else{
+		$back_to_gal='BACK TO GALLERY';
+		$back_to_gal_url='/community-gallery';
+		$post_a_comment='POST A COMMENT';
+		$loging_cm='LOG IN TO POST A COMMENT.';
+	}
+?>
 
 <div id="single-submission" role="main">
 
@@ -17,20 +30,28 @@ get_header(); ?>
 				if ( ! empty( $terms ) ) {
 					$type = $terms[0]->name;
 					switch ( $type ) {
-
 						case "image":
 							?>
 							<div class="media-holder">
-								<?php if ( has_post_thumbnail() ) :
+								<?php if ( has_post_thumbnail() ) :?>
+								<div class="img_arrow" id="img_enlarge"><a href="<?php the_post_thumbnail_url('full'); ?>" data-lightbox="example-1"><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/img_arrow.png"></a></div>
+								<?php 
 									the_post_thumbnail();
 								endif; ?>
 							</div>
 							<?php break;
-
 						case "video":
 							?>
 							<div class="media-holder">
-								<?php $video = get_field( 'video_url' );
+								<?php 
+									if(get_field('audio_url')!=''){
+										$video = get_field('audio_url');
+									}
+									else{
+										$video = get_field('video_url');
+									}
+								?>
+								<?php 
 								if ( ! empty( $video ) ): ?>
 									<div class="videoWrapper">
 										<?php echo do_shortcode( '[video]'.$video.'[/video]' ); ?>
@@ -38,7 +59,6 @@ get_header(); ?>
 								<?php endif; ?>
 							</div>
 							<?php break;
-
 						case "audio":
 							?>
 							<div class="media-holder">
@@ -55,7 +75,6 @@ get_header(); ?>
 								<?php endif; ?>
 							</div>
 							<?php break;
-
 						case "text":
 							?>
 							<div class="media-holder">
@@ -65,16 +84,76 @@ get_header(); ?>
 								<?php endif; ?>
 							</div>
 							<?php break;
-
 						default:
 							echo "There is no media to show";
 							break;
 					}
 				}
 				?>
+				<div class="description">
+					<?php $description = get_the_content();
+					if ( ! empty( $description ) ) :
+						?>
+						<?php the_content(); ?>
+					<?php endif; ?>
+				</div>
 			</div>
 			<div class="right">
-				<h1 class="submission-title"><?php the_title(); ?></h1>
+				<div class="type_trm">
+					<?php
+			$terms = get_the_terms( get_the_ID(), 'submission_type' );
+			if ( !empty( $terms ) ) {
+				$type =  $terms[0]->name;
+
+				switch ($type) {
+					case "image":
+					?>
+					<div class="green_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/image_icon.png"></span> PHOTOS
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					case "video":
+					?>
+					<?php 
+							if(get_field('audio_url')!=''){
+								$icon_v='audio_icon.png';
+								$title_clr='prl_clr';
+								$icon_title='AUDIO';
+							}
+							else{
+								$icon_v='video_icon.png';
+								$title_clr='yellow_clr';
+								$icon_title='VIDEO';
+							}
+						?>
+					<div class="<?php echo $title_clr; ?>"><span><img src="<?php echo get_stylesheet_directory_uri().'/assets/images/'.$icon_v;?>"></span> <?php echo $icon_title;?>
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					case "audio":
+					?>
+					<div class="prl_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/audio_icon.png"></span> AUDIO
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					case "text":
+					?>
+					<div class="blue_clr"><span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/text_icon.png"></span> TEXT
+					<h1 class="submission-title"><?php the_title(); ?></h1>
+					</div>
+					<?php
+					break;
+					default:
+							echo " ";
+							break;
+					}
+				}
+							?>
+				</div>
+				
 				<div class="meta user">
 					<span class="data-label">BY</span>
 					<span class="data"><?php the_author(); ?></span>
@@ -147,21 +226,21 @@ get_header(); ?>
 					<?php endif; ?>
 					</span>
 				</div>
-				<div class="description">
-					<?php $description = get_the_content();
-					if ( ! empty( $description ) ) :
-						?>
-						<div class="description-label">description</div>
-						<?php the_content(); ?>
-					<?php endif; ?>
-				</div>
+				
 				<div class="button-row">
 					<?php if ( is_user_logged_in() ) : ?>
-						<a class="rt-button show-modal" href="#">POST A COMMENT</a>
+						<a class="rt-button show-modal" href="#"><?php echo $post_a_comment;?></a>
 					<?php else : ?>
-						<a class="rt-button" href="<?php echo rt_last_seen_question_url() ?>">PARTICIPATE TO COMMENT</a>
-
+					
+						<a class="rt-button" href="#" id="show-login-modal"><?php echo $post_a_comment;?></a>
 						<div class="modal" id="login-form">
+						<div class="overlay"></div>
+						<div class="modal-content">
+							<p class="lhead"><?php echo $loging_cm;?></p>
+							<?php login_with_ajax( array( 'template' => 'root-tongue' ) ); ?>
+						</div>
+					</div>
+						<!--<div class="modal" id="login-form">
 							<div class="overlay"></div>
 							<div class="modal-content">
 								<div class="login-form-container">
@@ -190,19 +269,16 @@ get_header(); ?>
 									</form>
 								</div>
 							</div>
-						</div>
-
+						</div>-->
 					<?php endif; ?>
-					<a class="rt-button" href="/community-gallery/">RETURN TO THE GALLERY</a>
+					<a class="rt-button" href="<?php echo $back_to_gal_url;?>"><?php echo $back_to_gal;?></a>
 				</div>
-
 				<?php comments_template(); ?>
-
 			</div>
 		</article>
 	<?php endwhile; ?>
-
 	<?php do_action( 'foundationpress_after_content' ); ?>
-
 </div>
+	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ;?>/assets/stylesheets/lightbox.min.css">
+	<script src="<?php echo get_stylesheet_directory_uri() ;?>/assets/javascript/custom/lightbox-plus-jquery.min.js"></script>
 <?php get_footer(); ?>

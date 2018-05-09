@@ -65,6 +65,20 @@ add_action( 'init', function() {
 			'remove_featured_image' => __('Remove Thumbnail', 'rt'),
 			'use_featured_image' => __('Use as Thumbnail', 'rt'),
 		),
+		'capabilities' 		=> array(
+		    						'create_posts' => 'create_submission',
+							        'edit_post' => 'edit_submission',
+							        'edit_posts' => 'edit_submissions',
+							        'edit_others_posts' => 'edit_other_submissions',
+							        'publish_posts' => 'publish_submissions',
+							        'read_post' => 'read_submission',
+							        'read_private_posts' => 'read_private_submissions',
+							        'delete_post' => 'delete_submission',
+							        'delete_published_posts' => 'delete_published_submissions',
+							        'edit_published_posts' => 'edit_published_submissions',
+		   						 ),
+		    // as pointed out by iEmanuele, adding map_meta_cap will map the meta correctly
+		    'map_meta_cap' => true,
 
 		# Add some custom columns to the admin screen:
 		'admin_cols' => array(
