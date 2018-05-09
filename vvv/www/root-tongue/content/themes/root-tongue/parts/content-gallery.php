@@ -70,7 +70,7 @@
 							if(get_field('audio_url')!=''){
 								$video = get_field('audio_url');
 								$icon_v='audio_icon.png';?>
-								<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>" style="background-image:url(<?php echo $url; ?>);">
+								<div class="grid <?php echo $type; ?>" data-video-url="<?php echo $video; ?>" style="background-color:rgba(208, 220, 40, 0.9);">
 									<div class="no_thumb_title"><?php the_title();?></div>
 									<a href="<?php the_permalink(); ?>">
 										<span><img src="<?php echo get_stylesheet_directory_uri().'/assets/images/'.$icon_v;?>"></span>
@@ -91,7 +91,8 @@
 						<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID));
 						if ( $thumb ) {
 							$url = $thumb[0];?>
-							<div class="grid <?php echo $type; ?>" style="background-image:url(<?php echo $url; ?>);">
+							<div class="grid <?php echo $type; ?>" style="background-color:rgba(208, 220, 40, 0.9);">
+								<div class="no_thumb_title"><?php the_title();?></div>
 							<a href="<?php the_permalink(); ?>">
 								<span><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/audio_icon.png"></span>
 							</a>
