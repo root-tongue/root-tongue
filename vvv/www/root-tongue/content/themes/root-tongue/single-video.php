@@ -11,7 +11,7 @@ get_header(); ?>
 		if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 		$continue_to_video_btn='繼續觀看視頻';
 		$back_to_video_list_btn='回到視頻列表';
-		$urlred='/zh-hant/videolist';
+		$urlred='/zh-hans/videolist';
 	}
 	else{
 		$continue_to_video_btn='continue to video';

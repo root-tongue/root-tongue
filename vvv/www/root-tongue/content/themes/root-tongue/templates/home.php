@@ -11,10 +11,10 @@ get_header(); ?>
 		$begin_btn='開始';
 		$exlore_video_btn='探索影片';
 			if( is_user_logged_in() ){
-						$urlred='/zh-hant/videolist';
-			} else{ $urlred='/zh-hant/sign-up-to-get-started';} 
+						$urlred='/zh-hans/videolist';
+			} else{ $urlred='/zh-hans/sign-up-to-get-started';} 
 		$goto_cg_btn='去創意作品集';
-		$goto_cg_link='/zh-hant/community-gallery';
+		$goto_cg_link='/zh-hans/community-gallery';
 	}
 	else{
 		$continue_btn='CONTINUE';
@@ -103,12 +103,12 @@ get_header(); ?>
 <?php do_action( 'foundationpress_after_content' ); ?>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		$( '.home' ).removeClass( 'fp-viewing-firstSection' );
-			$( '#site_begin' ).click(function(){
-			$( '#fullpage,#fp-nav' ).show();
-			$( '.home' ).addClass( 'fp-viewing-firstSection' );
-			$( '.intro,.instructions' ).hide();
+	jQuery(document).ready(function($){
+		jQuery( '.home' ).removeClass( 'fp-viewing-firstSection' );
+			jQuery( '#site_begin' ).click(function(){
+			jQuery( '#fullpage,#fp-nav' ).show();
+			jQuery( '.home' ).addClass( 'fp-viewing-firstSection' );
+			jQuery( '.intro,.instructions' ).hide();
 		});
 	});
 </script>

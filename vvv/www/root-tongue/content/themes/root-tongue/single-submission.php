@@ -7,7 +7,7 @@
 get_header(); 
 if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 		$back_to_gal='回到作品集';
-		$back_to_gal_url='/zh-hant/community-gallery';
+		$back_to_gal_url='/zh-hans/community-gallery';
 		$post_a_comment='發表評論';
 		$loging_cm='登錄後才能發表評論。';
 	}

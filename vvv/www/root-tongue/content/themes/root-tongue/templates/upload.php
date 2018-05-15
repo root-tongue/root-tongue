@@ -189,15 +189,24 @@ get_header(); ?>
 	<!-- end overlays -->
 
 </div>
-<?php if(isset($_GET['q'])) { ?>
+<?php if( isset( $_GET['q'] ) ) { 
+	$en_id='';
+	$zh_id='';
+if( ICL_LANGUAGE_CODE=='en' ){
+	$zh_id = icl_object_id($_GET['q'], 'question', false,'zh-hant');
+	$en_id = icl_object_id($_GET['q'], 'question', false,'en');
+} else {
+	$zh_id = icl_object_id($_GET['q'], 'question', false,'zh-hant');
+	$en_id = icl_object_id($_GET['q'], 'question', false,'en');
+}
+?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		url_upload=jQuery('#menu-item-wpml-ls-3-en a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-en a').attr('href',url_upload+'?q=<?php echo $_GET["q"] ?>');
+		jQuery('#menu-item-wpml-ls-3-en a').attr('href',url_upload+'?q=<?php echo $en_id; ?>');
 		url_upload1=jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href',url_upload1+'?q=<?php echo $_GET["q"] ?>');
+		jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href',url_upload1+'?q=<?php echo $zh_id; ?>');
 	});
 </script>
-<?php }?>
 <a href="<?php echo htmlspecialchars_decode(wp_logout_url()); ?>" id="logout-url"></a>
 <?php get_footer(); ?>
