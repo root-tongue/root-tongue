@@ -92,6 +92,23 @@
 					<a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 			</div>
 			<div class="top-bar-right">
+				<span class="lang_swt">
+						<?php 
+						 $languages = icl_get_languages('skip_missing=0');
+					$items = "";
+					if( ! empty( $languages ) ) {
+						foreach( $languages as $l ){
+							if( $l['native_name']=='English' )
+							{
+								$lang_name='EN';
+							} else {
+								$lang_name=$l['native_name'];
+							}
+							$items .= '<li class="menu-item"><a href="' . $l['url'] . '">' . $lang_name . '</a></li>';
+						}
+						echo $items;
+					}?>
+					</span>
 				<div class="nav-toggle">
 					<span class="menu-label"><?php echo $menu_title; ?></span> 
 					<span class="menu-icon">
