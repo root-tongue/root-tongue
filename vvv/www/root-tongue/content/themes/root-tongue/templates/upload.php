@@ -208,5 +208,6 @@ if( ICL_LANGUAGE_CODE=='en' ){
 		jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href',url_upload1+'?q=<?php echo $zh_id; ?>');
 	});
 </script>
+<?php } ?>
 <a href="<?php echo htmlspecialchars_decode(wp_logout_url()); ?>" id="logout-url"></a>
 <?php get_footer(); ?>
