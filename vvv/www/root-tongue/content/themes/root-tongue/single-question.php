@@ -94,9 +94,4 @@ if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans'){
 	</div>
 
 </div>
-<?php 
-echo ICL_LANGUAGE_CODE;
-$id = icl_object_id(get_the_ID(), 'question', false,'zh-hans');
-echo $id;
-?>
 <?php get_footer(); ?>
