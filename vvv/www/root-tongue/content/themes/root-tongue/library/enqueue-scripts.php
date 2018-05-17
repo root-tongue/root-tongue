@@ -17,11 +17,11 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 		wp_enqueue_style( 'main-stylesheet', get_stylesheet_directory_uri() . '/assets/stylesheets/foundation.css' );
 
 		// Deregister the jquery version bundled with WordPress.
-		wp_deregister_script( 'jquery' );
+		//wp_deregister_script( 'jquery' );
 		wp_deregister_style( 'login-with-ajax' );
 
 		// CDN hosted jQuery placed in the header, as some plugins require that jQuery is loaded in the header.
-		wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js', array(), '2.1.0', false );
+		//wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js', array(), '2.1.0', false );
 
 		wp_enqueue_script( 'js-cookie', get_template_directory_uri() . '/assets/javascript/vendor/js.cookie.js', array( 'foundation' ), array(), true );
 		wp_enqueue_script( 'ok-video', get_template_directory_uri() . '/assets/javascript/vendor/okvideo.js', array(
@@ -47,5 +47,6 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 	add_action( 'wp_enqueue_scripts', 'foundationpress_scripts' );
 
 endif;
+
 
 ?>

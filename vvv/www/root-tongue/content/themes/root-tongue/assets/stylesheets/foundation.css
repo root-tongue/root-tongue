@@ -7108,6 +7108,10 @@ color: #fff;
  .modal-content input {
     position: relative;
 }
+@media screen and (max-width: 46em) {
+a.icon-down_arrow,
+.btns_hm{bottom: 80px!important;}
+}
 @media screen and (max-width: 35.500em) {
 body.home .instructions p{font-size:0.8rem!important;}
 body.home .instructions h1{font-size:4rem!important;
@@ -7120,7 +7124,8 @@ font-size:50px!important;
     font-size: 16px!important;
   }
 .sld_content p{line-height: 20px!important;}
-a.icon-down_arrow{bottom: 0px!important;}
+a.icon-down_arrow,
+.btns_hm{bottom: 100px!important;}
 body.green_bg .container #page header h1 {
     font-size: 48px!important;
     line-height: 50px;
@@ -7164,6 +7169,83 @@ span.spn-lang a {
 }
 html,body{ -webkit-overflow-scrolling : touch !important; overflow-y: scroll!important; height: 100% !important; }
 body.home #intro{z-index: 9999999;}
+span.lang_swt li{
+  display: inline-block;
+  margin:0 5px;
+  list-style: none;
+}
+span.lang_swt {
+    display: inline;
+    position: absolute;
+    right: 75px;
+}
+span.lang_swt a {color: #ffffff;}
+.page-template-page-green-background span.lang_swt a,
+.white_bg span.lang_swt a
+{
+  color: #000000;
+}
+@media only screen and (max-device-width: 480px) {
+  body.page-template-community-gallery .container #gallery-top .gallery-title,
+  body.archive .container #gallery-top .gallery-title
+  {
+    height: 3.5rem!important;
+  }
+ body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .toggle-list:after,
+ body.archive .container #gallery-top .gallery-filter .dropdown .toggle-list:after
+  {
+        background-size: 75%!important;
+    background-position: bottom!important;
+  }
+body.page-template-community-gallery .container .gallery-list .grid{
+  width: 50%!important;
+  padding-bottom: 50%!important;
+}
+body.page-template-community-gallery .container #gallery-top .gallery-filter .dropdown .toggle-list,
+body.archive .container #gallery-top .gallery-filter .dropdown .toggle-list {
+    font-size: 10px!important;
+}
+body.single-submission .container .main-content .left,
+body.page-template-default .container #page header,
+body.page-template-page-green-background .container #page header, 
+body.green_bg .container #page header
+{
+  width:100%!important;
+  float:none!important;
+}
+body.single-submission .container .main-content .right,
+body.page-template-default .container #page .entry-content,
+body.page-template-page-green-background .container #page .entry-content,
+body.green_bg .container #page .entry-content
+{
+  width:100%!important;
+  float: none!important;
+  padding: 0!important;
+}
+body.page-template-default .container #page header h1,
+body.page-template-page-green-background .container #page header h1,
+body.green_bg .container #page header h1
+{
+font-size: 3rem!important;
+}
+body.page-template-community-gallery .container .gallery-list,
+body.archive .container .gallery-list
+{
+  padding: 10.9rem 0 2rem!important;
+}
+#masthead .top-bar #main-nav{
+  width: 70%!important;
+  right: -70%!important;
+}
+#masthead .top-bar #main-nav.open
+{
+    right: 0!important;
+}
+.video-list h2
+{
+  font-size:0.7rem!important;
+}
+}
     /*new css end*/
     body.home.show-intro{
       background-image: none;
