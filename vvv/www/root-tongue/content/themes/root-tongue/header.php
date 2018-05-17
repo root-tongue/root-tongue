@@ -104,7 +104,7 @@
 							} else {
 								$lang_name=$l['native_name'];
 							}
-							$items .= '<li class="menu-item"><a href="' . $l['url'] . '">' . $lang_name . '</a></li>';
+							$items .= '<li class="menu-item" id="langcode_'.$l['code'].'"><a href="' . $l['url'] . '">' . $lang_name . '</a></li>';
 						}
 						echo $items;
 					}?>
