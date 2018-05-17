@@ -199,15 +199,15 @@ if( ICL_LANGUAGE_CODE=='en' ){
 	$zh_id = icl_object_id($_GET['q'], 'question', false,'zh-hant');
 	$en_id = icl_object_id($_GET['q'], 'question', false,'en');
 }
+}
 ?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		url_upload=jQuery('#menu-item-wpml-ls-3-en a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-en a').attr('href',url_upload+'?q=<?php echo $en_id; ?>');
-		url_upload1=jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href',url_upload1+'?q=<?php echo $zh_id; ?>');
+		url_upload=jQuery('#langcode_en a').attr('href');
+		jQuery('#langcode_en a').attr('href',url_upload+'?q=<?php echo $en_id; ?>');
+		url_upload1=jQuery('#langcode_zh-hant a').attr('href');
+		jQuery('#langcode_zh-hant a').attr('href',url_upload1+'?q=<?php echo $zh_id; ?>');
 	});
 </script>
-<?php } ?>
 <a href="<?php echo htmlspecialchars_decode(wp_logout_url()); ?>" id="logout-url"></a>
 <?php get_footer(); ?>
