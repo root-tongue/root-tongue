@@ -10,9 +10,9 @@ if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans'){
 		$upload_response_btn='上載回應';
 		$submit_later_btn='稍後提交';
 		$back_to_video_list_btn='回到影片列表';
-		$urlred='/zh-hans/videolist';
-		$upload_url='/zh-hans/upload';
-		$cg_url='/zh-hans/community-gallery';
+		$urlred='/zh-hant/videolist';
+		$upload_url='/zh-hant/upload';
+		$cg_url='/zh-hant/community-gallery';
 		$cg_btn_title='去創意作品集';
 	}
 	else{
