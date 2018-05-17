@@ -7110,7 +7110,7 @@ color: #fff;
 }
 @media screen and (max-width: 46em) {
 a.icon-down_arrow,
-.btns_hm{bottom: 80px!important;}
+.btns_hm{bottom: 50px!important;}
 }
 @media screen and (max-width: 35.500em) {
 body.home .instructions p{font-size:0.8rem!important;}
@@ -7125,7 +7125,7 @@ font-size:50px!important;
   }
 .sld_content p{line-height: 20px!important;}
 a.icon-down_arrow,
-.btns_hm{bottom: 100px!important;}
+.btns_hm{bottom: 80px!important;}
 body.green_bg .container #page header h1 {
     font-size: 48px!important;
     line-height: 50px;
