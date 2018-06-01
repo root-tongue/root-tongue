@@ -65,13 +65,7 @@ get_header(); ?>
 					<input type="file" accept="image/*" capture="camera" name="image">
 				</div>
 				<?php
-						$iPod	= stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
-						$iPhone	= stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
-						$iPad	= stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
-						$Android	= stripos($_SERVER['HTTP_USER_AGENT'],"Android");
-						$webOS	= stripos($_SERVER['HTTP_USER_AGENT'],"webOS");
-
-						if ( $iPod || $iPhone || $iPad || $Android || $webOS ) { ?>
+					if ( md_is_mobile() ) {?>
 						<div class="submission-type upload-button video" data-type="audio_video" data-prompt="please upload an audio file"><?php echo $audio_title1; ?>
 						<input type="file" accept="video/*" capture="camcorder" name="video2">
 						</div>
@@ -189,15 +183,25 @@ get_header(); ?>
 	<!-- end overlays -->
 
 </div>
-<?php if(isset($_GET['q'])) { ?>
+<?php if( isset( $_GET['q'] ) ) { 
+	$en_id='';
+	$zh_id='';
+if( ICL_LANGUAGE_CODE=='en' ){
+	$zh_id = icl_object_id($_GET['q'], 'question', false,'zh-hant');
+	$en_id = icl_object_id($_GET['q'], 'question', false,'en');
+} else {
+	$zh_id = icl_object_id($_GET['q'], 'question', false,'zh-hant');
+	$en_id = icl_object_id($_GET['q'], 'question', false,'en');
+}
+?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		url_upload=jQuery('#menu-item-wpml-ls-3-en a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-en a').attr('href',url_upload+'?q=<?php echo $_GET["q"] ?>');
-		url_upload1=jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href');
-		jQuery('#menu-item-wpml-ls-3-zh-hant a').attr('href',url_upload1+'?q=<?php echo $_GET["q"] ?>');
+		url_upload=jQuery('#langcode_en a').attr('href');
+		jQuery('#langcode_en a').attr('href',url_upload+'?q=<?php echo $en_id; ?>');
+		url_upload1=jQuery('#langcode_zh-hant a').attr('href');
+		jQuery('#langcode_zh-hant a').attr('href',url_upload1+'?q=<?php echo $zh_id; ?>');
 	});
 </script>
-<?php }?>
+<?php } ?>
 <a href="<?php echo htmlspecialchars_decode(wp_logout_url()); ?>" id="logout-url"></a>
 <?php get_footer(); ?>

@@ -103,12 +103,12 @@ get_header(); ?>
 <?php do_action( 'foundationpress_after_content' ); ?>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		$( '.home' ).removeClass( 'fp-viewing-firstSection' );
-			$( '#site_begin' ).click(function(){
-			$( '#fullpage,#fp-nav' ).show();
-			$( '.home' ).addClass( 'fp-viewing-firstSection' );
-			$( '.intro,.instructions' ).hide();
+	jQuery(document).ready(function($){
+		jQuery( '.home' ).removeClass( 'fp-viewing-firstSection' );
+			jQuery( '#site_begin' ).click(function(){
+			jQuery( '#fullpage,#fp-nav' ).show();
+			jQuery( '.home' ).addClass( 'fp-viewing-firstSection' );
+			jQuery( '.intro,.instructions' ).hide();
 		});
 	});
 </script>

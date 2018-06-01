@@ -1,5 +1,5 @@
 // fullpage customization
-$('#fullpage').fullpage({
+jQuery('#fullpage').fullpage({
   sectionSelector: '.vertical-scrolling',
   navigation: true,
   slidesNavigation: false,
