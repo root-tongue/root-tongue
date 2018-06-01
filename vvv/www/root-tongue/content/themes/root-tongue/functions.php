@@ -165,3 +165,13 @@ function wpse245372_admin_user_css() {
 	}
 }
 add_action( 'admin_head', 'wpse245372_admin_user_css' );
+require_once(get_template_directory() . '/includes/Mobile_Detect.php');
+function md_is_mobile() {
+$detect = new Mobile_Detect;
+if( $detect->isMobile() && !$detect->isTablet() ){
+	return true;
+	} else {
+	return false;
+}
+
+}

@@ -17353,7 +17353,7 @@ $(document).on('click', '#user-login-2 .cancel', function () {
 	$('.lost-password-form-container').hide();
 } );
 
-$('#upload-form').on('submit', function (event) {
+/*$('#upload-form').on('submit', function (event) {
 	event.preventDefault();
 	$('#loading.overlay-fullscreen').show();
 	$('.errors').remove();
@@ -17392,7 +17392,7 @@ $('#upload-form').on('submit', function (event) {
 		}
 	});
 	return false;
-});
+});*/
 
 $('#not-you').on('click', function () {
 	$.get($('#logout-url').attr('href'), function () {
