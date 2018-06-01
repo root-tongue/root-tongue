@@ -7543,6 +7543,9 @@ body.logged-in .login {
       font-size: 0.75rem;
       resize: none;
       outline: none;
+      overflow: visible!important;
+      position: relative!important;
+      z-index: 999;
       height: 7.25rem; }
     #upload .input-row ::-webkit-input-placeholder {
       color: #fff;
