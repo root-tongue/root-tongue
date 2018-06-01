@@ -4217,7 +4217,6 @@ textarea {
   [type='text']:focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus,
   textarea:focus {
     border: 1px solid #484747;
-    background: #fff;
     outline: none;
     box-shadow: 0 0 5px #aaaaaa;
     transition: box-shadow 0.5s, border-color 0.25s ease-in-out; }
@@ -7110,7 +7109,7 @@ color: #fff;
 }
 @media screen and (max-width: 46em) {
 a.icon-down_arrow,
-.btns_hm{bottom: 80px!important;}
+.btns_hm{bottom: 15px!important;}
 }
 @media screen and (max-width: 35.500em) {
 body.home .instructions p{font-size:0.8rem!important;}
@@ -7125,7 +7124,7 @@ font-size:50px!important;
   }
 .sld_content p{line-height: 20px!important;}
 a.icon-down_arrow,
-.btns_hm{bottom: 100px!important;}
+.btns_hm{bottom: 20px!important;}
 body.green_bg .container #page header h1 {
     font-size: 48px!important;
     line-height: 50px;
@@ -7532,23 +7531,10 @@ body.logged-in .login {
       font-family: "FuturaBT-Bold";
       font-size: 0.875rem;
       outline: none; }
-      #upload .input-row input[type='text']:focus {
-        color: #000;
-        background: #fff; }
-      #upload .input-row input[type='text']:focus::-webkit-input-placeholder {
-        color: #000; }
-      #upload .input-row input[type='text']:focus::-moz-placeholder {
-        color: #000; }
-      #upload .input-row input[type='text']:focus:-ms-input-placeholder {
-        color: #000; }
       #upload .input-row input[type='text']:-moz-read-only {
         color: #999; }
       #upload .input-row input[type='text']:read-only {
         color: #999; }
-        #upload .input-row input[type='text']:-moz-read-only:focus {
-          background: #000; }
-        #upload .input-row input[type='text']:read-only:focus {
-          background: #000; }
     #upload .input-row textarea {
       border: none;
       background: #000;
@@ -7557,16 +7543,10 @@ body.logged-in .login {
       font-size: 0.75rem;
       resize: none;
       outline: none;
+      overflow: visible!important;
+      position: relative!important;
+      z-index: 999;
       height: 7.25rem; }
-      #upload .input-row textarea:focus {
-        color: #000;
-        background: #fff; }
-      #upload .input-row textarea:focus::-webkit-input-placeholder {
-        color: #000; }
-      #upload .input-row textarea:focus::-moz-placeholder {
-        color: #000; }
-      #upload .input-row textarea:focus:-ms-input-placeholder {
-        color: #000; }
     #upload .input-row ::-webkit-input-placeholder {
       color: #fff;
       font-family: "FuturaBT-Bold";
@@ -7873,8 +7853,6 @@ body.logged-in .login {
       font-size: 0.875rem;
       margin-bottom: 0.75rem;
       transition: background 300ms ease-out; }
-      .modal#login-form .modal-content form input[type="text"]:focus, .modal#login-form .modal-content form input[type='password']:focus {
-        background: #fff; }
     .modal#login-form .modal-content form .button-row {
       text-align: center; }
     .modal#login-form .modal-content form .rt-button {
