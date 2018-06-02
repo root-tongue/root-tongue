@@ -86,6 +86,11 @@ jQuery(document).ready(function(){
 					jQuery('#new-user-message').show();
 				}
 				jQuery('#loading.overlay-fullscreen').hide();
+				video_file.attr('disabled', false);
+				image_file.attr('disabled', false);
+				video2_file.attr('disabled', false);
+				audio_file.attr('disabled', false);
+				thumbnail_file.attr('disabled', false);
 			},
 			error:function(result, status, err){
 			}
