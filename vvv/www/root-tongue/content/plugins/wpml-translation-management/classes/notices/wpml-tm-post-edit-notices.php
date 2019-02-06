@@ -22,16 +22,16 @@ class WPML_TM_Post_Edit_Notices {
 	/** @var WPML_TM_Translation_Status_Display $status_display */
 	private $status_display;
 
-	/** @var bool $use_translation_editor */
-	private $use_translation_editor;
+	/** @var WPML_Translation_Element_Factory $element_factory */
+	private $element_factory;
 
 	/**
-	 * @param WPML_Post_Status              $post_status
-	 * @param SitePress                     $sitepress
-	 * @param IWPML_Template_Service        $template_render
-	 * @param WPML_Super_Globals_Validation $super_globals
+	 * @param WPML_Post_Status                   $post_status
+	 * @param SitePress                          $sitepress
+	 * @param IWPML_Template_Service             $template_render
+	 * @param WPML_Super_Globals_Validation      $super_globals
 	 * @param WPML_TM_Translation_Status_Display $status_display
-	 * @param bool                          $use_translation_editor
+	 * @param WPML_Translation_Element_Factory   $element_factory
 	 */
 	public function __construct(
 		WPML_Post_Status $post_status,
@@ -39,14 +39,14 @@ class WPML_TM_Post_Edit_Notices {
 		IWPML_Template_Service $template_render,
 		WPML_Super_Globals_Validation $super_globals,
 		WPML_TM_Translation_Status_Display $status_display,
-		$use_translation_editor
+		WPML_Translation_Element_Factory $element_factory
 	) {
 		$this->post_status            = $post_status;
 		$this->sitepress              = $sitepress;
 		$this->template_render        = $template_render;
 		$this->super_globals          = $super_globals;
 		$this->status_display         = $status_display;
-		$this->use_translation_editor = $use_translation_editor;
+		$this->element_factory        = $element_factory;
 	}
 
 	public function add_hooks() {
@@ -88,7 +88,7 @@ class WPML_TM_Post_Edit_Notices {
 			return;
 		}
 
-		$post_element = new WPML_Post_Element( $post_id, $this->sitepress );
+		$post_element = $this->element_factory->create( $post_id, 'post' );
 		$is_original  = ! $post_element->get_source_language_code();
 
 		if ( ! $trid ) {
@@ -115,7 +115,7 @@ class WPML_TM_Post_Edit_Notices {
 
 			} elseif (
 				! $is_original &&
-				$this->use_translation_editor &&
+				WPML_TM_Post_Edit_TM_Editor_Mode::is_using_tm_editor( $this->sitepress, $post_id ) &&
 				apply_filters( 'wpml_tm_show_page_builders_translation_editor_warning', true, $post_id ) &&
 			    $this->should_display_it()
 			) {
@@ -142,7 +142,9 @@ class WPML_TM_Post_Edit_Notices {
 				echo $this->template_render->show( $model, self::TEMPLATE_USE_PREFERABLY_TE );
 			}
 
-		} elseif ( $post_element->is_translatable() && $this->use_translation_editor ){
+		} elseif ( $post_element->is_translatable()
+		           && WPML_TM_Post_Edit_TM_Editor_Mode::is_using_tm_editor( $this->sitepress, $post_id )
+		){
 			$model = array(
 				'warning' => sprintf(
 					__('%sWarning:%s You are trying to add a translation using the standard WordPress editor but your site is configured to use the WPML Translation Editor.' , 'wpml-translation-management'),

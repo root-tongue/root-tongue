@@ -7,36 +7,43 @@ class OTGS_Installer_Icons {
 	 */
 	private $installer;
 
-	/**
-	 * @var array
-	 */
-	private $products_map;
-
 	public function __construct( WP_Installer $installer ) {
 		$this->installer = $installer;
 	}
 
 	public function add_hooks() {
-		add_filter( 'otgs_installer_upgrade_check_response', array( $this, 'add_icons_on_response' ), 10, 3 );
+		add_filter( 'otgs_installer_upgrade_check_response', array( $this, 'add_icons_on_response' ), 10, 2 );
 	}
 
 	/**
 	 * @param stdClass $response
-	 * @param string $plugin_id
+	 * @param string $name
 	 *
 	 * @return stdClass
 	 */
-	public function add_icons_on_response( $response, $plugin_id, $repository ) {
-		$product = isset( $this->installer->settings['repositories'][ $repository ]['data']['products-map'][ $plugin_id ] )
-			? $this->installer->settings['repositories'][ $repository ]['data']['products-map'][ $plugin_id ]
-			: '';
+	public function add_icons_on_response( $response, $name ) {
+		$repositories = array_keys( $this->installer->get_repositories() );
+		$product = '';
+		$repository = '';
 
-		if ( $product ) {
-			$base            = $this->installer->plugin_url() . '/vendor/otgs/icons/plugin-icons/' . $repository . '/' . $product . '/icon';
+		foreach( $repositories as $repository_id ) {
+			if ( isset( $this->installer->settings['repositories'][ $repository_id ]['data']['products-map'][ $response->plugin ] ) ) {
+				$product = $this->installer->settings['repositories'][ $repository_id ]['data']['products-map'][ $response->plugin ];
+				$repository = $repository_id;
+				break;
+			} elseif ( isset( $this->installer->settings['repositories'][ $repository_id ]['data']['products-map'][ $name ] ) ) {
+				$product = $this->installer->settings['repositories'][ $repository_id ]['data']['products-map'][ $name ];
+				$repository = $repository_id;
+				break;
+			}
+		}
+
+		if ( $product && $repository ) {
+			$base            = $this->installer->plugin_url() . '/../icons/plugin-icons/' . $repository . '/' . $product . '/icon';
 			$response->icons = array(
 				'svg' => $base . '.svg',
-				'1x'  => $base . '.png',
-				'2x'  => $base . '.png',
+				'1x'  => $base . '-128x128.png',
+				'2x'  => $base . '-256x256.png',
 			);
 		}
 

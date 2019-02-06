@@ -13,7 +13,7 @@ class WPML_TM_Field_Content_Action extends WPML_TM_Job_Factory_User {
 	 *
 	 * @throws \InvalidArgumentException
 	 */
-	public function __construct( &$job_factory, $job_id ) {
+	public function __construct( $job_factory, $job_id ) {
 		parent::__construct( $job_factory );
 		if ( ! ( is_int( $job_id ) && $job_id > 0 ) ) {
 			throw new InvalidArgumentException( 'Invalid job id provided, received: ' . serialize( $job_id ) );
@@ -66,7 +66,7 @@ class WPML_TM_Field_Content_Action extends WPML_TM_Job_Factory_User {
 				$previous_element = $previous_version_elements[ $index ];
 			}
 			$data[] = array(
-				'field_type'            => sanitize_title( str_replace( WPML_Element_Translation_Package::CUSTOM_FIELD_KEY_SEPARATOR, '-', $element->field_type ) ),
+				'field_type'            => sanitize_title( str_replace( WPML_TM_Field_Type_Encoding::CUSTOM_FIELD_KEY_SEPARATOR, '-', $element->field_type ) ),
 				'tid'                   => $element->tid,
 				'field_style'           => $element->field_type === 'body' ? '2' : '0',
 				'field_finished'        => $element->field_finished,

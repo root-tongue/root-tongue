@@ -193,9 +193,25 @@ class WPML_Notices {
 	}
 
 	public function admin_enqueue_scripts() {
+		if ( WPML_Block_Editor_Helper::is_edit_post() ) {
+			wp_enqueue_script(
+				'block-editor-notices',
+				ICL_PLUGIN_URL . '/dist/js/blockEditorNotices/app.js',
+				array( 'wp-edit-post' ),
+				ICL_SITEPRESS_VERSION,
+				true
+			);
+		}
 		if ( $this->must_display_notices() ) {
 			wp_enqueue_style( 'otgs-notices', ICL_PLUGIN_URL . '/res/css/otgs-notices.css', array( 'sitepress-style' ) );
-			wp_enqueue_script( 'otgs-notices', ICL_PLUGIN_URL . '/res/js/otgs-notices.js', array( 'underscore' ) );
+			wp_enqueue_script(
+				'otgs-notices',
+				ICL_PLUGIN_URL . '/res/js/otgs-notices.js',
+				array( 'underscore' ),
+				ICL_SITEPRESS_VERSION,
+				true
+			);
+
 			do_action( 'wpml-notices-scripts-enqueued' );
 		}
 	}
@@ -241,6 +257,9 @@ class WPML_Notices {
 				foreach ( $notices as $notice ) {
 					if ( $notice instanceof WPML_Notice && ! $this->is_notice_dismissed( $notice ) ) {
 						$this->notice_render->render( $notice );
+						if ( $notice->is_flash() ) {
+							$this->remove_notice( $notice->get_group(), $notice->get_id() );
+						}
 					}
 				}
 			}
@@ -376,6 +395,17 @@ class WPML_Notices {
 	}
 
 	/**
+	 * @param string $notice_group
+	 */
+	public function remove_notice_group( $notice_group ) {
+		$notices     = $this->get_notices_for_group( $notice_group );
+		$notices_ids = array_keys( $notices );
+		foreach ( $notices_ids as $notices_id ) {
+			$this->remove_notice( $notice_group, $notices_id );
+		}
+	}
+
+	/**
 	 * @param WPML_Notice $notice
 	 * @param bool        $persist
 	 */
@@ -439,6 +469,9 @@ class WPML_Notices {
 		add_action( 'wp_ajax_otgs-hide-notice', array( $this, 'wp_ajax_hide_notice' ) );
 		add_action( 'wp_ajax_otgs-dismiss-notice', array( $this, 'wp_ajax_dismiss_notice' ) );
 		add_action( 'wp_ajax_otgs-dismiss-group', array( $this, 'wp_ajax_dismiss_group' ) );
+		add_action( 'otgs_add_notice', array( $this, 'add_notice' ), 10, 2 );
+		add_action( 'otgs_remove_notice', array( $this, 'remove_notice' ), 10, 2 );
+		add_action( 'otgs_remove_notice_group', array( $this, 'remove_notice_group' ), 10, 1 );
 	}
 
 	private function filter_invalid_notices( $notices ) {

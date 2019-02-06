@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class WPML_Translation_Job_Factory
+ *
+ * Use `wpml_tm_load_job_factory` to get an instance of this class
+ */
 class WPML_Translation_Job_Factory extends WPML_Abstract_Job_Collection {
 
 	/** @var  WPML_TM_Records $tm_records */
@@ -47,26 +52,42 @@ class WPML_Translation_Job_Factory extends WPML_Abstract_Job_Collection {
 	 * @return int|null
 	 */
 	public function create_local_post_job( $post_id, $target_language_code, $translator_id = null ) {
-		/**
-		 * @var $wpml_post_translations   WPML_Post_Translation
-		 * @var $iclTranslationManagement TranslationManagement
-		 */
-		global $wpml_post_translations, $iclTranslationManagement;
+		return $this->create_local_job( $post_id, $target_language_code, $translator_id );
+	}
 
-		$source_language_code = $wpml_post_translations->get_element_lang_code( $post_id );
-		$trid                 = $wpml_post_translations->get_element_trid( $post_id );
-		if ( $source_language_code && $trid ) {
-			$dummy_basket_data = array(
-				'post'           => array( $post_id ),
-				'translate_from' => $source_language_code,
-				'translate_to'   => array( $target_language_code => 1 )
+	public function create_local_job( $element_id, $target_language_code, $translator_id, $element_type = null ) {
+		/**
+		 * @var TranslationManagement $iclTranslationManagement
+		 */
+		global $iclTranslationManagement;
+
+		$trid                = null;
+		$element_type_prefix = 'post';
+
+		if ( $element_type ) {
+			$element_type_prefix = preg_replace( '#^([^_]+)(.*)$#', "$1", $element_type );
+		}
+
+		$translation_record = $this->tm_records()
+		                           ->icl_translations_by_element_id_and_type_prefix( $element_id, $element_type_prefix );
+
+		if ( $translation_record ) {
+			$trid = $translation_record->trid();
+
+			$batch = new WPML_TM_Translation_Batch(
+				array(
+					new WPML_TM_Translation_Batch_Element(
+						$element_id,
+						$element_type_prefix,
+						$translation_record->language_code(),
+						array( $target_language_code => 1 )
+					)
+				),
+				TranslationProxy_Batch::get_generic_batch_name(),
+				array( $target_language_code => $translator_id ? $translator_id : 0 )
 			);
 
-			if ( null !== $translator_id ) {
-				$dummy_basket_data['translators'] = array( $target_language_code => $translator_id );
-			}
-
-			$iclTranslationManagement->send_jobs( $dummy_basket_data );
+			$iclTranslationManagement->send_jobs( $batch, $element_type_prefix );
 		}
 
 		return $this->job_id_by_trid_and_lang( $trid, $target_language_code );
@@ -330,6 +351,19 @@ class WPML_Translation_Job_Factory extends WPML_Abstract_Job_Collection {
 		return $output;
 	}
 
+	/**
+	 * @param int $job_id
+	 * @param array $data
+	 */
+	public function update_job_data( $job_id, array $data ) {
+		global $wpdb;
+		$wpdb->update(
+			$wpdb->prefix . 'icl_translate_job',
+			$data,
+			array( 'job_id' => $job_id )
+		);
+	}
+
 	private function get_job_select(
 		$icl_translate_alias = 'iclt',
 		$icl_translations_translated_alias = 't',
@@ -347,6 +381,7 @@ class WPML_Translation_Job_Factory extends WPML_Abstract_Job_Collection {
 				{$icl_translation_status_alias}.status,
 				{$icl_translation_status_alias}.needs_update,
 				{$icl_translation_status_alias}.translation_service,
+				{$icl_translation_status_alias}.uuid,
 				{$icl_translations_translated_alias}.trid,
 				{$icl_translations_translated_alias}.language_code,
 				{$icl_translations_translated_alias}.source_language_code,
@@ -355,11 +390,12 @@ class WPML_Translation_Job_Factory extends WPML_Abstract_Job_Collection {
 				{$icl_translations_original_alias}.element_type AS original_post_type,
 				{$icl_translate_job_alias}.title,
 				{$icl_translate_job_alias}.deadline_date,
-				{$icl_translate_job_alias}.completed_date";
+				{$icl_translate_job_alias}.completed_date,
+				{$icl_translate_job_alias}.editor";
 	}
 
 	private function add_job_elements( $job, $include_non_translatable_elements ) {
-		global $wpdb;
+		global $wpdb, $sitepress;
 
 		$jelq = ! $include_non_translatable_elements ? ' AND field_translate = 1' : '';
 

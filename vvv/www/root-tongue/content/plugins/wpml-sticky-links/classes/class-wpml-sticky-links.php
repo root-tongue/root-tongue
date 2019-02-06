@@ -2,6 +2,9 @@
   
   
 class WPML_Sticky_Links{
+
+	const MENU_SLUG = 'wpml-sticky-links';
+
     var $settings;
     var $broken_links;
 	/**
@@ -9,7 +12,7 @@ class WPML_Sticky_Links{
 	 */
 	var $absolute_links_object;
 
-	function __construct( $ext = false ) {
+	function __construct() {
 		$this->settings = get_option( 'alp_settings' );
 
 		$this->init_hooks();
@@ -19,10 +22,11 @@ class WPML_Sticky_Links{
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 0 );
 		//init WPML_Sticky_Links after init AbsoluteLinks
 		add_action( 'init', array( $this, 'init' ), 1001 );
-		add_action( 'init', array( $this, 'plugin_localization' ) );
 	}
 
 	function plugins_loaded() {
+	  $this->plugin_localization();
+
 		// Check if WPML is active. If not display warning message and not load Sticky links
 
 		if ( defined( 'ICL_PLUGIN_PATH' ) ) {
@@ -63,12 +67,11 @@ class WPML_Sticky_Links{
 			$this->save_settings();
 		}
 
-		add_action( 'admin_menu', array( $this, 'menu' ) );
+		add_action( 'wpml_admin_menu_configure', array( $this, 'menu' ) );
 		add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
 
 		if ( is_admin() && !defined( 'DOING_AJAX' ) ) {
-			add_action( 'admin_print_scripts', array( $this, 'admin_print_scripts' ) );
-			add_action( 'admin_print_styles', array( $this, 'admin_print_styles' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_resources' ) );
 		}
 
 		add_action( 'wp_ajax_wpml_sticky_links_save_options', array( $this, '_save_options' ) );
@@ -78,17 +81,27 @@ class WPML_Sticky_Links{
 
 	}
 
-	function admin_print_styles() {
-		wp_enqueue_style('wpml-sticky-links-css', WPML_STICKY_LINKS_URL . '/res/css/management.css', array(), WPML_STICKY_LINKS_VERSION);
-	}
+	/**
+	 * @param string $hook
+	 */
+	function enqueue_admin_resources( $hook ) {
+		if ( 'wpml_page_' . self::MENU_SLUG === $hook ) {
+			wp_enqueue_script(
+				'wpml-sticky-links-js',
+				WPML_STICKY_LINKS_URL . '/res/js/scripts.js',
+				array( 'jquery' ),
+				WPML_STICKY_LINKS_VERSION
+			);
 
-	function admin_print_scripts() {
-		wp_enqueue_script('wpml-sticky-links-js', WPML_STICKY_LINKS_URL . '/res/js/scripts.js', array('jquery'), WPML_STICKY_LINKS_VERSION);
+			$wpml_sticky_links_ajax_loader_img_src = WPML_STICKY_LINKS_URL . 'res/img/ajax-loader.gif';
+			$wpml_sticky_links_ajax_loader_img = '<img src="' . $wpml_sticky_links_ajax_loader_img_src . '" alt="loading" width="16" height="16" />';
 
-		$wpml_sticky_links_ajax_loader_img_src = WPML_STICKY_LINKS_URL . 'res/img/ajax-loader.gif';
-		$wpml_sticky_links_ajax_loader_img = '<img src="' . $wpml_sticky_links_ajax_loader_img_src . '" alt="loading" width="16" height="16" />';
-
-		wp_localize_script('wpml-sticky-links-js', 'data', array( 'wpml_sticky_links_ajax_loader_img' => $wpml_sticky_links_ajax_loader_img ));
+			wp_localize_script(
+				'wpml-sticky-links-js',
+				'data',
+				array( 'wpml_sticky_links_ajax_loader_img' => $wpml_sticky_links_ajax_loader_img )
+			);
+		}
 	}
     
     function _no_wpml_warning(){
@@ -347,22 +360,29 @@ class WPML_Sticky_Links{
         </script>
         <?php
     }
-    
-    function menu(){
-	    if(!defined('ICL_PLUGIN_PATH')) return;
-		global $sitepress;
-		if(!isset($sitepress) || (method_exists($sitepress,'get_setting') && !$sitepress->get_setting( 'setup_complete' ))) return;
 
-		$top_page = apply_filters('icl_menu_main_page', basename(ICL_PLUGIN_PATH).'/menu/languages.php');
-        add_submenu_page($top_page, 
-            __('Sticky Links','wpml-sticky-links'), __('Sticky Links','wpml-sticky-links'),
-            'wpml_manage_sticky_links', 'wpml-sticky-links', array($this,'menu_content'));
-    }
-    
-    function menu_content(){
-        include WPML_STICKY_LINKS_PATH . '/menu/management.php';
-        
-    }
+	/**
+	 * @param string $menu_id
+	 */
+	function menu( $menu_id ) {
+		if ( 'WPML' !== $menu_id ) {
+			return;
+		}
+
+		$menu               = array();
+		$menu['order']      = 1000;
+		$menu['page_title'] = __( 'Sticky Links', 'wpml-sticky-links' );
+		$menu['menu_title'] = __( 'Sticky Links', 'wpml-sticky-links' );
+		$menu['capability'] = 'wpml_manage_sticky_links';
+		$menu['menu_slug']  = self::MENU_SLUG;
+		$menu['function']   = array( $this, 'menu_content' );
+
+		do_action( 'wpml_admin_menu_register_item', $menu );
+	}
+
+	function menu_content() {
+		include WPML_STICKY_LINKS_PATH . '/menu/management.php';
+	}
 
 	function pre_update_option_widget_text( $new_value, $old_value ) {
 		global $sitepress;

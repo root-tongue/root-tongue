@@ -6,8 +6,6 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 
 	protected $original_del_text;
 
-	protected $asian_languages = array( 'ja', 'ko', 'zh-hans', 'zh-hant', 'mn', 'ne', 'hi', 'pa', 'ta', 'th' );
-
 	/** @var  WPML_Translation_Job_Factory $job_factory */
 	protected $job_factory;
 
@@ -94,16 +92,10 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 	 * @return int
 	 */
 	function estimate_word_count() {
-		$words           = 0;
-		$lang_code       = $this->get_source_language_code();
-		$is_asian_lang   = in_array( $lang_code, $this->asian_languages, true );
 		$fields          = $this->get_original_fields();
 		$combined_string = join( ' ', $fields );
-		$words += $is_asian_lang === true
-			? strlen( strip_tags( $combined_string ) ) / 6
-			: count( preg_split( '/[\s\/]+/', $combined_string, 0, PREG_SPLIT_NO_EMPTY ) );
-
-		return (int) $words;
+		$calculator      = new WPML_TM_Word_Calculator( new WPML_PHP_Functions() );
+		return $calculator->count_words( $combined_string, $this->get_source_language_code() );
 	}
 
 	function get_original_fields() {
@@ -172,18 +164,19 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 		$note            = isset( $note ) ? $note : '';
 		$source_language = $this->get_source_language_code();
 		$target_language = $this->get_language_code();
+		$uuid            = $this->get_uuid();
 
 		try {
-			$res = $project->send_to_translation_batch_mode( $file, $title, $cms_id, $url, $source_language, $target_language, $word_count, $translator_id, $note );
+			$tp_job_id = $project->send_to_translation_batch_mode( $file, $title, $cms_id, $url, $source_language, $target_language, $word_count, $translator_id, $note, $uuid );
 		} catch ( Exception $err ) {
 			// The translation entry will be removed
 			$project->errors[] = $err;
-			$res = 0;
+			$tp_job_id = 0;
 		}
 
 		$translation_id = $this->get_translation_id();
 
-		if ( $res ) {
+		if ( $tp_job_id ) {
 			$tm_instance->update_translation_status( array(
 				'translation_id' => $translation_id,
 				'translator_id'  => $translator_id,
@@ -219,7 +212,7 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 			$err = true;
 		}
 
-		return array( isset( $err ) ? $err : false, $project, $res );
+		return array( isset( $err ) ? $err : false, $project, $tp_job_id );
 	}
 
 	/**
@@ -284,9 +277,6 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 			$table,
 			"(SELECT job_id FROM {$wpdb->prefix}icl_translate_job trans_job WHERE trans_job.rid = {$table}.rid LIMIT 1)"
 		);
-	}
-
-	public function maybe_load_terms_from_post_into_job( $delete ) {
 	}
 	
 	private function get_iclt_field( $field_name, $translation ) {
@@ -361,5 +351,10 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 	/** @return string|null */
 	protected function get_title_from_db() {
 		return $this->get_basic_data_property( 'title' );
+	}
+
+	/** @return string|null */
+	protected function get_uuid() {
+		return $this->get_basic_data_property( 'uuid' );
 	}
 }

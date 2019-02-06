@@ -7,6 +7,8 @@ class OTGS_Installer_WP_Components_Setting_Resources {
 	 */
 	private $installer;
 
+	const HANDLES_OTGS_INSTALLER_UI = 'otgs-installer-ui';
+
 	public function __construct( WP_Installer $installer ) {
 		$this->installer = $installer;
 	}
@@ -16,14 +18,18 @@ class OTGS_Installer_WP_Components_Setting_Resources {
 	}
 
 	public function enqueue_resources() {
-		wp_enqueue_style( 'otgs-installer-tooltip', $this->installer->res_url() . '/res/css/tooltip/tooltip.css', array( 'wp-pointer' ), WP_INSTALLER_VERSION );
-		wp_enqueue_script( 'otgs-installer-tooltip', $this->installer->res_url() . '/res/js/tooltip/tooltip.js', array(
-			'wp-pointer',
-			'jquery'
-		), WP_INSTALLER_VERSION );
+		$resources_url = $this->installer->res_url();
+
+		wp_register_style(
+			self::HANDLES_OTGS_INSTALLER_UI,
+			$resources_url . '/dist/css/component-settings-reports/styles.css',
+			array(),
+			WP_INSTALLER_VERSION
+		);
+
 		wp_enqueue_script(
 			'otgs-installer-components-save-setting',
-			$this->installer->res_url() . '/res/js/save-components-setting.js',
+			$resources_url . '/res/js/save-components-setting.js',
 			array(),
 			WP_INSTALLER_VERSION
 		);
