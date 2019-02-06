@@ -312,7 +312,7 @@ videojs.plugin( 'resolutionSelector', function( options ) {
 	// Define the change res method
 	player.changeRes = function( target_resolution ) {
 
-		var video_el = player.el().firstChild,
+		var video = player.el().firstChild,
 			is_paused = player.paused(),
 			is_autoplay = player.autoplay(),
 			current_time = player.currentTime(),
@@ -325,24 +325,29 @@ videojs.plugin( 'resolutionSelector', function( options ) {
 			|| ! player.availableRes[target_resolution] ) { return; }
 
 		// Make sure the loadedmetadata event will fire
-		if ( 'none' == video_el.preload ) { video_el.preload = 'metadata'; }
+		if ( 'none' == video.preload ) { video.preload = 'metadata'; }
 
 		if ( is_autoplay ) { player.autoplay(false); }
 
 		if ( current_time != 0 ) {
 
 			player.pause();
-			var real_aspect_ratio = Math.round(video_el.videoHeight/video_el.videoWidth*1000)/1000;
-			var thumbnail_width = player.height() / real_aspect_ratio;
-			var x_axis = (player.width() - thumbnail_width) / 2;
 			var canvas = document.createElement("canvas");
 			canvas.className = 'kgvid_temp_thumb';
-			canvas.width = player.width();
-			canvas.height = player.height();
+			canvas.width = ( video.videoWidth > video.videoHeight ) ? video.offsetWidth : video.videoWidth/video.videoHeight*video.offsetHeight;
+			canvas.height = ( video.videoWidth > video.videoHeight ) ? video.videoHeight/video.videoWidth*video.offsetWidth : video.offsetHeight;
+			var topOffset = Math.round((video.offsetHeight - canvas.height)/2);
+			if (topOffset > 2) {
+				canvas.setAttribute('style', 'top:' + topOffset + 'px;');
+			}
+			var leftOffset = Math.round((video.offsetWidth - canvas.width)/2);
+			if (leftOffset > 2) {
+				canvas.setAttribute('style', 'left:' + leftOffset + 'px;');
+			}
 			var context = canvas.getContext('2d');
-			context.fillRect(0, 0, player.width(), player.height());
-			context.drawImage(video_el, x_axis, 0, thumbnail_width, player.height());
-			jQuery(video_el).parent().append(canvas);
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			context.drawImage(video, 0, 0, canvas.width, canvas.height);
+			jQuery(video).parent().append(canvas);
 
 			player.bigPlayButton.hide();
 

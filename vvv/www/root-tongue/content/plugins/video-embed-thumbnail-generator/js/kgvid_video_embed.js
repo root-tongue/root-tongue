@@ -539,26 +539,37 @@ function kgvid_setup_video(id) {
 
 		var player = jQuery('#video_'+id+'_div video');
 		var mejs_id = jQuery('#video_'+id+'_div .mejs-container').attr('id');
+		var played = jQuery('#video_'+id+'_div').data("played") || "not played";
+
+		jQuery('#video_'+id+'_div .mejs-container').append(jQuery('#video_'+id+'_watermark'));
+
+		if ( played == "not played" ) { //only turn on the default captions on first load
+
+			var mejs_player = eval('mejs.players.'+mejs_id);
+
+			jQuery.each(mejs_player.tracks, function(key, item) {
+				if ( item.srclang == jQuery('#'+mejs_id+' track[default]').attr('srclang').toLowerCase() ) {
+					mejs_player.setTrack(item.trackId);
+					jQuery('#'+mejs_id+' .mejs-captions-selector input[value="en"]').prop('checked',true);
+				}
+			});
+
+			if ( video_vars.start != '' ) {
+				player[0].setCurrentTime(kgvid_convert_from_timecode(video_vars.start));
+			}
+
+		}
 
 		player.on('loadedmetadata', function() {
 
-			var mejs_player = eval('mejs.players.'+mejs_id);
 			var resolutions = player.availableRes;
 			var played = jQuery('#video_'+id+'_div').data("played") || "not played";
 
 			if ( video_vars.set_volume != "" ) { player[0].volume = video_vars.set_volume; }
 			if ( video_vars.mute == "true" ) { player[0].setMuted(true); }
 			if ( video_vars.pauseothervideos == "false" ) { mejs_player.options.pauseOtherPlayers = false; }
-			jQuery('#video_'+id+'_div .mejs-container').append(jQuery('#video_'+id+'_watermark'));
-
-			if ( played == "not played" ) { //only turn on the default captions on first load
-
-				jQuery.each(mejs_player.tracks, function(key, item) {
-					if ( item.srclang == jQuery('#'+mejs_id+' track[default]').attr('srclang') ) {
-						mejs_player.setTrack(item.srclang);
-						jQuery('#'+mejs_id+' .mejs-captions-selector input[value="en"]').prop('checked',true);
-					}
-				});
+			
+			if ( played == "not played" ) { //only fast forward to start time on first play
 
 				if ( video_vars.start != '' ) {
 					player[0].setCurrentTime(kgvid_convert_from_timecode(video_vars.start));
@@ -962,7 +973,13 @@ function kgvid_video_counter(id, event) {
 			changed = true;
 			jQuery('#video_'+id+'_div').data("played", "played");
 		}
-		if (typeof ga != "undefined") { ga("send", "event", "Videos", kgvidL10n_frontend.playstart, title); }
+		if (typeof gtag != "undefined") { 
+			gtag("event", kgvidL10n_frontend.playstart, {
+				'event_category': "Videos", 
+				'event_label': title
+			}); 
+		}
+		else if (typeof ga != "undefined") { ga("send", "event", "Videos", kgvidL10n_frontend.playstart, title); }
 		else if (typeof __gaTracker != "undefined") { __gaTracker("send", "event", "Videos", kgvidL10n_frontend.playstart, title); } // Yoast renamed ga function
 		else if (typeof _gaq != "undefined") { _gaq.push(["_trackEvent", "Videos", kgvidL10n_frontend.playstart, title]); }
 
@@ -973,8 +990,13 @@ function kgvid_video_counter(id, event) {
 		if (video_vars.countable) { //video is in the db
 			changed = true;
 		}
-
-		if (typeof ga != "undefined") { ga("send", "event", "Videos", event+"%", title); }
+		if (typeof gtag != "undefined") {
+			gtag("event", event+"%", {
+				'event_category': "Videos", 
+				'event_label': title
+			}); 
+		}
+		else if (typeof ga != "undefined") { ga("send", "event", "Videos", event+"%", title); }
 		else if (typeof __gaTracker != "undefined") { __gaTracker("send", "event", "Videos", event+"%", title); } // Yoast renamed ga function
 		else if (typeof _gaq != "undefined") { _gaq.push(["_trackEvent", "Videos", event+"%", title]); }
 
@@ -985,7 +1007,12 @@ function kgvid_video_counter(id, event) {
 		if (video_vars.countable) { //video is in the db
 			changed = true;
 		}
-
+		if (typeof gtag != "undefined") { 
+			gtag("event", kgvidL10n_frontend.completeview, {
+				'event_category': "Videos", 
+				'event_label': title
+			}); 
+		}
 		if (typeof ga != "undefined") { ga("send", "event", "Videos", kgvidL10n_frontend.completeview, title); }
 		if (typeof __gaTracker != "undefined") { __gaTracker("send", "event", "Videos", kgvidL10n_frontend.completeview, title); } // Yoast renamed ga function
 		else if (typeof _gaq != 'undefined') { _gaq.push(['_trackEvent', 'Videos', kgvidL10n_frontend.completeview, title]); }
