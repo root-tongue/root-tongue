@@ -92,7 +92,7 @@ get_header(); ?>
                 </div>
                 <div class="logout lgndin">
                     <span> <?php esc_attr_e('YOU ARE LOGGED IN AS','login-with-ajax'); ?> <span id="current-user"><?php echo wp_get_current_user()->display_name ?></span></span>
-                    <div id="not-you"><a href="javascript: void:(0)"><?php esc_attr_e('LOG OUT','login-with-ajax'); ?> <i class="fas fa-arrow-circle-right"></i></a></div>
+                    <div id="not-you"><a href="<?php echo wp_logout_url( home_url() ); ?>"><?php esc_attr_e('LOG OUT','login-with-ajax'); ?> <i class="fas fa-arrow-circle-right"></i></a></div>
                 </div>
                 <div class="input-row">
                     <div class="col">
