@@ -54,7 +54,7 @@ if( ICL_LANGUAGE_CODE=='zh-hant' || ICL_LANGUAGE_CODE=='zh-hans' ){
 								<?php 
 								if ( ! empty( $video ) ): ?>
 									<div class="videoWrapper">
-										<?php echo do_shortcode('[video src="https://youtu.be/XuFgq2nVZjs"]'); ?>
+										<?php echo do_shortcode('[video src="'.$video.'"]'); ?>
 									</div>
 								<?php endif; ?>
 							</div>
